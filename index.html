@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Generator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 300px;
+            height: 200px;
+        }
+
+        #json-output {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="json-input" placeholder="Enter input"></textarea>
+    <button id="generate-button">Generate JSON</button>
+    <textarea id="json-output" readonly></textarea>
+
+    <script>
+        function uuidv4() {
+            return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
+        }
+
+        function randomInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function randomItem(items) {
+            return items[Math.floor(Math.random()*items.length)];
+        }
+
+        function generateData(template, index) {
+            return template.replace(/{{([^{}]+)}}/g, function(_, key){
+                // key 값은 중괄호 안에 들어있는 함수 풀 네임입니다. id()
+                // func는 함수 이름입니다.
+                const [func, ...args] = key.split('(')[0].split(',');
+
+                switch(func) {
+                    case 'id':
+                        return uuidv4();
+                    case 'index':
+                        return index;
+                    case 'integer':
+                        return randomInteger(parseInt(args[0]), parseInt(args[1]));
+                    case 'random':
+                        return randomItem(args.map(s => s.replace(/"/g, '').trim()));
+                    case 'name':
+                        return randomItem(["John Doe", "Jane Doe", "Doe John"]);
+                    default:
+                        return _;
+                }
+            });
+        }
+
+        document.getElementById('generate-button').addEventListener('click', function() {
+            // let input = JSON.parse(document.getElementById('json-input').value.replace(/'/g, '"'));
+            let input = `[
+            "{{repeat(5)}}",
+            {
+                "_id": "{{id()}}",
+                "index": "{{index()}}",
+                "picture": "http://placehold.it/32x32",
+                "age": "{{integer(20, 40)}}",
+                "eyeColor": "{{random('blue', 'brown', 'green')}}",
+                "name": "{{name()}}"
+            }]`
+            input = JSON.parse(input)
+            console.log(input)
+
+            let repeatCount = parseInt(input[0].match(/(\d+)/)[0]);
+            console.log(repeatCount);
+
+            let template = JSON.stringify(input[1]);
+            console.log(template);
+
+            let output = [];
+            console.log(repeatCount);
+
+            for(let i = 0; i < repeatCount; i++) {
+                output.push(JSON.parse(generateData(template, i)));
+            }
+            console.log(output);
+
+            document.getElementById('json-output').value = JSON.stringify(output, null, 2);
+        });
+    </script>
+</body>
+</html>
