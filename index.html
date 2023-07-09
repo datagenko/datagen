@@ -25,10 +25,20 @@
     <textarea id="json-input" placeholder="Enter input"></textarea>
     <button id="generate-button">Generate JSON</button>
     <textarea id="json-output" readonly></textarea>
+    <button id="downloadcsv-button">download CSV</button>
+    <button id="downloadjson-button">download JSON</button>
+
 
     <script>
-        function uuidv4() {
-            return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
+        let first_name = ['이', '김', '한', '차', '남']
+        let last_name = ['가람', '가온', '그린', '겨루', '나래', '늘봄', '다슬', '라라', '루리', '마루', '바다', '새길', '새나']
+
+        function uuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                let r = Math.random() * 16 | 0
+                let v = c == 'x' ? r : randomItem(['A', 'B', 'C']);
+                return v.toString(16);
+            });
         }
 
         function randomInteger(min, max) {
@@ -41,13 +51,20 @@
 
         function generateData(template, index) {
             return template.replace(/{{([^{}]+)}}/g, function(_, key){
-                // key 값은 중괄호 안에 들어있는 함수 풀 네임입니다. id()
-                // func는 함수 이름입니다.
-                const [func, ...args] = key.split('(')[0].split(',');
+                // key 값은 중괄호 안에 들어있는 값
+                // console.log(key)
+                const func = key.split('(')[0]
+                const [...args] = key.split('(')[1]
+                                    .replace(')', '')
+                                    .replaceAll(' ', '')
+                                    .replaceAll('\'', '')
+                                    .replaceAll('"', '')
+                                    .split(',')
+                // console.log(func, args)
 
                 switch(func) {
                     case 'id':
-                        return uuidv4();
+                        return uuid();
                     case 'index':
                         return index;
                     case 'integer':
@@ -55,7 +72,7 @@
                     case 'random':
                         return randomItem(args.map(s => s.replace(/"/g, '').trim()));
                     case 'name':
-                        return randomItem(["John Doe", "Jane Doe", "Doe John"]);
+                        return randomItem(first_name) + randomItem(last_name);
                     default:
                         return _;
                 }
@@ -69,7 +86,7 @@
             {
                 "_id": "{{id()}}",
                 "index": "{{index()}}",
-                "picture": "http://placehold.it/32x32",
+                "picture": "http://via.placeholder.com/32x32",
                 "age": "{{integer(20, 40)}}",
                 "eyeColor": "{{random('blue', 'brown', 'green')}}",
                 "name": "{{name()}}"
@@ -93,6 +110,48 @@
 
             document.getElementById('json-output').value = JSON.stringify(output, null, 2);
         });
+
+        // csv 다운로드 버튼 클릭시 이벤트
+        document.getElementById('downloadcsv-button').addEventListener('click', function() {
+            // json-output textarea의 값을 가져온다.
+            let json = document.getElementById('json-output').value;
+            // json을 객체로 변환한다.
+            let data = JSON.parse(json);
+            // csv 파일의 첫번째 줄에 들어갈 키를 추출한다.
+            let keys = Object.keys(data[0]);
+            // csv 파일의 첫번째 줄을 만든다.
+            let csv = keys.join(',') + '\n';
+            // csv 파일의 두번째 줄부터 데이터를 넣는다.
+            data.forEach(function(row) {
+                // csv 파일의 한 줄을 만든다.
+                let line = keys.map(function(key) {
+                    return row[key];
+                }).join(',');
+                // csv 파일에 한 줄을 추가한다.
+                csv += line + '\n';
+            });
+            // csv 파일을 다운로드한다.
+            download('data.csv', csv);
+        });
+
+        // json 다운로드 버튼 클릭시 이벤트
+        document.getElementById('downloadjson-button').addEventListener('click', function() {
+            // json-output textarea의 값을 가져온다.
+            let json = document.getElementById('json-output').value;
+            // json 파일을 다운로드한다.
+            download('data.json', json);
+        });
+
+        function download(filename, text) {
+            // a 태그를 만든다.
+            let element = document.createElement('a');
+            // href 속성을 추가한다.
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            // download 속성을 추가한다.
+            element.setAttribute('download', filename);
+            // a 태그를 클릭한다.
+            element.click();
+        }
     </script>
 </body>
 </html>
