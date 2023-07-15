@@ -3,10 +3,10 @@
 
 <head>
     <title>JSON Generator</title>
-    <link rel="stylesheet" href="/asset/css/style.css">
-    <link rel="stylesheet" href="/asset/css/reset.css">
-    <link rel="stylesheet" href="/asset/css/buttons.css">
-    <link rel="stylesheet" href="/asset/css/header.css">
+    <link rel="stylesheet" href="/asset/css/style.css" />
+    <link rel="stylesheet" href="/asset/css/reset.css" />
+    <link rel="stylesheet" href="/asset/css/buttons.css" />
+    <link rel="stylesheet" href="/asset/css/header.css" />
     <style>
         body {
             display: flex;
@@ -14,81 +14,122 @@
             align-items: center;
             gap: 10px;
             padding: 20px;
+            background-color: #1c2028;
         }
 
-        textarea {
-            width: 300px;
-            height: 200px;
+        #datagen-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1800px;
+            max-height: 1013px;
+            margin: 0 auto;
+            padding: 55px 100px;
+            box-sizing: border-box;
+            /* display: flex; */
+            gap: 138px;
+            background-color: #2a2e36;
+            border-radius: 30px;
+        }
+
+        /* #datagen-input::after {
+        display: block;
+        content: "";
+        width: 3px;
+        height: 933.001px;
+        background: #2f353f;
+      } */
+
+        #json-input {
+            width: 100%;
+            max-width: 625px;
+            resize: none;
+            background-color: #2f353f;
+            border: none;
+            border-radius: 30px;
         }
 
         #json-output {
-            background-color: #eee;
+            width: 100%;
+            max-width: 889px;
+            resize: none;
+            background-color: #2f353f;
+            border: none;
+            border-radius: 30px;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1 class="logo">
-            <img src="asset/img/logo.svg" alt="데이터젠 로고">
-        </h1>
-        <div class="language">
-            <a class="github" href="https://github.com/datagenko/datagen" target="_blank"></a>
-            <button class="language_button" type="button">KO</button>
-        </div>
-        <div class="language-list">
-            <p class="language-list_ko">KO</p>
-            <p class="language-list_eng">ENG</p>
-        </div>
-    </header>
-    <textarea id="json-input" placeholder="Enter input"></textarea>
-    <div class="btn-inp-wrap">
-        <button class="btn gen" id="generate-button">Generate</button>
-        <button class="btn reset" id="reset-button">Reset</button>
+    <div id="datagen-container">
+        <header>
+            <h1 class="logo">
+                <img src="asset/img/logo.svg" alt="데이터젠 로고">
+            </h1>
+            <div class="language">
+                <a class="github" href="https://github.com/datagenko/datagen" target="_blank"></a>
+                <button class="language_button" type="button">KO</button>
+            </div>
+            <div class="language-list">
+                <p class="language-list_ko">KO</p>
+                <p class="language-list_eng">ENG</p>
+            </div>
+        </header>
+        <section id="datagen-input">
+            <div id="dropdown">드롭다운자리</div>
+            <textarea id="json-input"></textarea>
+            <div class="btn-inp-wrap">
+                <button class="btn gen" id="generate-button">Generate</button>
+                <button class="btn reset" id="reset-button">Reset</button>
+            </div>
+            <!-- <button id="generate-button">Generate</button>
+          <button id="reset-button">Reset</button> -->
+        </section>
+        <section id="datagen-output">
+            <textarea id="json-output" readonly></textarea>
+            <article class="download-wrap">
+                <p>Download to</p>
+                <div class="btn-wrap">
+                    <button class="btn download" id="downloadjson-button">JSON</button>
+                    <button class="btn download" id="downloadcsv-button">CSV</button>
+                    <button class="btn download" id="downloadhtml-button">HTML</button>
+                    <button class="btn download" id="downloadxml-button">XML</button>
+                    <button class="btn download" id="downloadsql-button">SQL</button>
+                </div>
+            </article>
+            <!-- <button id="downloadjson-button">JSON</button>
+          <button id="downloadcsv-button">CSV</button>
+          <button id="downloadhtml-button">HTML</button>
+          <button id="downloadxml-button">XML</button>
+          <button id="downloadsql-button">SQL</button> -->
+        </section>
     </div>
-    <textarea id="json-output" readonly></textarea>
-    <article class="download-wrap">
-        <p>Download to</p>
-        <div class="btn-wrap">
-            <button class="btn download" id="downloadjson-button">JSON</button>
-            <button class="btn download" id="downloadcsv-button">CSV</button>
-            <button class="btn download" id="downloadhtml-button">HTML</button>
-            <button class="btn download" id="downloadxml-button">XML</button>
-            <button class="btn download" id="downloadsql-button">SQL</button>
-        </div>
-    </article>
-
-
     <script>
-        let first_name = [
-            '이',
-            '김',
-            '한',
-            '차',
-            '남'
-        ]
+        let first_name = ["이", "김", "한", "차", "남"];
         let last_name = [
-            '가람',
-            '가온',
-            '그린',
-            '겨루',
-            '나래',
-            '늘봄',
-            '다슬',
-            '라라',
-            '루리',
-            '마루',
-            '바다',
-            '새길',
-            '새나'
-        ]
+            "가람",
+            "가온",
+            "그린",
+            "겨루",
+            "나래",
+            "늘봄",
+            "다슬",
+            "라라",
+            "루리",
+            "마루",
+            "바다",
+            "새길",
+            "새나",
+        ];
 
         function uuid() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                let r = Math.random() * 16 | 0
-                let v = c == 'x' ? r : randomItem(['A', 'B', 'C']);
-                return v.toString(16);
-            });
+            return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+                /[xy]/g,
+                function (c) {
+                    let r = (Math.random() * 16) | 0;
+                    let v = c == "x" ? r : randomItem(["A", "B", "C"]);
+                    return v.toString(16);
+                }
+            );
         }
 
         function randomInteger(min, max) {
@@ -103,25 +144,26 @@
             return template.replace(/{{([^{}]+)}}/g, function (_, key) {
                 // key 값은 중괄호 안에 들어있는 값
                 // console.log(key)
-                const func = key.split('(')[0]
-                const [...args] = key.split('(')[1]
-                    .replace(')', '')
-                    .replaceAll(' ', '')
-                    .replaceAll('\'', '')
-                    .replaceAll('"', '')
-                    .split(',')
+                const func = key.split("(")[0];
+                const [...args] = key
+                    .split("(")[1]
+                    .replace(")", "")
+                    .replaceAll(" ", "")
+                    .replaceAll("'", "")
+                    .replaceAll('"', "")
+                    .split(",");
                 // console.log(func, args)
 
                 switch (func) {
-                    case 'id':
+                    case "id":
                         return uuid();
-                    case 'index':
+                    case "index":
                         return index;
-                    case 'integer':
+                    case "integer":
                         return randomInteger(parseInt(args[0]), parseInt(args[1]));
-                    case 'random':
-                        return randomItem(args.map(s => s.replace(/"/g, '').trim()));
-                    case 'name':
+                    case "random":
+                        return randomItem(args.map((s) => s.replace(/"/g, "").trim()));
+                    case "name":
                         return randomItem(first_name) + randomItem(last_name);
                     default:
                         return _;
@@ -129,9 +171,11 @@
             });
         }
 
-        document.getElementById('generate-button').addEventListener('click', function () {
-            // let input = JSON.parse(document.getElementById('json-input').value.replace(/'/g, '"'));
-            let input = `[
+        document
+            .getElementById("generate-button")
+            .addEventListener("click", function () {
+                // let input = JSON.parse(document.getElementById('json-input').value.replace(/'/g, '"'));
+                let input = `[
             "{{repeat(5)}}",
             {
                 "_id": "{{id()}}",
@@ -140,160 +184,179 @@
                 "age": "{{integer(20, 40)}}",
                 "eyeColor": "{{random('blue', 'brown', 'green')}}",
                 "name": "{{name()}}"
-            }]`
-            input = JSON.parse(input)
-            console.log(input)
+            }]`;
+                input = JSON.parse(input);
+                console.log(input);
 
-            let repeatCount = parseInt(input[0].match(/(\d+)/)[0]);
-            console.log(repeatCount);
+                let repeatCount = parseInt(input[0].match(/(\d+)/)[0]);
+                console.log(repeatCount);
 
-            let template = JSON.stringify(input[1]);
-            console.log(template);
+                let template = JSON.stringify(input[1]);
+                console.log(template);
 
-            let output = [];
-            console.log(repeatCount);
+                let output = [];
+                console.log(repeatCount);
 
-            for (let i = 0; i < repeatCount; i++) {
-                output.push(JSON.parse(generateData(template, i)));
-            }
-            console.log(output);
+                for (let i = 0; i < repeatCount; i++) {
+                    output.push(JSON.parse(generateData(template, i)));
+                }
+                console.log(output);
 
-            document.getElementById('json-output').value = JSON.stringify(output, null, 2);
-        });
+                document.getElementById("json-output").value = JSON.stringify(
+                    output,
+                    null,
+                    2
+                );
+            });
 
         // csv 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadcsv-button').addEventListener('click', function () {
-            // json-output textarea의 값을 가져온다.
-            let json = document.getElementById('json-output').value;
-            // json을 객체로 변환한다.
-            let data = JSON.parse(json);
-            // csv 파일의 첫번째 줄에 들어갈 키를 추출한다.
-            let keys = Object.keys(data[0]);
-            // csv 파일의 첫번째 줄을 만든다.
-            let csv = keys.join(',') + '\n';
-            // csv 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function (row) {
-                // csv 파일의 한 줄을 만든다.
-                let line = keys.map(function (key) {
-                    return row[key];
-                }).join(',');
-                // csv 파일에 한 줄을 추가한다.
-                csv += line + '\n';
+        document
+            .getElementById("downloadcsv-button")
+            .addEventListener("click", function () {
+                // json-output textarea의 값을 가져온다.
+                let json = document.getElementById("json-output").value;
+                // json을 객체로 변환한다.
+                let data = JSON.parse(json);
+                // csv 파일의 첫번째 줄에 들어갈 키를 추출한다.
+                let keys = Object.keys(data[0]);
+                // csv 파일의 첫번째 줄을 만든다.
+                let csv = keys.join(",") + "\n";
+                // csv 파일의 두번째 줄부터 데이터를 넣는다.
+                data.forEach(function (row) {
+                    // csv 파일의 한 줄을 만든다.
+                    let line = keys
+                        .map(function (key) {
+                            return row[key];
+                        })
+                        .join(",");
+                    // csv 파일에 한 줄을 추가한다.
+                    csv += line + "\n";
+                });
+                // csv 파일을 다운로드한다.
+                download("data.csv", csv);
             });
-            // csv 파일을 다운로드한다.
-            download('data.csv', csv);
-        });
 
         // json 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadjson-button').addEventListener('click', function () {
-            // json-output textarea의 값을 가져온다.
-            let json = document.getElementById('json-output').value;
-            // json 파일을 다운로드한다.
-            download('data.json', json);
-        });
+        document
+            .getElementById("downloadjson-button")
+            .addEventListener("click", function () {
+                // json-output textarea의 값을 가져온다.
+                let json = document.getElementById("json-output").value;
+                // json 파일을 다운로드한다.
+                download("data.json", json);
+            });
 
         // html 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadhtml-button').addEventListener('click', function () {
-            // json-output textarea의 값을 가져온다.
-            let json = document.getElementById('json-output').value;
-            // json을 객체로 변환한다.
-            let data = JSON.parse(json);
-            // html 파일을 만든다.
-            let html = '<table>\n';
-            // html 파일의 첫번째 줄에 들어갈 키를 추출한다.
-            let keys = Object.keys(data[0]);
-            // html 파일의 첫번째 줄을 만든다.
-            html += '\t<tr>\n';
-            // html 파일의 첫번째 줄에 키를 넣는다.
-            keys.forEach(function (key) {
-                html += '\t\t<th>' + key + '</th>\n';
-            });
-            // html 파일의 첫번째 줄을 닫는다.
-            html += '\t</tr>\n';
-            // html 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function (row) {
-                // html 파일의 한 줄을 만든다.
-                html += '\t<tr>\n';
-                // html 파일의 한 줄에 데이터를 넣는다.
+        document
+            .getElementById("downloadhtml-button")
+            .addEventListener("click", function () {
+                // json-output textarea의 값을 가져온다.
+                let json = document.getElementById("json-output").value;
+                // json을 객체로 변환한다.
+                let data = JSON.parse(json);
+                // html 파일을 만든다.
+                let html = "<table>\n";
+                // html 파일의 첫번째 줄에 들어갈 키를 추출한다.
+                let keys = Object.keys(data[0]);
+                // html 파일의 첫번째 줄을 만든다.
+                html += "\t<tr>\n";
+                // html 파일의 첫번째 줄에 키를 넣는다.
                 keys.forEach(function (key) {
-                    html += '\t\t<td>' + row[key] + '</td>\n';
+                    html += "\t\t<th>" + key + "</th>\n";
                 });
-                // html 파일의 한 줄을 닫는다.
-                html += '\t</tr>\n';
+                // html 파일의 첫번째 줄을 닫는다.
+                html += "\t</tr>\n";
+                // html 파일의 두번째 줄부터 데이터를 넣는다.
+                data.forEach(function (row) {
+                    // html 파일의 한 줄을 만든다.
+                    html += "\t<tr>\n";
+                    // html 파일의 한 줄에 데이터를 넣는다.
+                    keys.forEach(function (key) {
+                        html += "\t\t<td>" + row[key] + "</td>\n";
+                    });
+                    // html 파일의 한 줄을 닫는다.
+                    html += "\t</tr>\n";
+                });
+                // html 파일을 닫는다.
+                html += "</table>";
+                // html 파일을 다운로드한다.
+                download("data.html", html);
             });
-            // html 파일을 닫는다.
-            html += '</table>';
-            // html 파일을 다운로드한다.
-            download('data.html', html);
-        });
 
         // xml 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadxml-button').addEventListener('click', function () {
-            // json-output textarea의 값을 가져온다.
-            let json = document.getElementById('json-output').value;
-            // json을 객체로 변환한다.
-            let data = JSON.parse(json);
-            // xml 파일을 만든다.
-            let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-            // xml 파일의 첫번째 줄에 들어갈 키를 추출한다.
-            let keys = Object.keys(data[0]);
-            // xml 파일의 첫번째 줄을 만든다.
-            xml += '<rows>\n';
-            // xml 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function (row) {
-                // xml 파일의 한 줄을 만든다.
-                xml += '\t<row>\n';
-                // xml 파일의 한 줄에 데이터를 넣는다.
-                keys.forEach(function (key) {
-                    xml += '\t\t<' + key + '>' + row[key] + '</' + key + '>\n';
+        document
+            .getElementById("downloadxml-button")
+            .addEventListener("click", function () {
+                // json-output textarea의 값을 가져온다.
+                let json = document.getElementById("json-output").value;
+                // json을 객체로 변환한다.
+                let data = JSON.parse(json);
+                // xml 파일을 만든다.
+                let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+                // xml 파일의 첫번째 줄에 들어갈 키를 추출한다.
+                let keys = Object.keys(data[0]);
+                // xml 파일의 첫번째 줄을 만든다.
+                xml += "<rows>\n";
+                // xml 파일의 두번째 줄부터 데이터를 넣는다.
+                data.forEach(function (row) {
+                    // xml 파일의 한 줄을 만든다.
+                    xml += "\t<row>\n";
+                    // xml 파일의 한 줄에 데이터를 넣는다.
+                    keys.forEach(function (key) {
+                        xml += "\t\t<" + key + ">" + row[key] + "</" + key + ">\n";
+                    });
+                    // xml 파일의 한 줄을 닫는다.
+                    xml += "\t</row>\n";
                 });
-                // xml 파일의 한 줄을 닫는다.
-                xml += '\t</row>\n';
+                // xml 파일을 닫는다.
+                xml += "</rows>";
+                // xml 파일을 다운로드한다.
+                download("data.xml", xml);
             });
-            // xml 파일을 닫는다.
-            xml += '</rows>';
-            // xml 파일을 다운로드한다.
-            download('data.xml', xml);
-        });
 
         // sql query 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadsql-button').addEventListener('click', function () {
-            // json-output textarea의 값을 가져온다.
-            let json = document.getElementById('json-output').value;
-            // json을 객체로 변환한다.
-            let data = JSON.parse(json);
-            // sql query 파일을 만든다.
-            let sql = 'INSERT INTO table_name (';
-            // sql query 파일의 첫번째 줄에 들어갈 키를 추출한다.
-            let keys = Object.keys(data[0]);
-            // sql query 파일의 첫번째 줄을 만든다.
-            sql += keys.join(', ') + ') VALUES\n';
-            // sql query 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function (row, index) {
-                // sql query 파일의 한 줄을 만든다.
-                sql += '\t(';
-                // sql query 파일의 한 줄에 데이터를 넣는다.
-                keys.forEach(function (key) {
-                    sql += '\'' + row[key] + '\', ';
+        document
+            .getElementById("downloadsql-button")
+            .addEventListener("click", function () {
+                // json-output textarea의 값을 가져온다.
+                let json = document.getElementById("json-output").value;
+                // json을 객체로 변환한다.
+                let data = JSON.parse(json);
+                // sql query 파일을 만든다.
+                let sql = "INSERT INTO table_name (";
+                // sql query 파일의 첫번째 줄에 들어갈 키를 추출한다.
+                let keys = Object.keys(data[0]);
+                // sql query 파일의 첫번째 줄을 만든다.
+                sql += keys.join(", ") + ") VALUES\n";
+                // sql query 파일의 두번째 줄부터 데이터를 넣는다.
+                data.forEach(function (row, index) {
+                    // sql query 파일의 한 줄을 만든다.
+                    sql += "\t(";
+                    // sql query 파일의 한 줄에 데이터를 넣는다.
+                    keys.forEach(function (key) {
+                        sql += "'" + row[key] + "', ";
+                    });
+                    // sql query 파일의 한 줄을 닫는다.
+                    sql = sql.slice(0, -2) + ")";
+                    // sql query 파일의 한 줄을 닫는다.
+                    sql += index === data.length - 1 ? ";" : ",";
+                    // sql query 파일의 한 줄을 닫는다.
+                    sql += "\n";
                 });
-                // sql query 파일의 한 줄을 닫는다.
-                sql = sql.slice(0, -2) + ')';
-                // sql query 파일의 한 줄을 닫는다.
-                sql += (index === data.length - 1) ? ';' : ',';
-                // sql query 파일의 한 줄을 닫는다.
-                sql += '\n';
+                // sql query 파일을 다운로드한다.
+                download("data.sql", sql);
             });
-            // sql query 파일을 다운로드한다.
-            download('data.sql', sql);
-        });
 
         function download(filename, text) {
             // a 태그를 만든다.
-            let element = document.createElement('a');
+            let element = document.createElement("a");
             // href 속성을 추가한다.
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute(
+                "href",
+                "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+            );
             // download 속성을 추가한다.
-            element.setAttribute('download', filename);
+            element.setAttribute("download", filename);
             // a 태그를 클릭한다.
             element.click();
         }
