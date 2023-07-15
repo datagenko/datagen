@@ -7,7 +7,7 @@ footer {
 }
 
 .footer-content {
-  width: 647px;
+  width: 100%;
   height: 78px;
   position: relative;
 }
@@ -38,6 +38,6 @@ footer {
   width: 175px;
   height: 60px;
   position: absolute;
-  left: 720px;
+  right: 0;
   top: -10px;
 }
