@@ -1,0 +1,67 @@
+.select-wrap {
+  font-size: 1.375rem;
+  background-color: #2f353f;
+  color: #fff;
+  border-radius: 20px;
+  padding: 19.5px 0;
+  max-width: 625px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.select-wrap .selected {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 22px;
+  position: relative;
+}
+
+.select-wrap .selected .arrow {
+  width: 24px;
+  background: url('../img/L-arrow-down.svg') no-repeat 70% 50%;
+  background-size: 100% 100%;
+  transition: all 0.3s;
+}
+
+.select-wrap .selected .arrow.active {
+  transform: rotate(180deg);
+}
+
+.select-wrap .selected:before {
+  content: '';
+  display: block;
+  height: 100%;
+  border-left: 1px solid rgba(179, 175, 175, 0.7);
+  position: absolute;
+  right: 70px;
+}
+
+.select-wrap ul {
+  width: 100%;
+  flex-direction: column;
+  border: 1px solid #c4c4c4;
+  position: absolute;
+  background: #2a2e36;
+  transform: translateY(10%);
+  cursor: pointer;
+  padding: 10px 8px;
+  gap: 12px;
+  border-radius: 10px;
+  display: none;
+}
+
+.select-wrap ul.active {
+  display: flex;
+}
+
+.select-wrap ul li {
+  padding: 7px 10px;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.select-wrap ul li:hover {
+  background-color: var(--purple);
+  color: #000;
+}

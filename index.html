@@ -3,10 +3,11 @@
 
 <head>
     <title>JSON Generator</title>
-    <link rel="stylesheet" href="/asset/css/style.css" />
     <link rel="stylesheet" href="/asset/css/reset.css" />
+    <link rel="stylesheet" href="/asset/css/style.css" />
     <link rel="stylesheet" href="/asset/css/buttons.css" />
     <link rel="stylesheet" href="/asset/css/header.css" />
+    <link rel="stylesheet" href="/asset/css/select.css" />
     <style>
         body {
             display: flex;
@@ -75,7 +76,18 @@
             </ul>
         </header>
         <section id="datagen-input">
-            <div id="dropdown">드롭다운자리</div>
+            <div class="select-wrap" id="dropdown">
+                <div class="selected">
+                    <div class="selected-value">none</div>
+                    <div class="arrow"></div>
+                </div>
+                <ul id="select-box">
+                    <li class="option">none</li>
+                    <li class="option">option 1</li>
+                    <li class="option">option 2</li>
+                    <li class="option">option 3</li>
+                </ul>
+            </div>
             <textarea id="json-input"></textarea>
             <div class="btn-inp-wrap">
                 <button class="btn gen" id="generate-button">Generate</button>
@@ -362,6 +374,7 @@
             element.click();
         }
     </script>
+    <script src="asset/js/select.js"></script>
 </body>
 
 </html>
