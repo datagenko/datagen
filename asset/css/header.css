@@ -93,6 +93,6 @@ header .language-list button {
   font-size: 18px;
 }
 
-header .language-list li:hover {
+header .language-list button:hover {
   background-color: var(--purple);
 }
