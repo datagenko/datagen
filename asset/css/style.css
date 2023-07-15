@@ -1,0 +1,20 @@
+:root {
+  --dark-bg: #1c2028;
+  --bg: #2a2e36;
+  --content-bg: #2f353f;
+  --purple: #734fd7;
+  --red: #d86262;
+  --cyan: #53a9c3;
+  --dark-cyan: #416f81;
+  --scroll: #3f6b7d;
+  --divider: #2f353f;
+  --font: white;
+  --font-gray: #9c9999;
+  --light-gray: #b3afaf;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+}
