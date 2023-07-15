@@ -1,5 +1,4 @@
-.flex-row {
-  /* box-shadow: 0 0 10px inset red; */
+footer {
   margin-top: 30px;
 }
 
@@ -23,11 +22,6 @@
   line-height: 24px;
 }
 
-.footer-content > p:first-child {
-  left: 0;
-  top: 0;
-}
-
 .footer-content > p:last-child {
   position: relative;
   left: 0;
@@ -40,7 +34,7 @@
   content: '';
   display: block;
   background-image: url(../img/logo-footer.svg);
-  /* background-size: 175px 60px; */
+
   width: 175px;
   height: 60px;
   position: absolute;

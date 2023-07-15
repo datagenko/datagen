@@ -62,42 +62,38 @@
 
   <body>
     <div id="datagen-container">
-      <header>
-        <h1 class="logo">
-          <img src="asset/img/logo.svg" alt="데이터젠 로고" />
-        </h1>
-        <div class="language">
-          <a
-            class="github"
-            href="https://github.com/datagenko/datagen"
-            target="_blank"
-          ></a>
-          <button class="language_button" type="button">KO</button>
-        </div>
-        <div class="language-list">
-          <p class="language-list_ko">KO</p>
-          <p class="language-list_eng">ENG</p>
-        </div>
-      </header>
-      <section id="datagen-input">
-        <div class="select-wrap" id="dropdown">
-          <div class="selected">
-            <div class="selected-value">none</div>
-            <div class="arrow"></div>
-          </div>
-          <ul id="select-box">
-            <li class="option">none</li>
-            <li class="option">option 1</li>
-            <li class="option">option 2</li>
-            <li class="option">option 3</li>
-          </ul>
-        </div>
-        <textarea id="json-input"></textarea>
-        <div class="btn-inp-wrap">
-          <button class="btn gen" id="generate-button">Generate</button>
-          <button class="btn reset" id="reset-button">Reset</button>
-        </div>
-        <!-- <button id="generate-button">Generate</button>
+        <header>
+            <h1 class="logo">
+                <img src="asset/img/logo.svg" alt="데이터젠 로고">
+            </h1>
+            <div class="language">
+                <a class="github" href="https://github.com/datagenko/datagen" target="_blank"></a>
+                <button class="language_button" type="button">KO</button>
+            </div>
+            <ul class="language-list">
+                <li class="language-list_ko"><button type="button">KO</button></li>
+                <li class="language-list_eng"><button type="button">ENG</button></li>
+            </ul>
+        </header>
+        <section id="datagen-input">
+            <div class="select-wrap" id="dropdown">
+                <div class="selected">
+                    <div class="selected-value">none</div>
+                    <div class="arrow"></div>
+                </div>
+                <ul id="select-box">
+                    <li class="option">none</li>
+                    <li class="option">option 1</li>
+                    <li class="option">option 2</li>
+                    <li class="option">option 3</li>
+                </ul>
+            </div>
+            <textarea id="json-input"></textarea>
+            <div class="btn-inp-wrap">
+                <button class="btn gen" id="generate-button">Generate</button>
+                <button class="btn reset" id="reset-button">Reset</button>
+            </div>
+            <!-- <button id="generate-button">Generate</button>
           <button id="reset-button">Reset</button> -->
       </section>
       <section id="datagen-output">
@@ -119,13 +115,15 @@
           <button id="downloadsql-button">SQL</button> -->
       </section>
       <!--footer-->
-      <footer class="flex-row">
+      <footer>
         <div class="footer-content">
           <p class="contet-title">서비스를 만들거나 데이터 분석을 할 때 필요한 데이터를 생성할 수 있는 프로젝트입니다</>
           <p class="contet-subtitle">이 자료는 많은 개발자들의 도움을 받아 제작되었습니다. 누구나 허락없이 사용할 수 있는 공공재입니다.<br/><br/>DataGen. ⓒ2023. All Right Reserved.</div>
         </div>
           </footer>
     </div>
+    <script src="asset/js/select.js"></script>
+    <script src="asset/js/language.js"></script>
     <script>
       let first_name = ['이', '김', '한', '차', '남'];
       let last_name = [
@@ -384,6 +382,6 @@
         element.click();
       }
     </script>
-    <script src="asset/js/select.js"></script>
-  </body>
+</body>
+
 </html>
