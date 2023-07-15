@@ -1,0 +1,71 @@
+.btn {
+  font-size: 1.375rem;
+  width: 100%;
+  padding: 13.5px 0;
+  color: #fff;
+  border: 0;
+  border-radius: 53px;
+  cursor: pointer;
+}
+
+.btn-inp-wrap {
+  display: flex;
+  gap: 22px;
+  max-width: 302px;
+  width: 100%;
+}
+
+.btn.gen,
+.btn.reset {
+  max-width: 140px;
+}
+
+.btn.gen {
+  background-color: #734fd7;
+}
+
+.btn.reset {
+  background-color: #d86262;
+}
+
+.download-wrap {
+  display: flex;
+  padding: 13px 14px 13px 40px;
+  background-color: #2f353f;
+  flex-wrap: wrap;
+  border-radius: 50px;
+  color: #9c9999;
+  width: 100%;
+  max-width: 889px;
+  align-items: center;
+  gap: 16px;
+}
+
+.download-wrap p {
+  font-weight: bold;
+  font-size: 1.5rem;
+  flex-grow: 1;
+  background: url('/asset/img/icon-download.svg') no-repeat;
+  background-position: 100% 50%;
+}
+
+.btn-wrap {
+  display: flex;
+  max-width: 632px;
+  min-width: 0;
+  flex-basis: 100%;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn.download {
+  max-width: 120px;
+  flex-shrink: 0;
+  background: rgba(83, 169, 195, 0.5);
+}
+
+.btn.download:hover {
+  background-color: #53a9c3;
+  opacity: 1;
+}

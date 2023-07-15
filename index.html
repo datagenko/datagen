@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>JSON Generator</title>
+    <link rel="stylesheet" href="/asset/css/reset.css">
+    <link rel="stylesheet" href="/asset/css/buttons.css">
     <style>
         body {
             display: flex;
@@ -21,43 +24,52 @@
         }
     </style>
 </head>
+
 <body>
     <textarea id="json-input" placeholder="Enter input"></textarea>
-    <button id="generate-button">Generate JSON</button>
+    <div class="btn-inp-wrap">
+        <button class="btn gen" id="generate-button">Generate</button>
+        <button class="btn reset" id="reset-button">Reset</button>
+    </div>
     <textarea id="json-output" readonly></textarea>
-    <button id="downloadcsv-button">download CSV</button>
-    <button id="downloadjson-button">download JSON</button>
-    <button id="downloadhtml-button">download HTML</button>
-    <button id="downloadxml-button">download XML</button>
-    <button id="downloadsql-button">download SQL Query</button>
+    <article class="download-wrap">
+        <p>Download to</p>
+        <div class="btn-wrap">
+            <button class="btn download" id="downloadjson-button">JSON</button>
+            <button class="btn download" id="downloadcsv-button">CSV</button>
+            <button class="btn download" id="downloadhtml-button">HTML</button>
+            <button class="btn download" id="downloadxml-button">XML</button>
+            <button class="btn download" id="downloadsql-button">SQL</button>
+        </div>
+    </article>
 
 
     <script>
         let first_name = [
-            '이', 
-            '김', 
-            '한', 
-            '차', 
+            '이',
+            '김',
+            '한',
+            '차',
             '남'
         ]
         let last_name = [
-            '가람', 
-            '가온', 
-            '그린', 
-            '겨루', 
-            '나래', 
-            '늘봄', 
-            '다슬', 
-            '라라', 
-            '루리', 
-            '마루', 
-            '바다', 
-            '새길', 
+            '가람',
+            '가온',
+            '그린',
+            '겨루',
+            '나래',
+            '늘봄',
+            '다슬',
+            '라라',
+            '루리',
+            '마루',
+            '바다',
+            '새길',
             '새나'
         ]
 
         function uuid() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 let r = Math.random() * 16 | 0
                 let v = c == 'x' ? r : randomItem(['A', 'B', 'C']);
                 return v.toString(16);
@@ -69,23 +81,23 @@
         }
 
         function randomItem(items) {
-            return items[Math.floor(Math.random()*items.length)];
+            return items[Math.floor(Math.random() * items.length)];
         }
 
         function generateData(template, index) {
-            return template.replace(/{{([^{}]+)}}/g, function(_, key){
+            return template.replace(/{{([^{}]+)}}/g, function (_, key) {
                 // key 값은 중괄호 안에 들어있는 값
                 // console.log(key)
                 const func = key.split('(')[0]
                 const [...args] = key.split('(')[1]
-                                    .replace(')', '')
-                                    .replaceAll(' ', '')
-                                    .replaceAll('\'', '')
-                                    .replaceAll('"', '')
-                                    .split(',')
+                    .replace(')', '')
+                    .replaceAll(' ', '')
+                    .replaceAll('\'', '')
+                    .replaceAll('"', '')
+                    .split(',')
                 // console.log(func, args)
 
-                switch(func) {
+                switch (func) {
                     case 'id':
                         return uuid();
                     case 'index':
@@ -102,7 +114,7 @@
             });
         }
 
-        document.getElementById('generate-button').addEventListener('click', function() {
+        document.getElementById('generate-button').addEventListener('click', function () {
             // let input = JSON.parse(document.getElementById('json-input').value.replace(/'/g, '"'));
             let input = `[
             "{{repeat(5)}}",
@@ -126,7 +138,7 @@
             let output = [];
             console.log(repeatCount);
 
-            for(let i = 0; i < repeatCount; i++) {
+            for (let i = 0; i < repeatCount; i++) {
                 output.push(JSON.parse(generateData(template, i)));
             }
             console.log(output);
@@ -135,7 +147,7 @@
         });
 
         // csv 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadcsv-button').addEventListener('click', function() {
+        document.getElementById('downloadcsv-button').addEventListener('click', function () {
             // json-output textarea의 값을 가져온다.
             let json = document.getElementById('json-output').value;
             // json을 객체로 변환한다.
@@ -145,9 +157,9 @@
             // csv 파일의 첫번째 줄을 만든다.
             let csv = keys.join(',') + '\n';
             // csv 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function(row) {
+            data.forEach(function (row) {
                 // csv 파일의 한 줄을 만든다.
-                let line = keys.map(function(key) {
+                let line = keys.map(function (key) {
                     return row[key];
                 }).join(',');
                 // csv 파일에 한 줄을 추가한다.
@@ -158,7 +170,7 @@
         });
 
         // json 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadjson-button').addEventListener('click', function() {
+        document.getElementById('downloadjson-button').addEventListener('click', function () {
             // json-output textarea의 값을 가져온다.
             let json = document.getElementById('json-output').value;
             // json 파일을 다운로드한다.
@@ -166,7 +178,7 @@
         });
 
         // html 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadhtml-button').addEventListener('click', function() {
+        document.getElementById('downloadhtml-button').addEventListener('click', function () {
             // json-output textarea의 값을 가져온다.
             let json = document.getElementById('json-output').value;
             // json을 객체로 변환한다.
@@ -178,17 +190,17 @@
             // html 파일의 첫번째 줄을 만든다.
             html += '\t<tr>\n';
             // html 파일의 첫번째 줄에 키를 넣는다.
-            keys.forEach(function(key) {
+            keys.forEach(function (key) {
                 html += '\t\t<th>' + key + '</th>\n';
             });
             // html 파일의 첫번째 줄을 닫는다.
             html += '\t</tr>\n';
             // html 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function(row) {
+            data.forEach(function (row) {
                 // html 파일의 한 줄을 만든다.
                 html += '\t<tr>\n';
                 // html 파일의 한 줄에 데이터를 넣는다.
-                keys.forEach(function(key) {
+                keys.forEach(function (key) {
                     html += '\t\t<td>' + row[key] + '</td>\n';
                 });
                 // html 파일의 한 줄을 닫는다.
@@ -201,7 +213,7 @@
         });
 
         // xml 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadxml-button').addEventListener('click', function() {
+        document.getElementById('downloadxml-button').addEventListener('click', function () {
             // json-output textarea의 값을 가져온다.
             let json = document.getElementById('json-output').value;
             // json을 객체로 변환한다.
@@ -213,11 +225,11 @@
             // xml 파일의 첫번째 줄을 만든다.
             xml += '<rows>\n';
             // xml 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function(row) {
+            data.forEach(function (row) {
                 // xml 파일의 한 줄을 만든다.
                 xml += '\t<row>\n';
                 // xml 파일의 한 줄에 데이터를 넣는다.
-                keys.forEach(function(key) {
+                keys.forEach(function (key) {
                     xml += '\t\t<' + key + '>' + row[key] + '</' + key + '>\n';
                 });
                 // xml 파일의 한 줄을 닫는다.
@@ -230,7 +242,7 @@
         });
 
         // sql query 다운로드 버튼 클릭시 이벤트
-        document.getElementById('downloadsql-button').addEventListener('click', function() {
+        document.getElementById('downloadsql-button').addEventListener('click', function () {
             // json-output textarea의 값을 가져온다.
             let json = document.getElementById('json-output').value;
             // json을 객체로 변환한다.
@@ -242,11 +254,11 @@
             // sql query 파일의 첫번째 줄을 만든다.
             sql += keys.join(', ') + ') VALUES\n';
             // sql query 파일의 두번째 줄부터 데이터를 넣는다.
-            data.forEach(function(row, index) {
+            data.forEach(function (row, index) {
                 // sql query 파일의 한 줄을 만든다.
                 sql += '\t(';
                 // sql query 파일의 한 줄에 데이터를 넣는다.
-                keys.forEach(function(key) {
+                keys.forEach(function (key) {
                     sql += '\'' + row[key] + '\', ';
                 });
                 // sql query 파일의 한 줄을 닫는다.
@@ -272,4 +284,5 @@
         }
     </script>
 </body>
+
 </html>
