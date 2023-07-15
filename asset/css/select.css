@@ -1,0 +1,61 @@
+.select-wrap {
+  font-size: 1.375rem;
+  background-color: #2f353f;
+  color: #fff;
+  border-radius: 20px;
+  padding: 19.5px 0;
+  max-width: 625px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.select-wrap .selected {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 22px;
+}
+
+.select-wrap .selected .arrow {
+  width: 24px;
+  background: url('../img/L-arrowDown.svg') no-repeat 70% 50%;
+  background-size: 100% 100%;
+}
+
+.select-wrap .selected .arrow:before {
+  content: '';
+  display: block;
+  height: 100%;
+  border-left: 1px solid rgba(179, 175, 175, 0.7);
+  position: relative;
+  left: -24px;
+}
+
+.select-wrap ul {
+  width: 100%;
+  flex-direction: column;
+  border: 1px solid #999;
+  position: absolute;
+  background: #2a2e36;
+  transform: translateY(10%);
+  cursor: pointer;
+  padding: 10px 8px;
+  gap: 12px;
+  border-radius: 10px;
+  display: none;
+}
+
+.select-wrap ul.active {
+  display: flex;
+}
+
+.select-wrap ul li {
+  padding: 7px 10px;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.select-wrap ul li:hover {
+  background-color: #734fd7;
+  color: #000;
+}
