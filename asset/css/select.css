@@ -14,21 +14,27 @@
   display: flex;
   justify-content: space-between;
   padding: 0 22px;
+  position: relative;
 }
 
 .select-wrap .selected .arrow {
   width: 24px;
   background: url('../img/L-arrow-down.svg') no-repeat 70% 50%;
   background-size: 100% 100%;
+  transition: all 0.3s;
 }
 
-.select-wrap .selected .arrow:before {
+.select-wrap .selected .arrow.active {
+  transform: rotate(180deg);
+}
+
+.select-wrap .selected:before {
   content: '';
   display: block;
   height: 100%;
   border-left: 1px solid rgba(179, 175, 175, 0.7);
-  position: relative;
-  left: -24px;
+  position: absolute;
+  right: 70px;
 }
 
 .select-wrap ul {
