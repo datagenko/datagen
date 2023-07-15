@@ -1,6 +1,7 @@
 header {
   width: 100%;
   padding: 12px 0;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,7 +61,7 @@ header .language .language_button::after {
 header .language-list {
   width: 140px;
   position: absolute;
-  right: 100px;
+  right: 0;
   margin-bottom: -180px;
   padding: 20px 10px;
   color: var(--font);
