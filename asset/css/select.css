@@ -18,7 +18,7 @@
 
 .select-wrap .selected .arrow {
   width: 24px;
-  background: url('../img/L-arrowDown.svg') no-repeat 70% 50%;
+  background: url('../img/L-arrow-down.svg') no-repeat 70% 50%;
   background-size: 100% 100%;
 }
 
@@ -34,7 +34,7 @@
 .select-wrap ul {
   width: 100%;
   flex-direction: column;
-  border: 1px solid #999;
+  border: 1px solid #c4c4c4;
   position: absolute;
   background: #2a2e36;
   transform: translateY(10%);
@@ -56,6 +56,6 @@
 }
 
 .select-wrap ul li:hover {
-  background-color: #734fd7;
+  background-color: var(--purple);
   color: #000;
 }
