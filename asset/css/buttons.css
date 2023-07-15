@@ -67,7 +67,7 @@
   /* max-width: 120px; */
   flex-shrink: 0;
   background: var(--dark-cyan);
-  width: calc((100% / 5) - 14px);
+  width: calc((100% / 5) - 15px);
   padding: 13px 0;
   margin: 0px 5px;
 }
