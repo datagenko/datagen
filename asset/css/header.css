@@ -56,6 +56,11 @@ header .language .language_button::after {
   width: 24px;
   height: 13px;
   background: url('../img/L-arrow-down.svg') no-repeat center/contain;
+  transition: transform 0.3s ease;
+}
+
+header .language .language_button.on::after {
+  transform: rotate(180deg);
 }
 
 header .language-list {
