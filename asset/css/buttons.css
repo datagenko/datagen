@@ -2,7 +2,7 @@
   font-size: 1.375rem;
   width: 100%;
   padding: 13.5px 0;
-  color: #fff;
+  color: var(--font);
   border: 0;
   border-radius: 53px;
   cursor: pointer;
@@ -21,20 +21,20 @@
 }
 
 .btn.gen {
-  background-color: #734fd7;
+  background-color: var(--purple);
 }
 
 .btn.reset {
-  background-color: #d86262;
+  background-color: var(--red);
 }
 
 .download-wrap {
   display: flex;
   padding: 13px 14px 13px 40px;
-  background-color: #2f353f;
+  background-color: var(--content-bg);
   flex-wrap: wrap;
   border-radius: 50px;
-  color: #9c9999;
+  color: var(--font-gray);
   width: 100%;
   max-width: 889px;
   align-items: center;
@@ -62,10 +62,10 @@
 .btn.download {
   max-width: 120px;
   flex-shrink: 0;
-  background: rgba(83, 169, 195, 0.5);
+  background: var(--dark-cyan);
 }
 
 .btn.download:hover {
-  background-color: #53a9c3;
+  background-color: var(--cyan);
   opacity: 1;
 }

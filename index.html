@@ -3,8 +3,10 @@
 
 <head>
     <title>JSON Generator</title>
+    <link rel="stylesheet" href="/asset/css/style.css">
     <link rel="stylesheet" href="/asset/css/reset.css">
     <link rel="stylesheet" href="/asset/css/buttons.css">
+    <link rel="stylesheet" href="/asset/css/header.css">
     <style>
         body {
             display: flex;
@@ -26,6 +28,19 @@
 </head>
 
 <body>
+    <header>
+        <h1 class="logo">
+            <img src="logo_datagen.png" alt="데이터젠 로고">
+        </h1>
+        <div class="language">
+            <a class="github" href="https://github.com/datagenko/datagen" target="_blank">github</a>
+            <button class="language_button" type="button">KO</button>
+        </div>
+        <div class="language-list">
+            <p>KO</p>
+            <p>ENG</p>
+        </div>
+    </header>
     <textarea id="json-input" placeholder="Enter input"></textarea>
     <div class="btn-inp-wrap">
         <button class="btn gen" id="generate-button">Generate</button>
