@@ -12,3 +12,9 @@
   --font-gray: #9c9999;
   --light-gray: #b3afaf;
 }
+
+button {
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+}
