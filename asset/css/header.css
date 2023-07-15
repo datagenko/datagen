@@ -59,6 +59,7 @@ header .language .language_button::after {
 }
 
 header .language-list {
+  display: none;
   width: 140px;
   position: absolute;
   right: 0;
@@ -74,11 +75,19 @@ header .language-list {
   -o-border-radius: 20px;
 }
 
-header .language-list p {
-  cursor: pointer;
-  padding: 8px 15px;
+header .on {
+  display: block;
 }
 
-header .language-list p:hover {
+header .language-list button {
+  width: 100%;
+  padding: 8px 15px;
+  cursor: pointer;
+  background-color: inherit;
+  color: var(--font);
+  font-size: 18px;
+}
+
+header .language-list li:hover {
   background-color: var(--purple);
 }
