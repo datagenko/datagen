@@ -5,7 +5,9 @@ body {
     height: 100vh;
     margin: 0;
   }
-  
+  #closeModalBtn{
+    background-color: #837081;
+  }
   #bottomSheetModal{
     height: 0;
   }
@@ -13,13 +15,14 @@ body {
     position: fixed;
     bottom: 0.1;
     left: 1;
-    width: 30%;
+    width: 33%;
     height: 20;
     overflow: hidden;
     transition: width 1s, height 1s;
   }
   
   .modal-content {
+    height:600px;
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
