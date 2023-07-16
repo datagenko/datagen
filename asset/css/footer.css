@@ -32,8 +32,8 @@
 
 .footer-logo {
   position: absolute;
-  right: 0;
-  bottom: -20px;
+  right: -20px;
+  bottom: -50px;
 }
 
 /* .footer-content::after {
@@ -45,5 +45,5 @@
   position: absolute;
   right: 0;
   bottom: -20px;
-  /* top: -10px; */
-} */
+  top: -10px;
+}

@@ -4,7 +4,6 @@
   color: #fff;
   border-radius: 20px;
   padding: 19.5px 0;
-  /* max-width: 625px; */
   width: 100%;
   position: relative;
   cursor: pointer;
@@ -24,7 +23,11 @@
   transition: all 0.3s;
 }
 
-.select-wrap .selected .arrow.active {
+.select-wrap.active  {
+  outline: 1px solid #c4c4c4;
+}
+
+.select-wrap.active .arrow {
   transform: rotate(180deg);
 }
 
@@ -48,20 +51,22 @@
   padding: 10px 8px;
   gap: 12px;
   border-radius: 10px;
+  margin-top: 5px;
+  border-radius: 20px;
   display: none;
 }
 
-.select-wrap ul.active {
+.select-wrap.active ul {
   display: flex;
 }
 
 .select-wrap ul li {
   padding: 7px 10px;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 .select-wrap ul li:hover {
   background-color: var(--purple);
-  color: #000;
+  /* color: #000; */
 }
