@@ -21,3 +21,10 @@ function selectOption(optionElement) {
   const selectedElement = selectBox.querySelector(".selected-value");
   selectedElement.textContent = optionElement.textContent;
 }
+
+const select = document.querySelector("#select-box");
+const selectedValue = document.querySelector("#selected-value");
+select.addEventListener("change", function () {
+  const selectedOptions = Array.from(select.selectedOptions, option => option.text);
+  selectedValue.textContent = selectedOptions.join(", ");
+});
