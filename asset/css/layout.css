@@ -55,11 +55,12 @@ body {
 #json-input {
   flex-grow: 1;
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   /* max-width: 625px; */
   resize: none;
   background-color: var(--content-bg);
   color: var(--font);
+  font-size: var(--font-textarea);
   border: none;
   border-radius: 30px;
 }
@@ -67,10 +68,12 @@ body {
 #json-output {
   flex-grow: 1;
   width: 100%;
+  padding: 30px;
   /* max-width: 889px; */
   resize: none;
   background-color: var(--content-bg);
   color: var(--font);
+  font-size: var(--font-textarea);
   border: none;
   border-radius: 30px;
 }
@@ -106,7 +109,7 @@ header::after {
 }
 
 @media (max-width: 730px) {
-  /* #datagen-output {
-    flex-direction: row;
-  } */
+  #datagen-container {
+    padding: 0 40px 30px;
+  }
 }
