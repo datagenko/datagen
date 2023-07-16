@@ -32,11 +32,13 @@ body {
 
 #datagen-input {
   flex: 4;
+  gap: 20px;
   position: relative;
 }
 
 #datagen-output {
   flex: 6;
+  gap: 30px;
 }
 
 #datagen-input::after {
@@ -74,7 +76,6 @@ body {
 }
 
 .btn-inp-wrap {
-  padding-top: 20px;
   margin: auto;
 }
 
@@ -87,4 +88,25 @@ header::after {
   position: absolute;
   bottom: 0;
   left: -75px;
+}
+
+@media (max-width: 930px) {
+  .datagen-contents {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #datagen-input::after {
+    width: 150%;
+    height: 3px;
+    top: initial;
+    bottom: -20px;
+    left: -75px;
+  }
+}
+
+@media (max-width: 730px) {
+  /* #datagen-output {
+    flex-direction: row;
+  } */
 }

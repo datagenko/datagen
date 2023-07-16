@@ -44,6 +44,7 @@
   font-weight: bold;
   font-size: 1rem;
   width: 200px;
+  margin-right: 20px;
   padding-bottom: 10px;
 }
 
@@ -61,15 +62,18 @@
 
 .btn-wrap {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .btn.download {
   /* max-width: 120px; */
+  min-width: 50px;
   flex-shrink: 0;
   background: var(--dark-cyan);
   width: calc((100% / 5) - 15px);
   padding: 13px 0;
-  margin: 0px 5px;
 }
 
 .btn.download:hover {
