@@ -1,0 +1,54 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  #bottomSheetModal{
+    height: 0;
+  }
+  .modal-container {
+    position: fixed;
+    bottom: 0.1;
+    left: 1;
+    width: 30%;
+    height: 20;
+    overflow: hidden;
+    transition: width 1s, height 1s;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #837081;
+
+  }
+  
+  
+  button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: var(--content-bg);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+  
+  button:hover {
+    background-color: var(--purple);
+  }
+
+
+  .modal-container.active {
+    height: 100%;
+  }
+  
+  .modal-container.active #openModalBtn {
+    display: none;
+  }
+  

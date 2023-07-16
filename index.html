@@ -3,6 +3,7 @@
   <head>
     <title>JSON Generator</title>
     <link rel="stylesheet" href="/asset/css/reset.css" />
+    <link rel="stylesheet" href="/asset/css/menubar.css" />
     <link rel="stylesheet" href="/asset/css/layout.css" />
     <link rel="stylesheet" href="/asset/css/style.css" />
     <link rel="stylesheet" href="/asset/css/buttons.css" />
@@ -49,6 +50,21 @@
             <button class="btn gen" id="generate-button">Generate</button>
             <button class="btn reset" id="reset-button">Reset</button>
           </div>
+          <!-- 메뉴바 -->
+          <button id="openModalBtn">메뉴바</button>
+
+          <div class="modal-container" id="bottomSheetModal">
+            <div class="modal-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis totam neque nesciunt ullam, esse optio asperiores delectus nisi non quibusdam tempora animi quis, rerum culpa sed inventore assumenda dolores architecto.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis totam neque nesciunt ullam, esse optio asperiores delectus nisi non quibusdam tempora animi quis, rerum culpa sed inventore assumenda dolores architecto.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis totam neque nesciunt ullam, esse optio asperiores delectus nisi non quibusdam tempora animi quis, rerum culpa sed inventore assumenda dolores architecto.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis totam neque nesciunt ullam, esse optio asperiores delectus nisi non quibusdam tempora animi quis, rerum culpa sed inventore assumenda dolores architecto.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis totam neque nesciunt ullam, esse optio asperiores delectus nisi non quibusdam tempora animi quis, rerum culpa sed inventore assumenda dolores architecto.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis totam neque nesciunt ullam, esse optio asperiores delectus nisi non quibusdam tempora animi quis, rerum culpa sed inventore assumenda dolores architecto.</p>
+              <button id="closeModalBtn">닫기</button>
+            </div>
+          </div>
+          
         </section>
         <section id="datagen-output">
           <textarea id="json-output" readonly></textarea>
@@ -85,7 +101,27 @@
     </div>
     <script src="asset/js/select.js"></script>
     <script src="asset/js/language.js"></script>
+    <script src="asset/js/menubar.js"></script>
     <script>
+      // Get references to the modal and buttons
+      const modalContainer = document.querySelector(".modal-container");
+      const openModalBtn = document.getElementById("openModalBtn");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+
+      // Function to open the modal
+      function openModal() {
+        modalContainer.classList.add("show");
+      }
+
+      // Function to close the modal
+      function closeModal() {
+        modalContainer.classList.remove("show");
+      }
+
+      // Event listeners
+      openModalBtn.addEventListener("click", openModal);
+      closeModalBtn.addEventListener("click", closeModal);
+
       let first_name = ["이", "김", "한", "차", "남"];
       let last_name = [
         "가람",
