@@ -1,19 +1,52 @@
-let first_name = ["이", "김", "한", "차", "남"];
-let last_name = [
-  "가람",
-  "가온",
-  "그린",
-  "겨루",
-  "나래",
-  "늘봄",
-  "다슬",
-  "라라",
-  "루리",
-  "마루",
-  "바다",
-  "새길",
-  "새나",
-];
+let language = "ko"
+      const ko_first_name = ['이', '김', '한', '차', '남']
+      const ko_last_name = ['가람', '가온', '그린', '겨루', '나래', '늘봄', '다슬', '라라', '루리', '마루', '바다', '새길', '새나']
+      const en_first_name = ['John', 'Mark']
+      const en_last_name = ['Smith', 'Ruffalo']
+      const lorem_list = ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipisicing', 'elit', 'Dolorum', 'cum', 'perspiciatis', 'ab', 'dignissimos', 'vitae', 'libero', 'ratione', 'Reiciendis', 'voluptates', 'quod', 'totam', 'delectus', 'fuga', 'voluptatem', 'cupiditate', 'rem', 'similique', 'nemo', 'aliquid', 'voluptas', 'tempora']
+      const domain_list = ['com', 'co.kr', 'net', 'org']
+
+      const ko_country_list = ['한국', '미국', '일본']
+      const en_country_list = ['Korea', 'USA', 'Japan']
+      const ko_city_list = ['서울', '워싱턴', '도쿄']
+      const en_city_list = ['Seoul', 'Washington', 'Tokyo']
+      const ko_street_list = ['골목', '서울', '교동']
+      const en_street_list = ['loyal', 'korean', 'load']
+
+      const ko_job_list = ['선생님', '학생', '의사', '기술자']
+      const en_job_list = ['teacher', 'student', 'doctor', 'engineer']
+      const ko_company_list = ['구글', '삼성', '애플']
+      const en_company_list = ['google', 'samsung', 'apple']
+
+      const function_dic = {
+        "uuid": "uuid",
+        "index": "index",
+        "username": "username",
+        "password": "password",
+        "int": "randomInteger",
+        "float": "randomFloat",
+        "boolean": "randomBoolean",
+        "random": "randomItem",
+        "lorem": "lorem",
+        "picture": "picture",
+        "color": "color",
+        "name": "name",
+        "email": "email",
+        "phone": "phone",
+        "country": "country",
+        "city": "city",
+        "address": "address",
+        "postal_code": "postal_code",
+        "job": "job",
+        "company": "company",
+        "creditCardNumber": "creditCardNumber",
+        "gerder": "gender",
+        "urls": "urls",
+        "money": "money",
+        "date": "date",
+        "time": "time"
+      }
+
 
 function uuid() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -26,82 +59,176 @@ function uuid() {
   );
 }
 
+// min max값이 정상적이지않을떄에 대한 예외처리가 필요합니다.
 function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 
 function randomItem(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
 
+function money(min, max, symbol) {
+  if (!symbol) {
+    symbol = language === "ko" ? '￦' : '$'
+  }
+  const result = randomInteger(min, max).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return `${symbol} ${result}`
+  }
+
+
 function generateData(template, index) {
-  return template.replace(/{{([^{}]+)}}/g, function (_, key) {
-    // key 값은 중괄호 안에 들어있는 값
-    // console.log(key)
-    const func = key.split("(")[0];
-    const [...args] = key
-      .split("(")[1]
-      .replace(")", "")
-      .replaceAll(" ", "")
-      .replaceAll("'", "")
-      .replaceAll('"', "")
-      .split(",");
-    // console.log(func, args)
+          let data = {};
+          
+          for (const i in template){
+            data[i] = template[i].replace(/<([^<>]+)>/g, (str, key) => {
+              const func = key.split('(')[0];
+              let action = "";
+              if (func === "function"){
+                action = key.match(/{(.*)}/)[1].trim();
+              }
+              [...args] = key.split('(')[1]
+                                  .replace(')', '')
+                                  .replaceAll(' ', '')
+                                  .replaceAll('\'', '')
+                                  .replaceAll('"', '')
+                                  .split(',')
 
-    switch (func) {
-      case "id":
-        return uuid();
-      case "index":
-        return index;
-      case "integer":
-        return randomInteger(parseInt(args[0]), parseInt(args[1]));
-      case "random":
-        return randomItem(args.map((s) => s.replace(/"/g, "").trim()));
-      case "name":
-        return randomItem(first_name) + randomItem(last_name);
-      default:
-        return _;
-    }
-  });
-}
+              // 들어오는 인자는 args배열에 저장됩니다.
+              // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
+              // optional로 인자가 들어오지 않았을때에 대한 처리도 필요합니다.
+              switch(func) {
+                // 고유값
+                  case 'uuid':
+                      return uuid();
+                  case 'index':
+                      return index
+                  //case 'username':
+                  //    return username()
+                  //case 'password':
+                  //    return password(min, max)
+                //특정 데이터타입
+                  case 'int':
+                      return randomInteger(parseInt(args[0]), parseInt(args[1]))
+                  //case 'float':
+                  //    return randomFloat(min, max, round)
+                  //case 'boolean':
+                  //    return randomBoolean()
+                  case 'random':
+                  //    return randomItem(args)
+                  //case 'lorem':
+                  //    // loream은 들어오는 인자가 전부 optional 이기 때문에 처리방법이 복잡할 것 같습니다.
+                  //    return lorem(number, unit)
+                  //case 'picture':
+                  //    return picture(width, height)
+                  //case 'color':
+                  //    return color()
+                // 개인정보관련
+                  //case 'name':
+                  //    return name()
+                  //case 'email':
+                  //    return email()
+                  //case 'phone':
+                  //    return phone()
+                  //case 'country':
+                  //    return country()
+                  //case 'city':
+                  //    return city()
+                  //case 'address':
+                  //    return address()
+                  //case 'postal_code':
+                  //    return postal_code()
+                  //case 'job':
+                  //    return job()
+                  //case 'company':
+                  //    return company()
+                  //case 'creditCardNumber':
+                  //    return creditCardNumber()
+                  //case 'gender':
+                  //    return gender()
+                  //case 'urls':
+                  //    return urls()
+                  case 'money':
+                      return money(parseInt(args[0]), parseInt(args[1]), args[2])
+                  //case 'date':
+                  //    return date(start, end, format)
+                  //case 'time':
+                  //    return time()
+                  //case 'function':
+                  //    const do_action = new Function(action);
+                  //    return do_action.call(data)
+                  default:
+                      return str
+              }
+            }
+            )
+          }
+          return data
+        }
 
-document
-  .getElementById("generate-button")
-  .addEventListener("click", function () {
-    // let input = JSON.parse(document.getElementById('json-input').value.replace(/'/g, '"'));
+const input_form = document.querySelector('#json-input')
+document.getElementById('generate-button').addEventListener('click', function() {
+    
+    // let input = input_form.value;
     let input = `[
-    "{{repeat(5)}}",
-    {
-        "_id": "{{id()}}",
-        "index": "{{index()}}",
-        "picture": "http://via.placeholder.com/32x32",
-        "age": "{{integer(20, 40)}}",
-        "eyeColor": "{{random('blue', 'brown', 'green')}}",
-        "name": "{{name()}}"
-    }]`;
-    input = JSON.parse(input);
-    console.log(input);
+      "<iter(1)>",
+          {
+              "_id": "<uuid()>",
+              "index": "<index(12)>",
+              "username": "<username()>",
+              "password5_20": "<password(5, 20)>",
+              "int5_20": "<int(5,20)>",
+              "float5.2_20.5": "<float(5.2, 20.5)>",
+              "boolean": "<boolean()>",
+              "random": "<random(one, 'two', three)>",
+              "lorem": "<lorem()>",
+              "color": "<color()>",
+              "name": "<name()>",
+              "email": "<email()>",
+              "phone": "<phone()>",
+              "country": "<country()>",
+              "city": "<city()>",
+              "address": "<address()>",
+              "postal_code": "<postal_code()>",
+              "job": "<job()>",
+              "company": "<company()>",
+              "creditCardNumber": "<creditCardNumber()>",
+              "gender": "<gender()>",
+              "urls": "<urls()>",
+              "money": "<money(1000000, 1000000000)>",
+              "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
+          }
+      ]`
+    const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
+      return "<function() " 
+            // 줄바꿈 문자 공백문자로 변경.
+            + fn.replace(/\n/g, "")
+                // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
+                .replace(/<([^>]+)>/g, (_, context) => {
+                    console.log(context)
+                    const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
+                    return `${function_dic[functionName] || functionName}(${args})`
+                  }
+                )
+            + ">";
+      }
+    )
+    console.log(modifiedText)
+    input = JSON.parse(modifiedText)
 
-    let repeatCount = parseInt(input[0].match(/(\d+)/)[0]);
-    console.log(repeatCount);
-
-    let template = JSON.stringify(input[1]);
-    console.log(template);
+    let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
+    
+    let template = input[1];
 
     let output = [];
-    console.log(repeatCount);
 
-    for (let i = 0; i < repeatCount; i++) {
-      output.push(JSON.parse(generateData(template, i)));
+    for(let i = 0; i < repeatCount; i++) {
+        output.push(generateData(template, i));
     }
-    console.log(output);
 
-    document.getElementById("json-output").value = JSON.stringify(
-      output,
-      null,
-      2
-    );
-  });
+    document.getElementById('json-output').value = JSON.stringify(output, null, 2);
+});
 
 // csv 다운로드 버튼 클릭시 이벤트
 document
