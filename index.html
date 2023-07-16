@@ -3,11 +3,8 @@
   <head>
     <title>JSON Generator</title>
     <link rel="stylesheet" href="/asset/css/reset.css" />
-<<<<<<< HEAD
     <link rel="stylesheet" href="/asset/css/menubar.css" />
     <link rel="stylesheet" href="/asset/css/layout.css" />
-=======
->>>>>>> 405e6b1bbf7261d90928333cc4d79e818b79be40
     <link rel="stylesheet" href="/asset/css/style.css" />
     <link rel="stylesheet" href="/asset/css/layout.css" />
     <link rel="stylesheet" href="/asset/css/buttons.css" />
@@ -39,15 +36,39 @@
         <section id="datagen-input">
           <div class="select-wrap" id="dropdown">
             <div class="selected">
-              <div class="selected-value">none</div>
+              <div id="selected-value"></div>
               <div class="arrow"></div>
-          </div>
-            <ul id="select-box">
-              <li class="option">none</li>
-              <li class="option">option 1</li>
-              <li class="option">option 2</li>
-              <li class="option">option 3</li>
-            </ul>
+            </div>
+            <select id="select-box" multiple="multiple">
+              <option value=1 class="option">uuid</option>
+              <option value=2>index</option>
+              <option value="3">username</option>
+              <option value="4">password</option>
+              <option value="5">int</option>
+              <option value="6">float</option>
+              <option value="7">boolean</option>
+              <option value="8">random</option>
+              <option value="9">lorem</option>
+              <option value="10">picture</option>
+              <option value="11">color</option>
+              <option value="12">name</option>
+              <option value="13">email</option>
+              <option value="14">phone</option>
+              <option value="15">country</option>
+              <option value="16">city</option>
+              <option value="17">address</option>
+              <option value="18">postal_code</option>
+              <option value="19">job</option>
+              <option value="20">company</option>
+              <option value="21">creditCardNumber</option>
+              <option value="22">gender</option>
+              <option value="23">urls</option>
+              <option value="24">money</option>
+              <option value="25">date</option>
+              <option value="26">time</option>
+              <option value="27">iter</option>
+              <option value="28">function</option>
+            </select>
           </div>
           <textarea id="json-input"></textarea>
           <div class="btn-inp-wrap">
@@ -389,6 +410,14 @@
         // a 태그를 클릭한다.
         element.click();
       }
+
+      // 셀렉트 박스 선택 부분
+      const select = document.getElementById("select-box");
+      const selectedValue = document.getElementById("selected-value");
+      select.addEventListener("change", function () {
+        const selectedOptions = Array.from(select.selectedOptions, option => option.text);
+        selectedValue.textContent = selectedOptions.join(", ");
+      });
     </script>
   </body>
 </html>

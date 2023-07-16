@@ -3,7 +3,8 @@
   background-color: #2f353f;
   color: #fff;
   border-radius: 20px;
-  padding: 19.5px 0;
+  /* padding: 19.5px 0; */
+  /* max-width: 625px; */
   width: 100%;
   position: relative;
   cursor: pointer;
@@ -12,7 +13,7 @@
 .select-wrap .selected {
   display: flex;
   justify-content: space-between;
-  padding: 0 22px;
+  padding: 19.5px 22px;
   position: relative;
 }
 
@@ -34,19 +35,21 @@
 .select-wrap .selected:before {
   content: '';
   display: block;
-  height: 100%;
+  height: 50%;
+  /* margin-top: 0; */
   border-left: 1px solid rgba(179, 175, 175, 0.7);
   position: absolute;
+  top: 25%;
   right: 70px;
 }
 
-.select-wrap ul {
+.select-wrap select {
   width: 100%;
   flex-direction: column;
   border: 1px solid #c4c4c4;
   position: absolute;
   background: #2a2e36;
-  transform: translateY(10%);
+  /* transform: translateY(10%); */
   cursor: pointer;
   padding: 10px 8px;
   gap: 12px;
@@ -56,17 +59,18 @@
   display: none;
 }
 
-.select-wrap.active ul {
+
+.select-wrap select.active {
   display: flex;
 }
 
-.select-wrap ul li {
+.select-wrap select option {
   padding: 7px 10px;
   color: #fff;
   border-radius: 15px;
 }
 
-.select-wrap ul li:hover {
+.select-wrap select option:hover {
   background-color: var(--purple);
   /* color: #000; */
 }
