@@ -64,6 +64,15 @@ function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomFloat(min, max, round = 3) {
+  if (max > min) {
+    let num = Math.random() * (max - min) + min
+    return num.toFixed(round)
+  } else {
+    let num = Math.random() * (min - max) + max
+    return num.toFixed(round)
+  }
+}
 
 function randomItem(items) {
   return items[Math.floor(Math.random() * items.length)];
@@ -123,6 +132,16 @@ function phone() {
   }
 }
 
+function email() {
+  switch (language) {
+    case "ko":
+      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`
+
+    case "en":
+      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`
+  }
+}
+
 function generateData(template, index) {
   let data = {};
   
@@ -156,8 +175,8 @@ function generateData(template, index) {
         //특정 데이터타입
           case 'int':
               return randomInteger(parseInt(args[0]), parseInt(args[1]))
-          //case 'float':
-          //    return randomFloat(min, max, round)
+          case 'float':
+             return randomFloat(parseFloat(args[0]), parseFloat(args[1]), args[2])
           //case 'boolean':
           //    return randomBoolean()
           case 'random':
@@ -172,8 +191,8 @@ function generateData(template, index) {
         // 개인정보관련
           case 'name':
             return name()
-          //case 'email':
-          //    return email()
+          case 'email':
+             return email()
           case 'phone':
             return phone()
           case 'country':
