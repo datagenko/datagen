@@ -77,6 +77,23 @@ function money(min, max, symbol) {
   return `${symbol} ${result}`
   }
 
+function country() {
+  switch (language) {
+    case "ko":
+      return ko_country_list[randomInteger(0, ko_country_list.length - 1)];
+    case "en":
+      return en_country_list[randomInteger(0, en_country_list.length - 1)];
+  }
+}
+
+function city() {
+  switch (language) {
+    case "ko":
+      return ko_city_list[randomInteger(0, ko_city_list.length - 1)];
+    case "en":
+      return en_city_list[randomInteger(0, en_city_list.length - 1)];
+  }
+}
 
 function generateData(template, index) {
   let data = {};
@@ -131,10 +148,10 @@ function generateData(template, index) {
           //    return email()
           //case 'phone':
           //    return phone()
-          //case 'country':
-          //    return country()
-          //case 'city':
-          //    return city()
+          case 'country':
+            return country()
+          case 'city':
+            return city()
           //case 'address':
           //    return address()
           //case 'postal_code':
