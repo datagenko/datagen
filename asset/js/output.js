@@ -1,4 +1,4 @@
-let language = "ko"
+let language = "en"
 const ko_first_name = ['이', '김', '한', '차', '남']
 const ko_last_name = ['가람', '가온', '그린', '겨루', '나래', '늘봄', '다슬', '라라', '루리', '마루', '바다', '새길', '새나']
 const en_first_name = ['John', 'Mark']
@@ -95,6 +95,32 @@ function city() {
   }
 }
 
+function name() {
+  switch (language) {
+    case "ko":
+      return randomItem(ko_first_name) + randomItem(ko_last_name);
+    case "en":
+      return `${randomItem(en_first_name)} ${randomItem(en_last_name)}`;
+  }
+}
+
+function phone() {
+  let firstNumber, middleNumber, lastNumber;
+  switch (language) {
+    case "ko":
+      middleNumber = randomInteger(2000, 9999);
+      lastNumber = randomInteger(1, 9999).toString().padStart(4, '0');
+      
+      return `010-${middleNumber}-${lastNumber}`;
+    case "en":
+      firstNumber = randomInteger(200, 999);
+      middleNumber = randomInteger(0, 999).toString().padStart(3, '0');
+      lastNumber = randomInteger(1, 9999).toString().padStart(4, '0');
+
+      return `(${firstNumber}) ${middleNumber}-${lastNumber}`;
+  }
+}
+
 function generateData(template, index) {
   let data = {};
   
@@ -142,12 +168,12 @@ function generateData(template, index) {
           //case 'color':
           //    return color()
         // 개인정보관련
-          //case 'name':
-          //    return name()
+          case 'name':
+            return name()
           //case 'email':
           //    return email()
-          //case 'phone':
-          //    return phone()
+          case 'phone':
+            return phone()
           case 'country':
             return country()
           case 'city':
