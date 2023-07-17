@@ -1,4 +1,4 @@
-let language = "en"
+let language = "ko"
 const ko_first_name = ['이', '김', '한', '차', '남']
 const ko_last_name = ['가람', '가온', '그린', '겨루', '나래', '늘봄', '다슬', '라라', '루리', '마루', '바다', '새길', '새나']
 const en_first_name = ['John', 'Mark']
@@ -80,20 +80,22 @@ function money(min, max, symbol) {
 function country() {
   switch (language) {
     case "ko":
-      return ko_country_list[randomInteger(0, ko_country_list.length - 1)];
+      return randomItem(ko_country_list);
     case "en":
-      return en_country_list[randomInteger(0, en_country_list.length - 1)];
+      return randomItem(en_country_list);
   }
 }
 
 function city() {
   switch (language) {
     case "ko":
-      return ko_city_list[randomInteger(0, ko_city_list.length - 1)];
+      return randomItem(ko_city_list);
     case "en":
-      return en_city_list[randomInteger(0, en_city_list.length - 1)];
+      return randomItem(en_city_list);
   }
 }
+
+console.log(country(), city())
 
 function name() {
   switch (language) {
