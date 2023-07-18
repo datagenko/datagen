@@ -68,19 +68,9 @@ function generateData(template, index) {
 document
   .getElementById("generate-button")
   .addEventListener("click", function () {
-    // let input = JSON.parse(document.getElementById('json-input').value.replace(/'/g, '"'));
-    let input = `[
-    "{{repeat(5)}}",
-    {
-        "_id": "{{id()}}",
-        "index": "{{index()}}",
-        "picture": "http://via.placeholder.com/32x32",
-        "age": "{{integer(20, 40)}}",
-        "eyeColor": "{{random('blue', 'brown', 'green')}}",
-        "name": "{{name()}}"
-    }]`;
-    input = JSON.parse(input);
-    console.log(input);
+    console.log(inputJson.value)
+    let input = JSON.parse(document.getElementById('json-input').value);
+    console.log("input-json", input);
 
     let repeatCount = parseInt(input[0].match(/(\d+)/)[0]);
     console.log(repeatCount);
