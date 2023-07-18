@@ -192,6 +192,7 @@ function email() {
     }
 }
 
+/* 무작위로 유저 이름을 생성합니다 */
 function username() {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
     let userIndex = 'user-';
@@ -203,6 +204,12 @@ function username() {
     return userIndex;
 }
 
+/**
+ * 유저가 입력한 크기로 생성된 이미지 주소를 return 합니다.
+ * @param {number} width
+ * @param {number} height
+ * @return {string} https://via.placeholder.com/${width}x${height}
+ */
 function picture(width, height) {
     if (!Number.isInteger(width) || width < 1) {
         throw new Error(
