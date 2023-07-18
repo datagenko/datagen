@@ -34,35 +34,165 @@ function randomItem(items) {
     return items[Math.floor(Math.random() * items.length)];
 }
 
-function generateData(template, index) {
-    return template.replace(/{{([^{}]+)}}/g, function (_, key) {
-        // key 값은 중괄호 안에 들어있는 값
-        // console.log(key)
-        const func = key.split("(")[0];
-        const [...args] = key
-            .split("(")[1]
-            .replace(")", "")
-            .replaceAll(" ", "")
-            .replaceAll("'", "")
-            .replaceAll('"', "")
-            .split(",");
-        // console.log(func, args)
+function money(min, max, symbol) {
+    if (!symbol) {
+        symbol = language === "ko" ? '￦' : '$'
+    }
+    const result = randomInteger(min, max).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return `${symbol} ${result}`
+}
 
-        switch (func) {
-            case "id":
-                return uuid();
-            case "index":
-                return index;
-            case "integer":
-                return randomInteger(parseInt(args[0]), parseInt(args[1]));
-            case "random":
-                return randomItem(args.map((s) => s.replace(/"/g, "").trim()));
-            case "name":
-                return randomItem(first_name) + randomItem(last_name);
-            default:
-                return _;
-        }
-    });
+function country() {
+    switch (language) {
+        case "ko":
+            return randomItem(ko_country_list);
+        case "en":
+            return randomItem(en_country_list);
+    }
+}
+
+function city() {
+    switch (language) {
+        case "ko":
+            return randomItem(ko_city_list);
+        case "en":
+            return randomItem(en_city_list);
+    }
+}
+
+console.log(country(), city())
+
+function name() {
+    switch (language) {
+        case "ko":
+            return randomItem(ko_first_name) + randomItem(ko_last_name);
+        case "en":
+            return `${randomItem(en_first_name)} ${randomItem(en_last_name)}`;
+    }
+}
+
+function phone() {
+    let firstNumber, middleNumber, lastNumber;
+    switch (language) {
+        case "ko":
+            middleNumber = randomInteger(2000, 9999);
+            lastNumber = randomInteger(1, 9999).toString().padStart(4, '0');
+
+            return `010-${middleNumber}-${lastNumber}`;
+        case "en":
+            firstNumber = randomInteger(200, 999);
+            middleNumber = randomInteger(0, 999).toString().padStart(3, '0');
+            lastNumber = randomInteger(1, 9999).toString().padStart(4, '0');
+
+            return `(${firstNumber}) ${middleNumber}-${lastNumber}`;
+    }
+}
+
+function email() {
+    switch (language) {
+        case "ko":
+            return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`
+
+        case "en":
+            return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`
+    }
+}
+
+function gender() {
+    switch (language) {
+        case "ko":
+            return randomItem(["남성", "여성"])
+        case "en":
+            return randomItem(["Male", "Female"]);
+    }
+}
+
+function generateData(template, index) {
+    let data = {};
+
+    for (const i in template) {
+        data[i] = template[i].replace(/<([^<>]+)>/g, (str, key) => {
+            const func = key.split('(')[0];
+            let action = "";
+            if (func === "function") {
+                action = key.match(/{(.*)}/)[1].trim();
+            }
+            [...args] = key.split('(')[1]
+                .replace(')', '')
+                .replaceAll(' ', '')
+                .replaceAll('\'', '')
+                .replaceAll('"', '')
+                .split(',')
+
+            // 들어오는 인자는 args배열에 저장됩니다.
+            // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
+            // optional로 인자가 들어오지 않았을때에 대한 처리도 필요합니다.
+            switch (func) {
+                // 고유값
+                case 'uuid':
+                    return uuid();
+                case 'index':
+                    return index
+                //case 'username':
+                //    return username()
+                //case 'password':
+                //    return password(min, max)
+                //특정 데이터타입
+                case 'int':
+                    return randomInteger(parseInt(args[0]), parseInt(args[1]))
+                case 'float':
+                    return randomFloat(parseFloat(args[0]), parseFloat(args[1]), args[2])
+                //case 'boolean':
+                //    return randomBoolean()
+                case 'random':
+                //    return randomItem(args)
+                //case 'lorem':
+                //    // loream은 들어오는 인자가 전부 optional 이기 때문에 처리방법이 복잡할 것 같습니다.
+                //    return lorem(number, unit)
+                //case 'picture':
+                //    return picture(width, height)
+                //case 'color':
+                //    return color()
+                // 개인정보관련
+                case 'name':
+                    return name()
+                case 'email':
+                    return email()
+                case 'phone':
+                    return phone()
+                case 'country':
+                    return country()
+                case 'city':
+                    return city()
+                //case 'address':
+                //    return address()
+                //case 'postal_code':
+                //    return postal_code()
+                //case 'job':
+                //    return job()
+                //case 'company':
+                //    return company()
+                //case 'creditCardNumber':
+                //    return creditCardNumber()
+                case 'gender':
+                    return gender()
+                //case 'urls':
+                //    return urls()
+                case 'money':
+                    return money(parseInt(args[0]), parseInt(args[1]), args[2])
+                //case 'date':
+                //    return date(start, end, format)
+                //case 'time':
+                //    return time()
+                //case 'function':
+                //    const do_action = new Function(action);
+                //    return do_action.call(data)
+                default:
+                    return str
+            }
+        })
+    }
+    return data
 }
 
 document
