@@ -151,6 +151,12 @@ function gender(){
   }
 }
 
+function creditCardNumber(){
+  return 'xxxx-xxxx-xxxx-xxxx'.replace(/[x]/g,function(){
+    return Math.floor(Math.random() * 10).toString();
+  });
+}
+
 function generateData(template, index) {
   let data = {};
   
@@ -216,8 +222,8 @@ function generateData(template, index) {
           //    return job()
           //case 'company':
           //    return company()
-          //case 'creditCardNumber':
-          //    return creditCardNumber()
+          case 'creditCardNumber':
+             return creditCardNumber()
           case 'gender':
              return gender()
           //case 'urls':
