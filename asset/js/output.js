@@ -142,6 +142,15 @@ function email() {
   }
 }
 
+function gender(){
+  switch(language){
+    case "ko":
+      return randomItem(["남성", "여성"])
+    case "en":
+      return randomItem(["Male", "Female"]);
+  }
+}
+
 function generateData(template, index) {
   let data = {};
   
@@ -209,8 +218,8 @@ function generateData(template, index) {
           //    return company()
           //case 'creditCardNumber':
           //    return creditCardNumber()
-          //case 'gender':
-          //    return gender()
+          case 'gender':
+             return gender()
           //case 'urls':
           //    return urls()
           case 'money':
