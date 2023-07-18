@@ -224,6 +224,21 @@ function picture(width, height) {
     return `https://via.placeholder.com/${width}x${height}`;
 }
 
+function gender(){
+  switch(language){
+    case "ko":
+      return randomItem(["남성", "여성"])
+    case "en":
+      return randomItem(["Male", "Female"]);
+  }
+}
+
+function creditCardNumber(){
+  return 'xxxx-xxxx-xxxx-xxxx'.replace(/[x]/g,function(){
+    return Math.floor(Math.random() * 10).toString();
+  });
+}
+
 function generateData(template, index) {
     let data = {};
 
@@ -267,7 +282,7 @@ function generateData(template, index) {
                 //case 'boolean':
                 //    return randomBoolean()
                 case 'random':
-                //    return randomItem(args)
+                    return randomItem(args)
                 //case 'lorem':
                 //    // loream은 들어오는 인자가 전부 optional 이기 때문에 처리방법이 복잡할 것 같습니다.
                 //    return lorem(number, unit)
@@ -294,10 +309,10 @@ function generateData(template, index) {
                 //    return job()
                 //case 'company':
                 //    return company()
-                //case 'creditCardNumber':
-                //    return creditCardNumber()
-                //case 'gender':
-                //    return gender()
+                case 'creditCardNumber':
+                   return creditCardNumber()
+                case 'gender':
+                    return gender()
                 //case 'urls':
                 //    return urls()
                 case 'money':
