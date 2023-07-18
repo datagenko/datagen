@@ -1,215 +1,217 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JSON Generator</title>
-    <link rel="stylesheet" href="/asset/css/reset.css" />
-    <link rel="stylesheet" href="/asset/css/style.css" />
-    <link rel="stylesheet" href="/asset/css/layout.css" />
-    <link rel="stylesheet" href="/asset/css/header.css" />
-    <link rel="stylesheet" href="/asset/css/select.css" />
-    <link rel="stylesheet" href="/asset/css/menubar.css" />
-    <link rel="stylesheet" href="/asset/css/buttons.css" />
-    <link rel="stylesheet" href="/asset/css/footer.css" />
-  </head>
 
-  <body>
-    <div id="datagen-container">
-      <header>
-        <h1 class="logo">
-          <img src="asset/img/logo.svg" alt="데이터젠 로고" />
-        </h1>
-        <div class="language">
-          <a
-            class="github"
-            href="https://github.com/datagenko/datagen"
-            target="_blank"
-          ></a>
-          <button class="language-button" type="button">KO</button>
-        </div>
-        <div class="language-list">
-          <button class="language-list_ko">KO</button>
-          <button class="language-list_eng">ENG</button>
-        </div>
-      </header>
-      <main class="datagen-contents">
-        <section id="datagen-input">
-          <div class="select-wrap" id="dropdown">
-            <div class="selected">
-              <div id="selected-value">key값을 선택하세요</div>
-              <div class="arrow"></div>
-            </div>
-            <select id="select-box" multiple="multiple">
-              <option value="1" class="option">uuid</option>
-              <option value="2">index</option>
-              <option value="3">username</option>
-              <option value="4">password</option>
-              <option value="5">int</option>
-              <option value="6">float</option>
-              <option value="7">boolean</option>
-              <option value="8">random</option>
-              <option value="9">lorem</option>
-              <option value="10">picture</option>
-              <option value="11">color</option>
-              <option value="12">name</option>
-              <option value="13">email</option>
-              <option value="14">phone</option>
-              <option value="15">country</option>
-              <option value="16">city</option>
-              <option value="17">address</option>
-              <option value="18">postal_code</option>
-              <option value="19">job</option>
-              <option value="20">company</option>
-              <option value="21">creditCardNumber</option>
-              <option value="22">gender</option>
-              <option value="23">urls</option>
-              <option value="24">money</option>
-              <option value="25">date</option>
-              <option value="26">time</option>
-              <option value="27">iter</option>
-              <option value="28">function</option>
-            </select>
-          </div>
-          <textarea id="json-input"></textarea>
-          <div class="btn-inp-wrap">
-            <button class="btn gen" id="generate-button">Generate</button>
-            <button class="btn reset" id="reset-button">Reset</button>
-          </div>
-          <!-- 메뉴바 -->
-          <button id="openModalBtn">메 뉴 바</button>
+<head>
+	<title>JSON Generator</title>
+	<link rel="stylesheet" href="/asset/css/reset.css" />
+	<link rel="stylesheet" href="/asset/css/style.css" />
+	<link rel="stylesheet" href="/asset/css/layout.css" />
+	<link rel="stylesheet" href="/asset/css/header.css" />
+	<link rel="stylesheet" href="/asset/css/select.css" />
+	<link rel="stylesheet" href="/asset/css/menubar.css" />
+	<!-- FIXME: setting.css : 설정 기능에 관련한 css 임의 파일 -->
+	<link rel="stylesheet" href="/asset/css/setting.css" />
+	<link rel="stylesheet" href="/asset/css/buttons.css" />
+	<link rel="stylesheet" href="/asset/css/footer.css" />
+</head>
 
-          <div class="modal-container" id="bottomSheetModal">
-            <button id="closeModalBtn">X</button>
-            <div class="modal-content">
-              <h2>메뉴바</h2>
-              <br />
-              <ul>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section id="datagen-output">
-          <textarea id="json-output" readonly></textarea>
-          <article class="download-wrap">
-            <p>Download to</p>
-            <div class="btn-wrap">
-              <button class="btn download" id="downloadjson-button">
-                JSON
-              </button>
-              <button class="btn download" id="downloadcsv-button">CSV</button>
-              <button class="btn download" id="downloadhtml-button">
-                HTML
-              </button>
-              <button class="btn download" id="downloadxml-button">XML</button>
-              <button class="btn download" id="downloadsql-button">SQL</button>
-            </div>
-          </article>
-          <!--footer-->
-          <footer class="footer-content">
-            <p class="footer-title">
-              서비스를 만들거나 데이터 분석을 할 때 필요한 데이터를 생성할 수
-              있는 프로젝트입니다
-            </p>
-            <p class="footer-subtitle">
-              이 자료는 많은 개발자들의 도움을 받아 제작되었습니다. 누구나
-              허락없이 사용할 수 있는 공공재입니다.<br /><br />DataGen. ⓒ2023.
-              All Right Reserved.
-            </p>
-            <img
-              class="footer-logo"
-              src="asset/img/logo-footer.svg"
-              alt="데이터젠 로고"
-            />
-          </footer>
-        </section>
-      </main>
-    </div>
-    <script src="asset/js/output.js"></script>
-    <script src="asset/js/select.js"></script>
-    <script src="asset/js/language.js"></script>
-    <script src="asset/js/menubar.js"></script>
-  </body>
+<body>
+	<div id="datagen-container">
+		<header>
+			<h1 class="logo">
+				<img src="asset/img/logo.svg" alt="데이터젠 로고" />
+			</h1>
+			<div class="language">
+				<a class="github" href="https://github.com/datagenko/datagen" target="_blank"></a>
+				<button class="language-button" type="button">KO</button>
+			</div>
+			<div class="language-list">
+				<button class="language-list_ko">KO</button>
+				<button class="language-list_eng">ENG</button>
+			</div>
+			<!-- FIXME: 설정 기능 리스트 임의 마크업 -->
+			<div class="setting-list">
+				<button class="setting-line-wrap on">line-wrapping</button>
+			</div>
+		</header>
+		<main class="datagen-contents">
+			<section id="datagen-input">
+				<div class="select-wrap" id="dropdown">
+					<div class="selected">
+						<div id="selected-value">key값을 선택하세요</div>
+						<div class="arrow"></div>
+					</div>
+					<select id="select-box" multiple="multiple">
+						<option value="1" class="option">uuid</option>
+						<option value="2">index</option>
+						<option value="3">username</option>
+						<option value="4">password</option>
+						<option value="5">int</option>
+						<option value="6">float</option>
+						<option value="7">boolean</option>
+						<option value="8">random</option>
+						<option value="9">lorem</option>
+						<option value="10">picture</option>
+						<option value="11">color</option>
+						<option value="12">name</option>
+						<option value="13">email</option>
+						<option value="14">phone</option>
+						<option value="15">country</option>
+						<option value="16">city</option>
+						<option value="17">address</option>
+						<option value="18">postal_code</option>
+						<option value="19">job</option>
+						<option value="20">company</option>
+						<option value="21">creditCardNumber</option>
+						<option value="22">gender</option>
+						<option value="23">urls</option>
+						<option value="24">money</option>
+						<option value="25">date</option>
+						<option value="26">time</option>
+						<option value="27">iter</option>
+						<option value="28">function</option>
+					</select>
+				</div>
+				<textarea id="json-input"></textarea>
+				<div class="btn-inp-wrap">
+					<button class="btn gen" id="generate-button">Generate</button>
+					<button class="btn reset" id="reset-button">Reset</button>
+				</div>
+				<!-- 메뉴바 -->
+				<button id="openModalBtn">메 뉴 바</button>
+
+				<div class="modal-container" id="bottomSheetModal">
+					<button id="closeModalBtn">X</button>
+					<div class="modal-content">
+						<h2>메뉴바</h2>
+						<br />
+						<ul>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+							<li>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Officiis totam neque nesciunt ullam, esse optio asperiores
+								delectus nisi non quibusdam tempora animi quis, rerum culpa
+								sed inventore assumenda dolores architecto.
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section id="datagen-output">
+				<textarea id="json-output" readonly></textarea>
+				<article class="download-wrap">
+					<p>Download to</p>
+					<div class="btn-wrap">
+						<button class="btn download" id="downloadjson-button">
+							JSON
+						</button>
+						<button class="btn download" id="downloadcsv-button">CSV</button>
+						<button class="btn download" id="downloadhtml-button">
+							HTML
+						</button>
+						<button class="btn download" id="downloadxml-button">XML</button>
+						<button class="btn download" id="downloadsql-button">SQL</button>
+					</div>
+				</article>
+				<!--footer-->
+				<footer class="footer-content">
+					<p class="footer-title">
+						서비스를 만들거나 데이터 분석을 할 때 필요한 데이터를 생성할 수
+						있는 프로젝트입니다
+					</p>
+					<p class="footer-subtitle">
+						이 자료는 많은 개발자들의 도움을 받아 제작되었습니다. 누구나
+						허락없이 사용할 수 있는 공공재입니다.<br /><br />DataGen. ⓒ2023.
+						All Right Reserved.
+					</p>
+					<img class="footer-logo" src="asset/img/logo-footer.svg" alt="데이터젠 로고" />
+				</footer>
+			</section>
+		</main>
+	</div>
+	<script src="asset/js/output.js"></script>
+	<script src="asset/js/select.js"></script>
+	<script src="asset/js/language.js"></script>
+	<script src="asset/js/menubar.js"></script>
+	<!-- FIXME: 설정 기능 임의 자바스크립트 파일 -->
+	<script src="asset/js/setting.js"></script>
+</body>
+
 </html>
