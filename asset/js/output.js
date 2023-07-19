@@ -286,7 +286,7 @@ function generateData(template, index) {
         case "uuid":
           return uuid();
         case "index":
-          return index();
+          return index;
         case "username":
           return username();
         //case 'password':
