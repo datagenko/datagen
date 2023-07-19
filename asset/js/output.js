@@ -286,6 +286,28 @@ function creditCardNumber() {
   });
 }
 
+function color() {
+  const hexDigits = "0123456789abcdef";
+  let hexColor = "#";
+  for (let i = 0; i < 6; i++) {
+    hexColor += hexDigits.charAt(Math.floor(Math.random() * hexDigits.length));
+  }
+  return hexColor;
+}
+
+function getRandomDomain() {
+  const domainExtensions = [".com", ".org", ".net", ".co.kr", ".io", ".xyz"]; 
+  return domainExtensions[Math.floor(Math.random() * domainExtensions.length)];
+}
+
+function urls() {
+  const protocol = "https://";
+  const randomString = randomItem(lorem_list)
+  const domainExtension = getRandomDomain();
+  const randomURL = protocol + randomString + domainExtension;
+  return randomURL;
+}
+
 function generateData(template, index) {
   let data = {};
 
@@ -325,8 +347,8 @@ function generateData(template, index) {
         //    return lorem(number, unit)
         case "picture":
           return picture(width, height);
-        //case 'color':
-        //    return color()
+        case 'color':
+           return color()
         // 개인정보관련
         case "name":
           return name();
@@ -350,8 +372,8 @@ function generateData(template, index) {
           return creditCardNumber();
         case "gender":
           return gender();
-        //case 'urls':
-        //    return urls()
+        case 'urls':
+           return urls()
         case "money":
           return money(parseInt(args[0]), parseInt(args[1]), args[2]);
         //case 'date':
