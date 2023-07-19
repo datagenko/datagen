@@ -3,7 +3,7 @@
   background-color: #2f353f;
   color: #fff;
   border-radius: 20px;
-  /* padding: 19.5px 0; */
+  padding: 19.5px 0;
   /* max-width: 625px; */
   width: 100%;
   position: relative;
@@ -15,6 +15,7 @@
   justify-content: space-between;
   padding: 19.5px 22px;
   position: relative;
+  font-size: var(--font-select);
 }
 
 .select-wrap .selected .arrow {
@@ -22,10 +23,6 @@
   background: url("../img/L-arrow-down.svg") no-repeat 70% 50%;
   background-size: 100% 100%;
   transition: all 0.3s;
-}
-
-.select-wrap.active {
-  outline: 1px solid #c4c4c4;
 }
 
 .select-wrap.active .arrow {
@@ -43,15 +40,14 @@
   right: 70px;
 }
 
+/* select list */
 .select-wrap #select-box {
   width: 100%;
   flex-direction: column;
-  border: 1px solid #c4c4c4;
-  position: absolute;
+  border: 1px solid var(--dark-cyan);
   background: #2a2e36;
-  /* transform: translateY(10%); */
   cursor: pointer;
-  padding: 10px 8px;
+  padding: 10px 19px;
   gap: 12px;
   border-radius: 10px;
   margin-top: 5px;
@@ -61,15 +57,25 @@
 
 .select-wrap.active #select-box {
   display: flex;
+  height: 25rem;
+  overflow: scroll;
 }
 
-.select-wrap #select-box option {
-  padding: 7px 10px;
+.select-wrap #select-box .select-item {
   color: #fff;
   border-radius: 15px;
 }
 
-.select-wrap #select-box option:hover {
+.select-wrap #select-box li{
+  margin-bottom: 10px;
+  height: 3rem;
+  line-height: 3rem;
+  padding-left: 1rem ;
+  font-size: var(--font-select);
+}
+
+.select-wrap #select-box li:hover {
   background-color: var(--purple);
-  /* color: #000; */
+  border-radius: 15px;
+  width: 100%;
 }
