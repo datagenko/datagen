@@ -103,6 +103,18 @@ document
     );
   });
 
+// json-output Indent 설정
+document.getElementById("json-indent").addEventListener("change", function () {
+  let indentValue = this.value;
+  let output = document.getElementById("json-output").value;
+  if (output) {
+    let parsedOutput = JSON.parse(output);
+    document.getElementById("json-output").value = JSON.stringify(parsedOutput, null, parseInt(indentValue));
+  }
+});
+
+
+
 // csv 다운로드 버튼 클릭시 이벤트
 document
   .getElementById("downloadcsv-button")
