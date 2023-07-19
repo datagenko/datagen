@@ -307,6 +307,15 @@ function creditCardNumber() {
     });
 }
 
+function color() {
+    const hexDigits = "0123456789abcdef";
+    let hexColor = "#";
+    for (let i = 0; i < 6; i++) {
+        hexColor += hexDigits.charAt(Math.floor(Math.random() * hexDigits.length));
+    }
+    return hexColor;
+}
+
 function generateData(template, index) {
     let data = {};
 
@@ -333,7 +342,7 @@ function generateData(template, index) {
                 case "uuid":
                     return uuid();
                 case "index":
-                    return index();
+                    return index;
                 case "username":
                     return username();
                 //case 'password':
