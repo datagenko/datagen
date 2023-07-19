@@ -295,6 +295,19 @@ function color() {
   return hexColor;
 }
 
+function getRandomDomain() {
+  const domainExtensions = [".com", ".org", ".net", ".co.kr", ".io", ".xyz"]; 
+  return domainExtensions[Math.floor(Math.random() * domainExtensions.length)];
+}
+
+function urls() {
+  const protocol = "https://";
+  const randomString = randomItem(lorem_list)
+  const domainExtension = getRandomDomain();
+  const randomURL = protocol + randomString + domainExtension;
+  return randomURL;
+}
+
 function generateData(template, index) {
   let data = {};
 
@@ -359,8 +372,8 @@ function generateData(template, index) {
           return creditCardNumber();
         case "gender":
           return gender();
-        //case 'urls':
-        //    return urls()
+        case 'urls':
+           return urls()
         case "money":
           return money(parseInt(args[0]), parseInt(args[1]), args[2]);
         //case 'date':
