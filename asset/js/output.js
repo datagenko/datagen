@@ -204,6 +204,54 @@ function username() {
     return userIndex;
 }
 
+/* 무작위로 비밀번호를 생성합니다 */
+function password(min_length, max_length) {
+    // 유효하지 않은 인자가 들어왔을 때 에러처리
+    if (min_length < 1 || min_length >= max_length) {
+        return "error";
+    }
+
+    const nomal_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const special_characters = "!@#$%^&*()_-+=[]{}|\\:;\"'<>,.?/";
+    const characters = [nomal_characters, special_characters];
+    // password 길이값 랜덤 설정
+    const password_length = Math.floor(Math.random() * (max_length - min_length + 1)) + min_length;
+
+    // 생성된 password에 특수문자가 포함되는지 확인하는 함수
+    function contains(password) {
+        for (const c of password) {
+            if (special_characters.includes(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    let password = "";
+    while (true) {
+        // 생성된 password에 특수문자가 포함되지 않으면 빈 값 할당 후 다시 생성
+        if (password.length === password_length) {
+            if (contains(password)) {
+                break;
+            } else {
+                password = "";
+            }
+        }
+
+        // 0, 1 랜덤 생성후 0이면 일반문자, 1이면 특수문자 추가
+        let index = Math.floor(Math.random() * 2);
+        switch (index) {
+            case 0:
+                password += characters[index][Math.floor(Math.random() * nomal_characters.length)];
+                break;
+            case 1:
+                password += characters[index][Math.floor(Math.random() * special_characters.length)];
+                break;
+        }
+    }
+    return password;
+}
+
 /**
  * 유저가 입력한 크기로 생성된 이미지 주소를 return 합니다.
  * @param {number} width
