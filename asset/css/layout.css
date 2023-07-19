@@ -60,7 +60,7 @@ body {
   resize: none;
   background-color: var(--content-bg);
   color: var(--font);
-  font-size: var(--font-textarea);
+  font-size: var(--font-size);
   border: none;
   border-radius: 30px;
 }
@@ -73,7 +73,7 @@ body {
   resize: none;
   background-color: var(--content-bg);
   color: var(--font);
-  font-size: var(--font-textarea);
+  font-size: var(--font-size);
   border: none;
   border-radius: 30px;
 }

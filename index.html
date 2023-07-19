@@ -33,42 +33,46 @@
       </header>
       <main class="datagen-contents">
         <section id="datagen-input">
-          <div class="select-wrap" id="dropdown">
+          <!-- 셀렉트박스 -->
+          <div class="select-wrap">
             <div class="selected">
               <div id="selected-value">key값을 선택하세요</div>
               <div class="arrow"></div>
             </div>
-            <select id="select-box" multiple="multiple">
-              <option value="1" class="option">uuid</option>
-              <option value="2">index</option>
-              <option value="3">username</option>
-              <option value="4">password</option>
-              <option value="5">int</option>
-              <option value="6">float</option>
-              <option value="7">boolean</option>
-              <option value="8">random</option>
-              <option value="9">lorem</option>
-              <option value="10">picture</option>
-              <option value="11">color</option>
-              <option value="12">name</option>
-              <option value="13">email</option>
-              <option value="14">phone</option>
-              <option value="15">country</option>
-              <option value="16">city</option>
-              <option value="17">address</option>
-              <option value="18">postal_code</option>
-              <option value="19">job</option>
-              <option value="20">company</option>
-              <option value="21">creditCardNumber</option>
-              <option value="22">gender</option>
-              <option value="23">urls</option>
-              <option value="24">money</option>
-              <option value="25">date</option>
-              <option value="26">time</option>
-              <option value="27">iter</option>
-              <option value="28">function</option>
-            </select>
+            <div id="select-box">
+              <ul class="select-item">
+                <li><a>uuid: user id 생성</a></li>
+                <li><a>index</a></li></li>
+                <li><a>username</a></li>
+                <li><a>password</a></li>
+                <li><a>int</a></li>
+                <li><a>float</a></li>
+                <li><a>boolean</a></li>
+                <li><a>random</a></li>
+                <li><a>lorem</a></li>
+                <li><a>picture</a></li>
+                <li><a>color</a></li>
+                <li><a>name</a></li>
+                <li><a>email</a></li>
+                <li><a>phone</a></li>
+                <li><a>country</a></li>
+                <li><a>city</a></li>
+                <li><a>address</a></li>
+                <li><a>postal_code</a></li>
+                <li><a>job</a></li>
+                <li><a>company</a></li>
+                <li><a>creditCardNumber</a></li>
+                <li><a>gender</a></li>
+                <li><a>urls</a></li>
+                <li><a>money</a></li>
+                <li><a>date</a></li>
+                <li><a>time</a></li>
+                <li><a>iter</a></li>
+                <li><a>function</a></li>
+              </ul>
+            </div>
           </div>
+        </select>
           <textarea id="json-input"></textarea>
           <div class="btn-inp-wrap">
             <button class="btn gen" id="generate-button">Generate</button>

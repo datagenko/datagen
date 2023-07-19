@@ -1,20 +1,17 @@
+/* selected */
 .select-wrap {
-  font-size: 1.375rem;
-  background-color: #2f353f;
-  color: #fff;
-  border-radius: 20px;
-  /* padding: 19.5px 0; */
-  /* max-width: 625px; */
-  width: 100%;
   position: relative;
+  background-color: var(--divider);
+  border-radius: 20px;
+  color: var(--font);
   cursor: pointer;
 }
 
 .select-wrap .selected {
   display: flex;
   justify-content: space-between;
-  padding: 19.5px 22px;
-  position: relative;
+  padding: 25px 22px;
+  font-size: var(--font-size);
 }
 
 .select-wrap .selected .arrow {
@@ -22,10 +19,6 @@
   background: url("../img/L-arrow-down.svg") no-repeat 70% 50%;
   background-size: 100% 100%;
   transition: all 0.3s;
-}
-
-.select-wrap.active {
-  outline: 1px solid #c4c4c4;
 }
 
 .select-wrap.active .arrow {
@@ -36,40 +29,37 @@
   content: "";
   display: block;
   height: 50%;
-  /* margin-top: 0; */
-  border-left: 1px solid rgba(179, 175, 175, 0.7);
   position: absolute;
   top: 25%;
   right: 70px;
+  border-left: 1px solid var(--light-gray);
 }
 
+/* select-box */
 .select-wrap #select-box {
   width: 100%;
-  flex-direction: column;
-  border: 1px solid #c4c4c4;
-  position: absolute;
-  background: #2a2e36;
-  /* transform: translateY(10%); */
-  cursor: pointer;
-  padding: 10px 8px;
-  gap: 12px;
-  border-radius: 10px;
-  margin-top: 5px;
+  padding: 15px 20px;
+  background: var(--bg);
+  border: 1px solid var(--dark-cyan);
   border-radius: 20px;
+  cursor: pointer;
   display: none;
 }
 
 .select-wrap.active #select-box {
-  display: flex;
+  display: block;
+  height: 60vh;
+  overflow: auto;
+  position: absolute;
 }
 
-.select-wrap #select-box option {
-  padding: 7px 10px;
-  color: #fff;
-  border-radius: 15px;
+.select-wrap #select-box li {
+  padding: 10px;
+  line-height: 2rem;
+  font-size: var(--font-size);
 }
 
-.select-wrap #select-box option:hover {
+.select-wrap #select-box li:hover {
   background-color: var(--purple);
-  /* color: #000; */
+  border-radius: 15px;
 }
