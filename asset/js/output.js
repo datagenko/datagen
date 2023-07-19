@@ -286,6 +286,15 @@ function creditCardNumber() {
   });
 }
 
+function color() {
+  const hexDigits = "0123456789abcdef";
+  let hexColor = "#";
+  for (let i = 0; i < 6; i++) {
+    hexColor += hexDigits.charAt(Math.floor(Math.random() * hexDigits.length));
+  }
+  return hexColor;
+}
+
 function generateData(template, index) {
   let data = {};
 
@@ -325,8 +334,8 @@ function generateData(template, index) {
         //    return lorem(number, unit)
         case "picture":
           return picture(width, height);
-        //case 'color':
-        //    return color()
+        case 'color':
+           return color()
         // 개인정보관련
         case "name":
           return name();
