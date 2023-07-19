@@ -12,24 +12,21 @@
   --scroll: #3f6b7d;
   --divider: #2f353f;
   --font: white;
-  --font-select: 1em;
-  --font-textarea: 1.3em;
+  --font-size: 1.2em;
   --font-gray: #9c9999;
   --light-gray: #b3afaf;
 
   ::-webkit-scrollbar {
     width: 0.625rem;
   }
-  
+
   ::-webkit-scrollbar-track {
     background-color: transparent;
-    padding: 10px 0px;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background-color: var(--scroll);
     border-radius: 50px;
-    height: 30%;
   }
 }
 
@@ -41,18 +38,6 @@ button {
 }
 
 body {
-  font-family: 맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic, Droid sans, sans-serif;
-}
-
-body::-webkit-scrollbar {
-  width: 0.625rem;
-}
-
-body::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--scroll);
-  border-radius: 50px;
+  font-family: 맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo,
+    Microsoft NeoGothic, Droid sans, sans-serif;
 }
