@@ -224,6 +224,16 @@ function picture(width, height) {
     return `https://via.placeholder.com/${width}x${height}`;
 }
 
+// 직업 랜덤 생성
+function job() {
+    switch(language) {
+        case 'ko':
+            return randomItem(ko_job_list);
+        case 'en':
+            return randomItem(en_job_list);
+    }
+}
+
 function gender(){
   switch(language){
     case "ko":
