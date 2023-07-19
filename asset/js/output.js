@@ -316,6 +316,19 @@ function color() {
     return hexColor;
 }
 
+function getRandomDomain() {
+    const domainExtensions = [".com", ".org", ".net", ".co.kr", ".io", ".xyz"];
+    return domainExtensions[Math.floor(Math.random() * domainExtensions.length)];
+}
+
+function urls() {
+    const protocol = "https://";
+    const randomString = randomItem(lorem_list)
+    const domainExtension = getRandomDomain();
+    const randomURL = protocol + randomString + domainExtension;
+    return randomURL;
+}
+
 function generateData(template, index) {
     let data = {};
 
@@ -361,8 +374,8 @@ function generateData(template, index) {
                 //    return lorem(number, unit)
                 case "picture":
                     return picture(width, height);
-                //case 'color':
-                //    return color()
+                case 'color':
+                    return color()
                 // 개인정보관련
                 case "name":
                     return name();
