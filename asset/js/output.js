@@ -138,6 +138,16 @@ function job() {
     }
 }
 
+// 회사 랜덤 생성
+function company() {
+    switch (language) {
+        case 'ko':
+            return randomItem(ko_company_list);
+        case 'en':
+            return randomItem(en_company_list);
+    }
+}
+
 function gender() {
     switch (language) {
         case "ko":
