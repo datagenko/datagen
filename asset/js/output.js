@@ -105,6 +105,52 @@ function gender() {
         case "en":
             return randomItem(["Male", "Female"]);
     }
+    return userIndex;
+}
+
+/**
+ * 유저가 입력한 크기로 생성된 이미지 주소를 return 합니다.
+ * @param {number} width
+ * @param {number} height
+ * @return {string} https://via.placeholder.com/${width}x${height}
+ */
+function picture(width, height) {
+    if (!Number.isInteger(width) || width < 1) {
+        throw new Error(
+            'Width must be a positive integer greater than or equal to 1.'
+        );
+    }
+    if (!Number.isInteger(height) || height < 1) {
+        throw new Error(
+            'Height must be a positive integer greater than or equal to 1.'
+        );
+    }
+    return `https://via.placeholder.com/${width}x${height}`;
+}
+
+// 직업 랜덤 생성
+function job() {
+    switch (language) {
+        case 'ko':
+            return randomItem(ko_job_list);
+        case 'en':
+            return randomItem(en_job_list);
+    }
+}
+
+function gender() {
+    switch (language) {
+        case "ko":
+            return randomItem(["남성", "여성"])
+        case "en":
+            return randomItem(["Male", "Female"]);
+    }
+}
+
+function creditCardNumber() {
+    return 'xxxx-xxxx-xxxx-xxxx'.replace(/[x]/g, function () {
+        return Math.floor(Math.random() * 10).toString();
+    });
 }
 
 function generateData(template, index) {
