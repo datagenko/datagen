@@ -1,5 +1,6 @@
-let first_name = ["이", "김", "한", "차", "남"];
-let last_name = [
+let language = "ko";
+const ko_first_name = ["이", "김", "한", "차", "남"];
+const ko_last_name = [
     "가람",
     "가온",
     "그린",
@@ -14,32 +15,121 @@ let last_name = [
     "새길",
     "새나",
 ];
+const en_first_name = ["John", "Mark"];
+const en_last_name = ["Smith", "Ruffalo"];
+const lorem_list = [
+    "lorem",
+    "ipsum",
+    "dolor",
+    "sit",
+    "amet",
+    "consectetur",
+    "adipisicing",
+    "elit",
+    "Dolorum",
+    "cum",
+    "perspiciatis",
+    "ab",
+    "dignissimos",
+    "vitae",
+    "libero",
+    "ratione",
+    "Reiciendis",
+    "voluptates",
+    "quod",
+    "totam",
+    "delectus",
+    "fuga",
+    "voluptatem",
+    "cupiditate",
+    "rem",
+    "similique",
+    "nemo",
+    "aliquid",
+    "voluptas",
+    "tempora",
+];
+const domain_list = ["com", "co.kr", "net", "org"];
+
+const ko_country_list = ["한국", "미국", "일본"];
+const en_country_list = ["Korea", "USA", "Japan"];
+const ko_city_list = ["서울", "워싱턴", "도쿄"];
+const en_city_list = ["Seoul", "Washington", "Tokyo"];
+const ko_street_list = ["골목", "서울", "교동"];
+const en_street_list = ["loyal", "korean", "load"];
+
+const ko_job_list = ["선생님", "학생", "의사", "기술자"];
+const en_job_list = ["teacher", "student", "doctor", "engineer"];
+const ko_company_list = ["구글", "삼성", "애플"];
+const en_company_list = ["google", "samsung", "apple"];
+
+const function_dic = {
+    uuid: "uuid",
+    index: "index",
+    username: "username",
+    password: "password",
+    int: "randomInteger",
+    float: "randomFloat",
+    boolean: "randomBoolean",
+    random: "randomItem",
+    lorem: "lorem",
+    picture: "picture",
+    color: "color",
+    name: "name",
+    email: "email",
+    phone: "phone",
+    country: "country",
+    city: "city",
+    address: "address",
+    postal_code: "postal_code",
+    job: "job",
+    company: "company",
+    creditCardNumber: "creditCardNumber",
+    gerder: "gender",
+    urls: "urls",
+    money: "money",
+    date: "date",
+    time: "time",
+};
 
 function uuid() {
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-        /[xy]/g,
-        function (c) {
-            let r = (Math.random() * 16) | 0;
-            let v = c == "x" ? r : randomItem(["A", "B", "C"]);
-            return v.toString(16);
-        }
-    );
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        let r = (Math.random() * 16) | 0;
+        let v = c == "x" ? r : randomItem(["A", "B", "C"]);
+        return v.toString(16);
+    });
 }
 
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomFloat(min, max, round = 3) {
+    if (max > min) {
+        let num = Math.random() * (max - min) + min;
+        return num.toFixed(round);
+    } else {
+        let num = Math.random() * (min - max) + max;
+        return num.toFixed(round);
+    }
+}
+
 function randomItem(items) {
     return items[Math.floor(Math.random() * items.length)];
 }
 
+function randomBoolean() {
+    return randomItem([true, false]);
+}
+
 function money(min, max, symbol) {
     if (!symbol) {
-        symbol = language === "ko" ? '￦' : '$'
+        symbol = language === "ko" ? "￦" : "$";
     }
-    const result = randomInteger(min, max).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return `${symbol} ${result}`
+    const result = randomInteger(min, max)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return `${symbol} ${result}`;
 }
 
 function country() {
@@ -76,13 +166,13 @@ function phone() {
     switch (language) {
         case "ko":
             middleNumber = randomInteger(2000, 9999);
-            lastNumber = randomInteger(1, 9999).toString().padStart(4, '0');
+            lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
 
             return `010-${middleNumber}-${lastNumber}`;
         case "en":
             firstNumber = randomInteger(200, 999);
-            middleNumber = randomInteger(0, 999).toString().padStart(3, '0');
-            lastNumber = randomInteger(1, 9999).toString().padStart(4, '0');
+            middleNumber = randomInteger(0, 999).toString().padStart(3, "0");
+            lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
 
             return `(${firstNumber}) ${middleNumber}-${lastNumber}`;
     }
@@ -91,19 +181,25 @@ function phone() {
 function email() {
     switch (language) {
         case "ko":
-            return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`
+            return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(
+                domain_list
+            )}`;
 
         case "en":
-            return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`
+            return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(
+                domain_list
+            )}`;
     }
 }
 
-function gender() {
-    switch (language) {
-        case "ko":
-            return randomItem(["남성", "여성"])
-        case "en":
-            return randomItem(["Male", "Female"]);
+/* 무작위로 유저 이름을 생성합니다 */
+function username() {
+    const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    let userIndex = "user-";
+    // 7자리 Index 생성
+    for (let i = 0; i < 7; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        userIndex += characters[randomIndex];
     }
     return userIndex;
 }
@@ -117,12 +213,12 @@ function gender() {
 function picture(width, height) {
     if (!Number.isInteger(width) || width < 1) {
         throw new Error(
-            'Width must be a positive integer greater than or equal to 1.'
+            "Width must be a positive integer greater than or equal to 1."
         );
     }
     if (!Number.isInteger(height) || height < 1) {
         throw new Error(
-            'Height must be a positive integer greater than or equal to 1.'
+            "Height must be a positive integer greater than or equal to 1."
         );
     }
     return `https://via.placeholder.com/${width}x${height}`;
@@ -131,9 +227,9 @@ function picture(width, height) {
 // 직업 랜덤 생성
 function job() {
     switch (language) {
-        case 'ko':
+        case "ko":
             return randomItem(ko_job_list);
-        case 'en':
+        case "en":
             return randomItem(en_job_list);
     }
 }
@@ -141,9 +237,9 @@ function job() {
 // 회사 랜덤 생성
 function company() {
     switch (language) {
-        case 'ko':
+        case "ko":
             return randomItem(ko_company_list);
-        case 'en':
+        case "en":
             return randomItem(en_company_list);
     }
 }
@@ -151,14 +247,14 @@ function company() {
 function gender() {
     switch (language) {
         case "ko":
-            return randomItem(["남성", "여성"])
+            return randomItem(["남성", "여성"]);
         case "en":
             return randomItem(["Male", "Female"]);
     }
 }
 
 function creditCardNumber() {
-    return 'xxxx-xxxx-xxxx-xxxx'.replace(/[x]/g, function () {
+    return "xxxx-xxxx-xxxx-xxxx".replace(/[x]/g, function () {
         return Math.floor(Math.random() * 10).toString();
     });
 }
@@ -168,58 +264,59 @@ function generateData(template, index) {
 
     for (const i in template) {
         data[i] = template[i].replace(/<([^<>]+)>/g, (str, key) => {
-            const func = key.split('(')[0];
+            const func = key.split("(")[0];
             let action = "";
             if (func === "function") {
                 action = key.match(/{(.*)}/)[1].trim();
             }
-            [...args] = key.split('(')[1]
-                .replace(')', '')
-                .replaceAll(' ', '')
-                .replaceAll('\'', '')
-                .replaceAll('"', '')
-                .split(',')
+            [...args] = key
+                .split("(")[1]
+                .replace(")", "")
+                .replaceAll(" ", "")
+                .replaceAll("'", "")
+                .replaceAll('"', "")
+                .split(",");
 
             // 들어오는 인자는 args배열에 저장됩니다.
             // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
             // optional로 인자가 들어오지 않았을때에 대한 처리도 필요합니다.
             switch (func) {
                 // 고유값
-                case 'uuid':
+                case "uuid":
                     return uuid();
-                case 'index':
-                    return index
-                //case 'username':
-                //    return username()
+                case "index":
+                    return index();
+                case "username":
+                    return username();
                 //case 'password':
                 //    return password(min, max)
                 //특정 데이터타입
-                case 'int':
-                    return randomInteger(parseInt(args[0]), parseInt(args[1]))
-                case 'float':
-                    return randomFloat(parseFloat(args[0]), parseFloat(args[1]), args[2])
-                //case 'boolean':
-                //    return randomBoolean()
-                case 'random':
-                //    return randomItem(args)
+                case "int":
+                    return randomInteger(parseInt(args[0]), parseInt(args[1]));
+                case "float":
+                    return randomFloat(parseFloat(args[0]), parseFloat(args[1]), args[2]);
+                case "boolean":
+                    return randomBoolean();
+                case "random":
+                    return randomItem(args);
                 //case 'lorem':
                 //    // loream은 들어오는 인자가 전부 optional 이기 때문에 처리방법이 복잡할 것 같습니다.
                 //    return lorem(number, unit)
-                //case 'picture':
-                //    return picture(width, height)
+                case "picture":
+                    return picture(width, height);
                 //case 'color':
                 //    return color()
                 // 개인정보관련
-                case 'name':
-                    return name()
-                case 'email':
-                    return email()
-                case 'phone':
-                    return phone()
-                case 'country':
-                    return country()
-                case 'city':
-                    return city()
+                case "name":
+                    return name();
+                case "email":
+                    return email();
+                case "phone":
+                    return phone();
+                case "country":
+                    return country();
+                case "city":
+                    return city();
                 //case 'address':
                 //    return address()
                 //case 'postal_code':
@@ -228,14 +325,14 @@ function generateData(template, index) {
                 //    return job()
                 //case 'company':
                 //    return company()
-                //case 'creditCardNumber':
-                //    return creditCardNumber()
-                case 'gender':
-                    return gender()
+                case "creditCardNumber":
+                    return creditCardNumber();
+                case "gender":
+                    return gender();
                 //case 'urls':
                 //    return urls()
-                case 'money':
-                    return money(parseInt(args[0]), parseInt(args[1]), args[2])
+                case "money":
+                    return money(parseInt(args[0]), parseInt(args[1]), args[2]);
                 //case 'date':
                 //    return date(start, end, format)
                 //case 'time':
@@ -244,43 +341,81 @@ function generateData(template, index) {
                 //    const do_action = new Function(action);
                 //    return do_action.call(data)
                 default:
-                    return str
+                    return str;
             }
-        })
+        });
     }
-    return data
+    return data;
 }
 
+const input_form = document.querySelector("#json-input");
 document
     .getElementById("generate-button")
     .addEventListener("click", function () {
-        // let input = JSON.parse(document.getElementById('json-input').value.replace(/'/g, '"'));
+        // let input = input_form.value;
         let input = `[
-    "{{repeat(5)}}",
-    {
-        "_id": "{{id()}}",
-        "index": "{{index()}}",
-        "picture": "http://via.placeholder.com/32x32",
-        "age": "{{integer(20, 40)}}",
-        "eyeColor": "{{random('blue', 'brown', 'green')}}",
-        "name": "{{name()}}"
-    }]`;
-        input = JSON.parse(input);
-        console.log(input);
+      "<iter(1)>",
+          {
+              "_id": "<uuid()>",
+              "index": "<index(12)>",
+              "username": "<username()>",
+              "password5_20": "<password(5, 20)>",
+              "int5_20": "<int(5,20)>",
+              "float5.2_20.5": "<float(5.2, 20.5)>",
+              "boolean": "<boolean()>",
+              "random": "<random(one, 'two', three)>",
+              "lorem": "<lorem()>",
+              "color": "<color()>",
+              "name": "<name()>",
+              "email": "<email()>",
+              "phone": "<phone()>",
+              "country": "<country()>",
+              "city": "<city()>",
+              "address": "<address()>",
+              "postal_code": "<postal_code()>",
+              "job": "<job()>",
+              "company": "<company()>",
+              "creditCardNumber": "<creditCardNumber()>",
+              "gender": "<gender()>",
+              "urls": "<urls()>",
+              "money": "<money(1000000, 1000000000)>",
+              "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
+          }
+      ]`;
+        const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
+            return (
+                "<function() " +
+                // 줄바꿈 문자 공백문자로 변경.
+                fn
+                    .replace(/\n/g, "")
+                    // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
+                    .replace(/<([^>]+)>/g, (_, context) => {
+                        console.log(context);
+                        const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
+                        return `${function_dic[functionName] || functionName}(${args})`;
+                    }) +
+                ">"
+            );
+        });
+        console.log(modifiedText);
+        input = JSON.parse(modifiedText);
 
-        let repeatCount = parseInt(input[0].match(/(\d+)/)[0]);
-        console.log(repeatCount);
+        let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
 
-        let template = JSON.stringify(input[1]);
-        console.log(template);
+        let template = input[1];
+
+        // index 함수의 초기값이 지정되었는지 판단하는 상수 : true/false
+        const hasInitIndex = !!template["index"].match(/[0-9]/g);
+        let initIndex = hasInitIndex
+            ? parseInt(template["index"].match(/[0-9]/g).join(""))
+            : 1;
 
         let output = [];
-        console.log(repeatCount);
 
         for (let i = 0; i < repeatCount; i++) {
-            output.push(JSON.parse(generateData(template, i)));
+            output.push(generateData(template, initIndex));
+            initIndex++;
         }
-        console.log(output);
 
         document.getElementById("json-output").value = JSON.stringify(
             output,
