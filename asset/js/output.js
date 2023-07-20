@@ -109,11 +109,20 @@ function randomBoolean() {
   return randomItem([true, false]);
 }
 
+
+/** 유저가 입력한 범위 내에서 금액을 출력합니다.
+ * @param {Number} min 최소금액
+ * @param {Number} max 최대금액
+ * @param {String} symbol 화폐의 심볼
+ * @returns 맨앞에 symbol을 붙이고, 뒤에 랜덤하게 생성된 금액에 3자리 단위로 ,를 붙여서 반환합니다.
+ */
 function money(min, max, symbol) {
   if (!symbol) {
     symbol = language === "ko" ? "￦" : "$";
   }
-  const result = randomInteger(min, max)
+  const minMoney = Math.min(min, max)
+  const maxMoney = Math.max(min, max)
+  const result = randomInteger(minMoney, maxMoney)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return `${symbol} ${result}`;
@@ -361,6 +370,7 @@ function generateData(template, index) {
     data[i] = template[i].replace(/<([^<>]+)>/g, (str, key) => {
       const func = key.split("(")[0];
       let action = "";
+      // 함수가 function 일 경우, args를 action으로 받습니다.
       if (func === "function") {
         action = key.match(/{(.*)}/)[1].trim();
       }
@@ -377,8 +387,8 @@ function generateData(template, index) {
           return index;
         case "username":
           return username();
-        //case 'password':
-        //    return password(min, max)
+        case 'password':
+          return password(parseInt(args[0]), parseInt(args[1]))
         //특정 데이터타입
         case "int":
           return randomInteger(parseInt(args[0]), parseInt(args[1]));
@@ -392,7 +402,7 @@ function generateData(template, index) {
         //    // loream은 들어오는 인자가 전부 optional 이기 때문에 처리방법이 복잡할 것 같습니다.
         //    return lorem(number, unit)
         case "picture":
-          return picture(width, height);
+          return picture(parseInt(args[0]), parseInt(args[1]));
         case 'color':
            return color()
         // 개인정보관련
@@ -406,29 +416,30 @@ function generateData(template, index) {
           return country();
         case "city":
           return city();
-        //case 'address':
+        // case 'address':
         //    return address()
-        //case 'postal_code':
+        // case 'postal_code':
         //    return postal_code()
-        //case 'job':
-        //    return job()
-        //case 'company':
-        //    return company()
+        case 'job':
+          return job()
+        case 'company':
+          return company()
         case "creditCardNumber":
           return creditCardNumber();
         case "gender":
           return gender();
         case 'urls':
-           return urls()
+          return urls()
         case "money":
           return money(parseInt(args[0]), parseInt(args[1]), args[2]);
-        //case 'date':
-        //    return date(start, end, format)
-        //case 'time':
-        //    return time()
-        //case 'function':
-        //    const do_action = new Function(action);
-        //    return do_action.call(data)
+        case 'date':
+          return date(args[0], args[1], args[2])
+        case 'time':
+          return time()
+        case 'function':
+          // action을 바탕으로 Function을 만들고 data를 bind 해서 실행합니다.
+          const do_action = new Function(action);
+          return do_action.call(data)
         default:
           return str;
       }
@@ -441,7 +452,7 @@ const input_form = document.querySelector("#json-input");
 document.getElementById("generate-button").addEventListener("click", function () {
   // let input = input_form.value;
   let input = `[
-      "<iter(1)>",
+      "<iter(2)>",
           {
               "_id": "<uuid()>",
               "index": "<index(12)>",
@@ -465,10 +476,13 @@ document.getElementById("generate-button").addEventListener("click", function ()
               "creditCardNumber": "<creditCardNumber()>",
               "gender": "<gender()>",
               "urls": "<urls()>",
-              "money": "<money(1000000, 1000000000)>",
+              "money": "<money(233323, 1000)>",
               "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
           }
       ]`;
+
+  // function 에서 줄바꿈처리 되어있는 부분을 직렬화시키고,
+  // <> 표기된 함수를 JavaScript 함수로 바꿉니다.
   const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
     return (
       "<function() " +
@@ -484,7 +498,7 @@ document.getElementById("generate-button").addEventListener("click", function ()
       ">"
     );
   });
-  console.log(modifiedText);
+  // console.log(modifiedText);
   input = JSON.parse(modifiedText);
 
   let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
