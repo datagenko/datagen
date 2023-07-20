@@ -43,7 +43,7 @@ body {
 
 #datagen-input::after {
   display: block;
-  content: "";
+  content: '';
   width: 3px;
   height: 110%;
   background: var(--content-bg);
@@ -65,6 +65,29 @@ body {
   border-radius: 30px;
 }
 
+.json-output-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 80%;
+  width: 100%;
+  background-color: var(--content-bg);
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  overflow: hidden;
+}
+
+.btn-copy-setting {
+  padding: 20px 30px;
+  background-color: inherit;
+  display: flex;
+  justify-content: flex-end;
+  flex-basis: 10%;
+}
+
 #json-output {
   flex-grow: 1;
   width: 100%;
@@ -84,7 +107,7 @@ body {
 
 header::after {
   display: block;
-  content: "";
+  content: '';
   width: 100vw;
   height: 3px;
   background: var(--content-bg);

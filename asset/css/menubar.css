@@ -1,68 +1,66 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  #closeModalBtn{
-    position: absolute;
-    top: -20px;
-    right: 10px;
-    background-color: var(--content-bg);
-    color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  #bottomSheetModal{
-    height: 0;
-  }
-  .modal-container {
-    position: fixed;
-    bottom: 0.1;
-    left: 1;
-    width: 33%;
-    height: 20;
-    overflow: hidden;
-    transition: 1s ease-in-out;
-    /* transition: width 1s, height 1s; */
-    box-shadow: 0 4px 8px rgba(47, 53, 63, 0.8); /* 그림자 색상과 투명도 조절 */
-
-  }
-  
-  .modal-content {
-    line-height: normal;
-    height:750px;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: var(--content-bg);
-    color: var(--purple);
-  }
-  
-  
-  button {
-    padding: 8px 16px;
-    font-size: 16px;
-    background-color: var(--content-bg);
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 20px;
-    height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
-  
-  button:hover {
-    background-color: var(--purple);
-  }
+#closeModalBtn {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  background-color: var(--content-bg);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#bottomSheetModal {
+  height: 0;
+}
+.modal-container {
+  position: fixed;
+  bottom: 0.1;
+  left: 1;
+  width: 33%;
+  height: 20;
+  overflow: hidden;
+  transition: 1s ease-in-out;
+  /* transition: width 1s, height 1s; */
+  box-shadow: 0 4px 8px rgba(47, 53, 63, 0.8); /* 그림자 색상과 투명도 조절 */
+}
 
+.modal-content {
+  line-height: normal;
+  height: 750px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--content-bg);
+  color: var(--purple);
+}
 
-  .modal-container.active {
-    height: 100%;
-  }
-  
-  .modal-container.active #openModalBtn {
-    display: none;
-  }
-  
+#openModalBtn {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: var(--content-bg);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  height: 50px;
+}
+
+#openModalBtn:hover {
+  background-color: var(--purple);
+}
+
+.modal-container.active {
+  height: 100%;
+}
+
+.modal-container.active #openModalBtn {
+  display: none;
+}

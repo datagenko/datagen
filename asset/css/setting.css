@@ -1,0 +1,73 @@
+.btn-setting,
+.btn-copy {
+  padding: 0;
+  width: 42px;
+  height: 42px;
+}
+
+.btn-setting {
+  background: url('../img/icon-setting.svg') no-repeat center center/cover;
+}
+
+.setting-list {
+  position: relative;
+  padding: 30px;
+  flex-basis: 90%;
+  width: 100%;
+  overflow: auto;
+  color: var(--font);
+  font-size: 18px;
+  background-color: var(--content-bg);
+  border: 1px solid var(--cyan);
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  z-index: 9999;
+}
+
+.setting-list h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--dark-cyan);
+}
+
+.settings {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.turn_on {
+  display: block;
+}
+
+.turn_off {
+  display: none;
+}
+
+.btn-setting_close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: var(--font);
+  background-color: #4a4d52;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+/* indent select */
+
+/* copy button */
+
+.btn-copy {
+  background: url('../img//icon-copy.svg') no-repeat center center/cover;
+  margin-right: 10px;
+}
