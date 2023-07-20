@@ -329,6 +329,37 @@ function urls() {
     return randomURL;
 }
 
+
+function date(date_start, date_end, date_format = "YYYY-MM-DD") {
+  // 입력받은 값을 Date object로 파싱
+  const startDate = new Date(date_start);
+  const endDate = new Date(date_end);
+
+  // 입력받은 date_start, date_end 사이 시간 계산
+  const timeRange = endDate.getTime() - startDate.getTime();
+
+  // 시간 간격 사이의 랜덤한 시간 생성
+  const randomTime = Math.random() * timeRange;
+
+  // 랜덤한 시간 간격으로 랜덤 날짜 생성
+  const randomDate = new Date(startDate.getTime() + randomTime);
+
+  // date_format 함수
+  function formatDate(date, format) {
+    const year = date.getFullYear().toString();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+
+    // 입력받은 날짜 형식에 실제 날짜 대입
+    let formattedDate = format.replace("YYYY", year).replace("YY", year.slice(-2)).replace("MM", month).replace("DD", day);
+
+    return formattedDate;
+  }
+
+  return formatDate(randomDate, date_format);
+}
+
+
 function generateData(template, index) {
     let data = {};
 
