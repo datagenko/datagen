@@ -339,6 +339,21 @@ function date(date_start, date_end, date_format = "YYYY-MM-DD") {
 }
 
 
+function time() {
+  // 24시간 형식으로 출력
+  const randomHour = randomInteger(0, 23);
+  const randomMinute = randomInteger(0, 59);
+  const randomSecond = randomInteger(0, 59);
+
+  const formattedHour = randomHour.toString().padStart(2, "0");
+  const formattedMinute = randomMinute.toString().padStart(2, "0");
+  const formattedSecond = randomSecond.toString().padStart(2, "0");
+
+  return `${formattedHour}:${formattedMinute}:${formattedSecond}`;
+}
+
+
+
 function generateData(template, index) {
   let data = {};
 
