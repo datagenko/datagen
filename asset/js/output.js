@@ -122,6 +122,13 @@ function randomBoolean() {
     return randomItem([true, false]);
 }
 
+
+/** 유저가 입력한 범위 내에서 금액을 출력합니다.
+ * @param {Number} min 최소금액
+ * @param {Number} max 최대금액
+ * @param {String} symbol 화폐의 심볼
+ * @returns 맨앞에 symbol을 붙이고, 뒤에 랜덤하게 생성된 금액에 3자리 단위로 ,를 붙여서 반환합니다.
+ */
 function money(min, max, symbol) {
     if (!symbol) {
         symbol = language === "ko" ? "￦" : "$";
@@ -331,46 +338,46 @@ function urls() {
 
 
 function date(date_start, date_end, date_format = "YYYY-MM-DD") {
-  // 입력받은 값을 Date object로 파싱
-  const startDate = new Date(date_start);
-  const endDate = new Date(date_end);
+    // 입력받은 값을 Date object로 파싱
+    const startDate = new Date(date_start);
+    const endDate = new Date(date_end);
 
-  // 입력받은 date_start, date_end 사이 시간 계산
-  const timeRange = endDate.getTime() - startDate.getTime();
+    // 입력받은 date_start, date_end 사이 시간 계산
+    const timeRange = endDate.getTime() - startDate.getTime();
 
-  // 시간 간격 사이의 랜덤한 시간 생성
-  const randomTime = Math.random() * timeRange;
+    // 시간 간격 사이의 랜덤한 시간 생성
+    const randomTime = Math.random() * timeRange;
 
-  // 랜덤한 시간 간격으로 랜덤 날짜 생성
-  const randomDate = new Date(startDate.getTime() + randomTime);
+    // 랜덤한 시간 간격으로 랜덤 날짜 생성
+    const randomDate = new Date(startDate.getTime() + randomTime);
 
-  // date_format 함수
-  function formatDate(date, format) {
-    const year = date.getFullYear().toString();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
+    // date_format 함수
+    function formatDate(date, format) {
+        const year = date.getFullYear().toString();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const day = date.getDate().toString().padStart(2, "0");
 
-    // 입력받은 날짜 형식에 실제 날짜 대입
-    let formattedDate = format.replace("YYYY", year).replace("YY", year.slice(-2)).replace("MM", month).replace("DD", day);
+        // 입력받은 날짜 형식에 실제 날짜 대입
+        let formattedDate = format.replace("YYYY", year).replace("YY", year.slice(-2)).replace("MM", month).replace("DD", day);
 
-    return formattedDate;
-  }
+        return formattedDate;
+    }
 
-  return formatDate(randomDate, date_format);
+    return formatDate(randomDate, date_format);
 }
 
 
 function time() {
-  // 24시간 형식으로 출력
-  const randomHour = randomInteger(0, 23);
-  const randomMinute = randomInteger(0, 59);
-  const randomSecond = randomInteger(0, 59);
+    // 24시간 형식으로 출력
+    const randomHour = randomInteger(0, 23);
+    const randomMinute = randomInteger(0, 59);
+    const randomSecond = randomInteger(0, 59);
 
-  const formattedHour = randomHour.toString().padStart(2, "0");
-  const formattedMinute = randomMinute.toString().padStart(2, "0");
-  const formattedSecond = randomSecond.toString().padStart(2, "0");
+    const formattedHour = randomHour.toString().padStart(2, "0");
+    const formattedMinute = randomMinute.toString().padStart(2, "0");
+    const formattedSecond = randomSecond.toString().padStart(2, "0");
 
-  return `${formattedHour}:${formattedMinute}:${formattedSecond}`;
+    return `${formattedHour}:${formattedMinute}:${formattedSecond}`;
 }
 
 
@@ -385,13 +392,7 @@ function generateData(template, index) {
             if (func === "function") {
                 action = key.match(/{(.*)}/)[1].trim();
             }
-            [...args] = key
-                .split("(")[1]
-                .replace(")", "")
-                .replaceAll(" ", "")
-                .replaceAll("'", "")
-                .replaceAll('"', "")
-                .split(",");
+            [...args] = key.split("(")[1].replace(")", "").replaceAll(" ", "").replaceAll("'", "").replaceAll('"', "").split(",");
 
             // 들어오는 인자는 args배열에 저장됩니다.
             // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
@@ -445,8 +446,8 @@ function generateData(template, index) {
                     return creditCardNumber();
                 case "gender":
                     return gender();
-                //case 'urls':
-                //    return urls()
+                case 'urls':
+                    return urls()
                 case "money":
                     return money(parseInt(args[0]), parseInt(args[1]), args[2]);
                 //case 'date':
@@ -465,11 +466,9 @@ function generateData(template, index) {
 }
 
 const input_form = document.querySelector("#json-input");
-document
-    .getElementById("generate-button")
-    .addEventListener("click", function () {
-        // let input = input_form.value;
-        let input = `[
+document.getElementById("generate-button").addEventListener("click", function () {
+    // let input = input_form.value;
+    let input = `[
       "<iter(1)>",
           {
               "_id": "<uuid()>",
@@ -494,51 +493,51 @@ document
               "creditCardNumber": "<creditCardNumber()>",
               "gender": "<gender()>",
               "urls": "<urls()>",
-              "money": "<money(1000000, 1000000000)>",
+              "money": "<money(233323, 1000)>",
               "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
           }
       ]`;
-        const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
-            return (
-                "<function() " +
-                // 줄바꿈 문자 공백문자로 변경.
-                fn
-                    .replace(/\n/g, "")
-                    // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
-                    .replace(/<([^>]+)>/g, (_, context) => {
-                        console.log(context);
-                        const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
-                        return `${function_dic[functionName] || functionName}(${args})`;
-                    }) +
-                ">"
-            );
-        });
-        console.log(modifiedText);
-        input = JSON.parse(modifiedText);
-
-        let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
-
-        let template = input[1];
-
-        // index 함수의 초기값이 지정되었는지 판단하는 상수 : true/false
-        const hasInitIndex = !!template["index"].match(/[0-9]/g);
-        let initIndex = hasInitIndex
-            ? parseInt(template["index"].match(/[0-9]/g).join(""))
-            : 1;
-
-        let output = [];
-
-        for (let i = 0; i < repeatCount; i++) {
-            output.push(generateData(template, initIndex));
-            initIndex++;
-        }
-
-        document.getElementById("json-output").value = JSON.stringify(
-            output,
-            null,
-            2
+    const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
+        return (
+            "<function() " +
+            // 줄바꿈 문자 공백문자로 변경.
+            fn
+                .replace(/\n/g, "")
+                // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
+                .replace(/<([^>]+)>/g, (_, context) => {
+                    console.log(context);
+                    const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
+                    return `${function_dic[functionName] || functionName}(${args})`;
+                }) +
+            ">"
         );
     });
+    console.log(modifiedText);
+    input = JSON.parse(modifiedText);
+
+    let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
+
+    let template = input[1];
+
+    // index 함수의 초기값이 지정되었는지 판단하는 상수 : true/false
+    const hasInitIndex = !!template["index"].match(/[0-9]/g);
+    let initIndex = hasInitIndex
+        ? parseInt(template["index"].match(/[0-9]/g).join(""))
+        : 1;
+
+    let output = [];
+
+    for (let i = 0; i < repeatCount; i++) {
+        output.push(generateData(template, initIndex));
+        initIndex++;
+    }
+
+    document.getElementById("json-output").value = JSON.stringify(
+        output,
+        null,
+        2
+    );
+});
 
 // csv 다운로드 버튼 클릭시 이벤트
 document
