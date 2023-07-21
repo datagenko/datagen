@@ -64,6 +64,57 @@
 }
 
 /* indent select */
+.json-indent-wrap {
+  position: relative;
+  width: 150px;
+  height: 35px;
+  border-radius: 4px;
+  border: 1px solid var(--light-gray);
+}
+
+.json-indent-wrap select {
+  padding: 8px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  appearance: none;
+  width: inherit;
+  height: inherit;
+  background: transparent;
+  color: #fff;
+  border: 0 none;
+  outline: 0 none;
+  position: relative;
+  z-index: 3;
+}
+
+.json-indent-arrow {
+  background: url(../img/L-arrow-down.svg) no-repeat center center / 8px 8px;
+}
+
+.json-indent option {
+  background: var(--content-bg);
+  color: #fff;
+  padding: 0 8px;
+}
+
+select:focus>option:checked
+
+.json-indent:focus > option:checked {
+  background: var(--purple);
+}
+
+
+.json-indent-wrap span {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  z-index: 1; 
+  width: 35px; 
+  height: inherit;
+}
 
 /* copy button */
 
