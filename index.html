@@ -184,17 +184,20 @@
             <div class="settings">
               <p>indent </p>
               <div class="json-indent-wrap">
-              <select class="json-indent" title="Select JSON indentation">
-                <option value="0">Compact</option>
-                <option value="2" selected>2 space tab</option>
-                <option value="4">4 space tab</option>
-              </select>
-              <span class="json-indent-arrow"></span>
+                <select class="json-indent" title="Select JSON indentation">
+                  <option value="0">Compact</option>
+                  <option value="2" selected>2 space tab</option>
+                  <option value="4">4 space tab</option>
+                </select>
+                <span class="json-indent-arrow"></span>
               </div>
             </div>
             <div class="settings">
-              <p>wrap </p>
-              <button class="setting-line-wrap">line-wrapping</button>
+              <p>word wrap </p>
+              <label class="word-wrap_switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
             </div>
           </div>
           <textarea id="json-output" class="turn_on" readonly></textarea>
