@@ -43,7 +43,7 @@ body {
 
 #datagen-input::after {
   display: block;
-  content: '';
+  content: "";
   width: 3px;
   height: 110%;
   background: var(--content-bg);
@@ -81,7 +81,7 @@ body {
 }
 
 .btn-copy-setting {
-  padding: 20px 30px;
+  padding: 20px 30px 0px;
   background-color: inherit;
   display: flex;
   justify-content: flex-end;
@@ -91,7 +91,7 @@ body {
 #json-output {
   flex-grow: 1;
   width: 100%;
-  padding: 30px;
+  padding: 0 30px 30px 30px;
   /* max-width: 889px; */
   resize: none;
   background-color: var(--content-bg);
@@ -99,6 +99,7 @@ body {
   font-size: var(--font-size);
   border: none;
   border-radius: 30px;
+  outline: none;
 }
 
 .btn-inp-wrap {
@@ -107,7 +108,7 @@ body {
 
 header::after {
   display: block;
-  content: '';
+  content: "";
   width: 100vw;
   height: 3px;
   background: var(--content-bg);
