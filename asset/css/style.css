@@ -3,21 +3,17 @@
   --bg: #2a2e36;
   --content-bg: #2f353f;
   --purple: #734fd7;
-  /* --red: #d86262; */
-  /* --cyan: #53a9c3; */
-  /* --dark-cyan: #416f81; */
   --red: #bb3ed5;
-  --cyan: #1ccbb6;
+  --cyan: #69b5c9;
   --dark-cyan: #239289;
   --scroll: #3f6b7d;
-  --divider: #2f353f;
   --font: white;
   --font-size: 1.2em;
   --font-gray: #9c9999;
   --light-gray: #b3afaf;
 
   ::-webkit-scrollbar {
-    width: 0.625rem;
+    width: 1.75rem;
   }
 
   ::-webkit-scrollbar-track {
@@ -27,7 +23,15 @@
   ::-webkit-scrollbar-thumb {
     background-color: var(--scroll);
     border-radius: 50px;
+    background-clip: padding-box;
+    border: 8px solid transparent;
   }
+}
+
+::-webkit-scrollbar-button:vertical:start:increment,
+::-webkit-scrollbar-button:vertical:end:decrement {
+  display: block;
+  height: 10px;
 }
 
 button {
