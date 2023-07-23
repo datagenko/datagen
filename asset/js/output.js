@@ -88,7 +88,7 @@ function uuid() {
 
 // min max값이 정상적이지않을떄에 대한 예외처리가 필요합니다.
 function randomInteger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function randomFloat(min, max, round = 3) {
@@ -102,7 +102,7 @@ function randomFloat(min, max, round = 3) {
 }
 
 function randomItem(items) {
-  return items[Math.floor(Math.random() * items.length)];
+    return items[Math.floor(Math.random() * items.length)];
 }
 
 function randomBoolean() {

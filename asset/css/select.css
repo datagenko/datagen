@@ -1,21 +1,25 @@
 /* selected */
 .select-wrap {
   position: relative;
-  background-color: var(--divider);
+  background-color: var(--content-bg);
   border-radius: 20px;
-  color: var(--font);
   cursor: pointer;
 }
 
 .select-wrap .selected {
   display: flex;
   justify-content: space-between;
-  padding: 25px 22px;
+  padding: 25px 40px;
   font-size: var(--font-size);
+  color: var(--font);
 }
 
 .select-wrap .selected .arrow {
+  display: inline-block;
+  position: absolute;
+  height: 24px;
   width: 24px;
+  right: 25px;
   background: url("../img/L-arrow-down.svg") no-repeat 70% 50%;
   background-size: 100% 100%;
   transition: all 0.3s;
@@ -25,18 +29,23 @@
   transform: rotate(180deg);
 }
 
-.select-wrap .selected:before {
+.select-wrap.active {
+  outline: 1px solid var(--dark-cyan);
+  background: var(--bg);
+}
+
+.select-input .selected:before {
   content: "";
   display: block;
   height: 50%;
   position: absolute;
   top: 25%;
   right: 70px;
-  border-left: 1px solid var(--light-gray);
+  border-left: 1.5px solid rgba(129, 133, 139, 0.5);
 }
 
 /* select-box */
-.select-wrap #select-box {
+.select-wrap .list-select {
   width: 100%;
   padding: 15px 20px;
   background: var(--bg);
@@ -44,22 +53,28 @@
   border-radius: 20px;
   cursor: pointer;
   display: none;
+  z-index: 50;
 }
 
-.select-wrap.active #select-box {
+.select-wrap.active .list-select {
   display: block;
-  height: 60vh;
   overflow: auto;
   position: absolute;
+  margin-top: 10px;
 }
 
-.select-wrap #select-box li {
+.select-input .list-select {
+  height: 60vh;
+}
+
+.select-wrap .list-select button {
   padding: 10px;
   line-height: 2rem;
   font-size: var(--font-size);
+  color: var(--font);
 }
 
-.select-wrap #select-box li:hover {
+.select-wrap .list-select li:hover {
   background-color: var(--purple);
   border-radius: 15px;
 }
