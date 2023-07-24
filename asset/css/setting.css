@@ -63,6 +63,30 @@
   -o-border-radius: 50%;
 }
 
+/* font size */
+.font-size-wrap {
+  width: 150px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  outline: 1px solid var(--light-gray);
+  color: var(--font);
+}
+
+.font-size-wrap:hover {
+  outline: 1px solid var(--dark-cyan);
+}
+
+.font-size-wrap .btn {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.font-size-wrap .btn:hover {
+  background-color: var(--purple);
+  border-radius: 4px;
+}
+
 /* indent select */
 .select-indent {
   position: relative;
