@@ -404,7 +404,7 @@ function generateData(template, index) {
         case "picture":
           return picture(parseInt(args[0]), parseInt(args[1]));
         case 'color':
-           return color()
+          return color()
         // 개인정보관련
         case "name":
           return name();
@@ -448,42 +448,43 @@ function generateData(template, index) {
   return data;
 }
 
-const input_form = document.querySelector("#json-input");
+// const input_form = document.querySelector("#json-input");
 document.getElementById("generate-button").addEventListener("click", function () {
   // let input = input_form.value;
-  let input = `[
-      "<iter(2)>",
-          {
-              "_id": "<uuid()>",
-              "index": "<index(12)>",
-              "username": "<username()>",
-              "password5_20": "<password(5, 20)>",
-              "int5_20": "<int(5,20)>",
-              "float5.2_20.5": "<float(5.2, 20.5)>",
-              "boolean": "<boolean()>",
-              "random": "<random(one, 'two', three)>",
-              "lorem": "<lorem()>",
-              "color": "<color()>",
-              "name": "<name()>",
-              "email": "<email()>",
-              "phone": "<phone()>",
-              "country": "<country()>",
-              "city": "<city()>",
-              "address": "<address()>",
-              "postal_code": "<postal_code()>",
-              "job": "<job()>",
-              "company": "<company()>",
-              "creditCardNumber": "<creditCardNumber()>",
-              "gender": "<gender()>",
-              "urls": "<urls()>",
-              "money": "<money(233323, 1000)>",
-              "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
-          }
-      ]`;
+  // let input = `[
+  //     "<iter(2)>",
+  //         {
+  //             "_id": "<uuid()>",
+  //             "index": "<index(12)>",
+  //             "username": "<username()>",
+  //             "password5_20": "<password(5, 20)>",
+  //             "int5_20": "<int(5,20)>",
+  //             "float5.2_20.5": "<float(5.2, 20.5)>",
+  //             "boolean": "<boolean()>",
+  //             "random": "<random(one, 'two', three)>",
+  //             "lorem": "<lorem()>",
+  //             "color": "<color()>",
+  //             "name": "<name()>",
+  //             "email": "<email()>",
+  //             "phone": "<phone()>",
+  //             "country": "<country()>",
+  //             "city": "<city()>",
+  //             "address": "<address()>",
+  //             "postal_code": "<postal_code()>",
+  //             "job": "<job()>",
+  //             "company": "<company()>",
+  //             "creditCardNumber": "<creditCardNumber()>",
+  //             "gender": "<gender()>",
+  //             "urls": "<urls()>",
+  //             "money": "<money(233323, 1000)>",
+  //             "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
+  //         }
+  //     ]`;
 
   // function 에서 줄바꿈처리 되어있는 부분을 직렬화시키고,
   // <> 표기된 함수를 JavaScript 함수로 바꿉니다.
-  const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
+  let input = defaultTemplate.value
+  let modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
     return (
       "<function() " +
       // 줄바꿈 문자 공백문자로 변경.
@@ -498,7 +499,8 @@ document.getElementById("generate-button").addEventListener("click", function ()
       ">"
     );
   });
-  // console.log(modifiedText);
+  modifiedText = modifiedText.replace((/,\s*}/g), '}');
+  console.log(modifiedText);
   input = JSON.parse(modifiedText);
 
   let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
