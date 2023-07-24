@@ -185,11 +185,18 @@ function username() {
   return userIndex;
 }
 
-/* 무작위로 비밀번호를 생성합니다 */
+/** 무작위로 비밀번호를 생성합니다
+ * @param {Number} min_length 최소길이
+ * @param {Number} max_length 최대길이
+ * @return 일반문자, 특수문자가 랜덤으로 조합된 비밀번호를 반환합니다.
+ */ 
 function password(min_length, max_length) {
-  // 유효하지 않은 인자가 들어왔을 때 에러처리
-  if (min_length < 1 || min_length >= max_length) {
-    return "error";
+  if (typeof min_length !== 'number' || typeof max_length !== 'number') {
+	throw new Error("min_length and max_length must be number");
+  } else if (min_length < 1 || max_length < 1) {
+    throw new Error("min_length and max_length must be greater than 0");
+  } else if (min_length >= max_length) {
+	throw new Error("max_length must be greater than min_length");
   }
 
   const nomal_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
