@@ -1,68 +1,170 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  #closeModalBtn{
-    position: absolute;
-    top: -20px;
-    right: 10px;
-    background-color: var(--content-bg);
-    color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  #bottomSheetModal{
-    height: 0;
-  }
-  .modal-container {
-    position: fixed;
-    bottom: 0.1;
-    left: 1;
-    width: 33%;
-    height: 20;
-    overflow: hidden;
-    transition: 1s ease-in-out;
-    /* transition: width 1s, height 1s; */
-    box-shadow: 0 4px 8px rgba(47, 53, 63, 0.8); /* 그림자 색상과 투명도 조절 */
-
-  }
-  
-  .modal-content {
-    line-height: normal;
-    height:750px;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: var(--content-bg);
-    color: var(--purple);
-  }
-  
-  
-  button {
-    padding: 8px 16px;
-    font-size: 16px;
-    background-color: var(--content-bg);
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 20px;
-    height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
-  
-  button:hover {
-    background-color: var(--purple);
-  }
 
+#bottomSheetModal {
+  height: 0;
+}
+.modal-container {
+  position: fixed;
+  /* width: 47%; */
+  overflow: hidden;
+  /* transition: width 1s, height 1s; */
+  top: 10%;
+  right: 20%;
+  z-index: 9999;
+}
 
-  .modal-container.active {
-    height: 100%;
-  }
-  
-  .modal-container.active #openModalBtn {
-    display: none;
-  }
-  
+.modal-content {
+  line-height: normal;
+  width: 700px;
+  height: 500px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: var(--content-bg);
+  color: white;
+  border: 2px solid var(--dark-cyan);
+}
+
+#closeModalBtn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  background-color: #4a4d52;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+#closeModalBtn:active {
+  transform: translateY(
+    2px
+  ); /* 버튼을 아래로 약간 이동하여 눌린 느낌을 줍니다 */
+  box-shadow: none; /* 눌린 상태에서 그림자를 제거합니다 */
+}
+#toggle-button {
+  margin-bottom: 10px;
+  top: 10px;
+  right: 10px;
+  background-color: var(--dark-bg);
+  opacity: 70%;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#toggle-button:hover {
+  background-color: var(--dark-cyan);
+}
+.modal-container.active {
+  height: 100%;
+}
+
+.modal-container.active #openModalBtn {
+  display: none;
+}
+
+.toggle-content {
+  display: none;
+}
+.toggle-content {
+  border: 2px solid var(--dark-cyan);
+  background-color: var(--dark-bg);
+  opacity: 70%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  white-space: pre-line; /* 줄바꿈을 유지하면서 공백은 하나만 유지 */
+}
+.toggle-content.active {
+  display: block;
+}
+
+.btn-guide {
+  background: url("../img/icon-guide.svg") no-repeat center center/cover;
+  width: 45px;
+  height: 45px;
+  margin-right: 15px;
+}
+.wrap-table {
+}
+.table {
+  width: 550px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid rgb(75, 75, 75);
+  text-align: left;
+}
+
+.table th,
+.table td {
+  word-wrap: break-word;
+  vertical-align: top;
+  padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+  line-height: 1.5;
+  display: table-cell;
+}
+
+code {
+  font-size: smaller;
+  direction: ltr;
+  font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+    monospace;
+  color: red;
+  background-color: rgb(8, 8, 8);
+  border-radius: 2px;
+  padding: 3px;
+}
+
+Date {
+  font-weight: bolder;
+  font-size: smaller;
+  background-color: rgb(179, 103, 115);
+  border-radius: 5px;
+  padding: 2px 15px 2px 15px;
+}
+
+String {
+  font-size: smaller;
+  font-weight: bolder;
+  background-color: rgb(61, 66, 160);
+  border-radius: 5px;
+  padding: 2px 12px 2px 12px;
+}
+
+Number {
+  font-size: smaller;
+  font-weight: bolder;
+  background-color: rgb(87, 155, 58);
+  border-radius: 5px;
+  width: 67px;
+  padding: 2px 6px 2px 6px;
+}
+
+Function {
+  font-size: smaller;
+  font-weight: bolder;
+  background-color: rgb(161, 144, 57);
+  border-radius: 5px;
+  padding: 2px 4px 2px 4px;
+}
+
+Boolean {
+  font-size: smaller;
+  font-weight: bolder;
+  background-color: rgb(161, 60, 63);
+  border-radius: 5px;
+  padding: 2px 15px 2px 15px;
+}
+
+th {
+  font-weight: bolder;
+}

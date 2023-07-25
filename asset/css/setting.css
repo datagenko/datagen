@@ -1,3 +1,207 @@
-.setting-line-wrap.on {
-  background-color: var(--purple);
+.btn-setting,
+.btn-copy {
+  padding: 0;
+  width: 42px;
+  height: 42px;
+}
+
+.btn-setting {
+  background: url("../img/icon-setting.svg") no-repeat center center/cover;
+}
+
+.setting-list {
+  position: relative;
+  padding: 30px;
+  flex-basis: 90%;
+  width: 100%;
+  overflow: auto;
+  color: var(--font);
+  font-size: 18px;
+  background-color: var(--content-bg);
+  border: 1px solid var(--cyan);
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.setting-list h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--dark-cyan);
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.turn_on {
+  display: block;
+}
+
+.turn_off {
+  display: none;
+}
+
+.btn-setting_close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: var(--font);
+  background-color: #4a4d52;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+/* indent select */
+.select-indent {
+  position: relative;
+  width: 150px;
+  height: 35px;
+  border-radius: 4px;
+  outline: 1px solid var(--light-gray);
+}
+
+.select-wrap.select-indent .list-select {
+  border-radius: 4px;
+  margin-top: 5px;
+  padding: 10px 5px;
+}
+
+.select-indent .list-select li {
+  padding-left: 10px;
+}
+
+.select-indent .selected .arrow {
+  height: 15px;
+  width: 15px;
+  right: 15px;
+}
+
+.select-indent .list-select li button {
+  font-size: 14px;
+  padding: 0;
+}
+
+.select-indent .selected {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 15px;
+  text-align: start;
+}
+
+.select-indent .list-select li:hover {
+  /* background-color: var(--purple); */
+  border-radius: 5px;
+}
+
+.json-indent {
+  padding: 8px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  appearance: none;
+  width: inherit;
+  height: inherit;
+  background: transparent;
+  color: #fff;
+  border: 0 none;
+  outline: 0 none;
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.json-indent-arrow {
+  background: url(../img/L-arrow-down.svg) no-repeat center center / 10px;
+}
+
+.json-indent option {
+  background: var(--content-bg);
+  color: #fff;
+  padding: 0 20px;
+}
+
+.json-indent:focus > option:checked {
+  background: var(--purple);
+}
+
+.json-indent-wrap span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 35px;
+  height: inherit;
+}
+
+/* copy button */
+.btn-copy {
+  background: url("../img//icon-copy.svg") no-repeat center center/cover;
+  margin-right: 10px;
+}
+
+/* wrap word-wrap_switch */
+.word-wrap_switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+}
+
+.word-wrap_switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  border: 2px solid var(--font-gray);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0.2em;
+  bottom: 3px;
+  background-color: white;
+  border-radius: inherit;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  -moz-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  -ms-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.word-wrap_switch input:checked + .slider {
+  background-color: var(--cyan);
+}
+
+.word-wrap_switch input:checked + .slider:before {
+  transform: translateX(1.5em);
 }
