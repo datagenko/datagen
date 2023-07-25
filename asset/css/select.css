@@ -1,75 +1,80 @@
+/* selected */
 .select-wrap {
-  font-size: 1.375rem;
-  background-color: #2f353f;
-  color: #fff;
-  border-radius: 20px;
-  /* padding: 19.5px 0; */
-  /* max-width: 625px; */
-  width: 100%;
   position: relative;
+  background-color: var(--content-bg);
+  border-radius: 20px;
   cursor: pointer;
 }
 
 .select-wrap .selected {
   display: flex;
   justify-content: space-between;
-  padding: 19.5px 22px;
-  position: relative;
+  padding: 25px 40px;
+  font-size: var(--font-size);
+  color: var(--font);
 }
 
 .select-wrap .selected .arrow {
+  display: inline-block;
+  position: absolute;
+  height: 24px;
   width: 24px;
+  right: 25px;
   background: url("../img/L-arrow-down.svg") no-repeat 70% 50%;
   background-size: 100% 100%;
   transition: all 0.3s;
-}
-
-.select-wrap.active {
-  outline: 1px solid #c4c4c4;
 }
 
 .select-wrap.active .arrow {
   transform: rotate(180deg);
 }
 
-.select-wrap .selected:before {
+.select-wrap.active {
+  outline: 1px solid var(--dark-cyan);
+  background: var(--bg);
+}
+
+.select-input .selected:before {
   content: "";
   display: block;
   height: 50%;
-  /* margin-top: 0; */
-  border-left: 1px solid rgba(179, 175, 175, 0.7);
   position: absolute;
   top: 25%;
   right: 70px;
+  border-left: 1.5px solid rgba(129, 133, 139, 0.5);
 }
 
-.select-wrap #select-box {
+/* select-box */
+.select-wrap .list-select {
   width: 100%;
-  flex-direction: column;
-  border: 1px solid #c4c4c4;
-  position: absolute;
-  background: #2a2e36;
-  /* transform: translateY(10%); */
-  cursor: pointer;
-  padding: 10px 8px;
-  gap: 12px;
-  border-radius: 10px;
-  margin-top: 5px;
+  padding: 15px 20px;
+  background: var(--bg);
+  border: 1px solid var(--dark-cyan);
   border-radius: 20px;
+  cursor: pointer;
   display: none;
+  z-index: 50;
 }
 
-.select-wrap.active #select-box {
-  display: flex;
+.select-wrap.active .list-select {
+  display: block;
+  overflow: auto;
+  position: absolute;
+  margin-top: 10px;
 }
 
-.select-wrap #select-box option {
-  padding: 7px 10px;
-  color: #fff;
-  border-radius: 15px;
+.select-input .list-select {
+  height: 60vh;
 }
 
-.select-wrap #select-box option:hover {
+.select-wrap .list-select button {
+  padding: 10px;
+  line-height: 2rem;
+  font-size: var(--font-size);
+  color: var(--font);
+}
+
+.select-wrap .list-select li:hover {
   background-color: var(--purple);
-  /* color: #000; */
+  border-radius: 15px;
 }

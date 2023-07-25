@@ -32,69 +32,17 @@ header .language a {
   width: 36px;
   height: 36px;
   color: var(--font);
-  background: url('../img/icon-github.svg') no-repeat center;
+  background: url("../img/icon-github.svg") no-repeat center;
+  box-shadow: 4px 4px 8px rgba(7, 7, 7, 0.2);
+  border-radius: 50%;
 }
 
-header .language .language-button {
+.select-wrap .language-select {
   width: 140px;
-  padding: 17px 0;
-  font-size: 24px;
-  border: none;
-  background-color: var(--content-bg);
-  color: var(--font);
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-}
-
-header .language .language-button::after {
-  content: '';
-  display: inline-block;
-  margin-left: 13px;
-  width: 24px;
-  height: 13px;
-  background: url('../img/L-arrow-down.svg') no-repeat center/contain;
-  transition: transform 0.3s ease;
-}
-
-header .language .language-button.on::after {
-  transform: rotate(180deg);
 }
 
 header .language-list {
-  display: none;
   width: 140px;
-  position: absolute;
-  right: 0;
   margin-bottom: -180px;
-  padding: 20px 10px;
-  color: var(--font);
-  background-color: var(--content-bg);
   text-align: center;
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-  z-index: 10;
-}
-
-header .on {
-  display: block;
-}
-
-header .language-list button {
-  width: 100%;
-  padding: 8px 15px;
-  cursor: pointer;
-  background-color: inherit;
-  color: var(--font);
-  font-size: 18px;
-  border-radius: 15px;
-}
-
-header .language-list button:hover {
-  background-color: var(--purple);
 }
