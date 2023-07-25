@@ -9,6 +9,7 @@ openModalBtn.addEventListener('click', () => {
 
 closeModalBtn.addEventListener('click', () => {
   bottomSheetModal.style.height = '0';
+  resetToggleRecord();
 });
 
 // 모달 창의 내용 높이와 스크롤 높이를 비교하여 스크롤이 필요한지 여부를 결정
@@ -33,3 +34,22 @@ function updateModalContent(newContent) {
 
 // 초기 모달 내용 확인
 checkScroll();
+
+// 토글
+const toggleButtons = document.querySelectorAll("#toggle-button");
+
+toggleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const toggleContent = button.nextElementSibling;
+        toggleContent.classList.toggle("active");
+    });
+});
+
+        // 토글 레코드를 리셋하는 함수
+        function resetToggleRecord() {
+          // 모든 토글 콘텐츠를 비활성화(숨김) 상태로 설정합니다.
+          const toggleContents = document.querySelectorAll(".toggle-content");
+          toggleContents.forEach((content) => {
+              content.classList.remove("active");
+          });
+      }

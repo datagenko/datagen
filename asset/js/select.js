@@ -39,6 +39,7 @@ const selectEvent = (selectBox, option, selectedValue) => {
 function selectJsonInput(selectedText, selectionStart){
   if (templateMapping[selectedText]) {
     selectedData = templateMapping[selectedText];
+    console.log(selectedData)
   }
     if (selectionStart === -1) {
       const braceStartIndex = defaultTemplate.value.lastIndexOf("}");
