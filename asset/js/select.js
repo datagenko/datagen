@@ -2,18 +2,87 @@ const selectEvent = (selectBox, option, selectedValue) => {
   selectBox.addEventListener("click", (event) => {
     event.stopPropagation(); // 이벤트 전파 막기
     selectBox.classList.toggle("active");
+    
   });
-
   option.forEach((optionElement) => {
     optionElement.addEventListener("click", (event) => {
       event.stopPropagation(); // 이벤트 전파 막기
-      const selectionStart = defaultTemplate.value.indexOf(
-        "\n",
-        defaultTemplate.selectionStart
-      );
-      selectOption(optionElement, selectionStart);
+      selectOption(optionElement, selectBox);
     });
   });
+  function selectOption(optionElement, selectBox) {
+    let selectedText = optionElement.querySelector("button").textContent;
+
+    selectedValue.textContent = selectedText;
+    selectBox.classList.remove("active");
+    if(selectBox.classList.contains("select-input")){
+        
+    const selectionStart = defaultTemplate.value.indexOf(
+    "\n",
+    defaultTemplate.selectionStart);
+      selectJsonInput(selectedText, selectionStart)
+    }else if(selectBox.classList.contains("select-indent")){
+      selectIndent(optionElement);
+    }else{
+      //laguage 관련
+    }
+  }
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    const selectWrap = document.querySelector("#datagen-input .select-input");
+
+    if (!selectWrap.contains(target)) {
+      selectBox.classList.remove("active");
+    }
+  });
+};
+function selectJsonInput(selectedText, selectionStart){
+  if (templateMapping[selectedText]) {
+    selectedData = templateMapping[selectedText];
+  }
+    if (selectionStart === -1) {
+      const braceStartIndex = defaultTemplate.value.lastIndexOf("}");
+      if (braceStartIndex !== -1) {
+        const commaIndex = defaultTemplate.value.lastIndexOf(
+          ",",
+          braceStartIndex
+        );
+
+        if (commaIndex !== -1) {
+          const beforeNameStr = defaultTemplate.value.slice(0, commaIndex + 1);
+          const afterNameStr = defaultTemplate.value.slice(commaIndex + 1);
+          const newValue =
+            beforeNameStr + "\n" + "      " + selectedData + afterNameStr;
+
+          defaultTemplate.value = newValue;
+        }
+      }
+    } else {
+      const beforeNameStr = defaultTemplate.value.slice(0, selectionStart + 1);
+      const afterNameStr = defaultTemplate.value.slice(selectionStart + 1);
+      console.log(beforeNameStr);
+      console.log(afterNameStr);
+      const newValue =
+        beforeNameStr + "      " + selectedData + "\n" + afterNameStr;
+      console.log(newValue);
+
+      defaultTemplate.value = newValue;
+    }
+  }
+
+  function selectIndent(optionElement){
+    const selectedButton = optionElement.querySelector('button');
+    const indentValue = selectedButton.value;
+    // console.log(selectedText)
+    const output = document.querySelector('#json-output');
+    if (output && output.value) {
+      console.log(indentValue);
+      let parsedOutput = JSON.parse(output.value);
+      output.value = JSON.stringify(parsedOutput, null, parseInt(indentValue));
+  }
+}
+
+
 
   const templateMapping = {
     "uuid: user id 생성": `"uuid": "<uuid()>",`,
@@ -46,54 +115,10 @@ const selectEvent = (selectBox, option, selectedValue) => {
     function: `"function": "<function() { functionString }>",`,
   };
 
-  function selectOption(optionElement, selectionStart) {
-    let selectedText = optionElement.querySelector("button").textContent;
+  
+  
 
-    if (templateMapping[selectedText]) {
-      selectedData = templateMapping[selectedText];
-    }
-
-    selectedValue.textContent = selectedText;
-    selectBox.classList.remove("active");
-    if (selectionStart === -1) {
-      const braceStartIndex = defaultTemplate.value.lastIndexOf("}");
-      if (braceStartIndex !== -1) {
-        const commaIndex = defaultTemplate.value.lastIndexOf(
-          ",",
-          braceStartIndex
-        );
-
-        if (commaIndex !== -1) {
-          const beforeNameStr = defaultTemplate.value.slice(0, commaIndex + 1);
-          const afterNameStr = defaultTemplate.value.slice(commaIndex + 1);
-          const newValue =
-            beforeNameStr + "\n" + "      " + selectedData + afterNameStr;
-
-          defaultTemplate.value = newValue;
-        }
-      }
-    } else {
-      const beforeNameStr = defaultTemplate.value.slice(0, selectionStart + 1);
-      const afterNameStr = defaultTemplate.value.slice(selectionStart + 1);
-      console.log(beforeNameStr);
-      console.log(afterNameStr);
-      const newValue =
-        beforeNameStr + "      " + selectedData + "\n" + afterNameStr;
-      console.log(newValue);
-
-      defaultTemplate.value = newValue;
-    }
-  }
-
-  document.addEventListener("click", (event) => {
-    const target = event.target;
-    const selectWrap = document.querySelector("#datagen-input .select-input");
-
-    if (!selectWrap.contains(target)) {
-      selectBox.classList.remove("active");
-    }
-  });
-};
+  
 
 const defaultTemplate = document.querySelector("#json-input");
 defaultTemplate.value = `[
