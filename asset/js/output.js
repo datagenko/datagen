@@ -4,36 +4,36 @@ const ko_last_name = ["가람", "가온", "그린", "겨루", "나래", "늘봄"
 const en_first_name = ["John", "Mark"];
 const en_last_name = ["Smith", "Ruffalo"];
 const lorem_list = [
-  "lorem",
-  "ipsum",
-  "dolor",
-  "sit",
-  "amet",
-  "consectetur",
-  "adipisicing",
-  "elit",
-  "Dolorum",
-  "cum",
-  "perspiciatis",
-  "ab",
-  "dignissimos",
-  "vitae",
-  "libero",
-  "ratione",
-  "Reiciendis",
-  "voluptates",
-  "quod",
-  "totam",
-  "delectus",
-  "fuga",
-  "voluptatem",
-  "cupiditate",
-  "rem",
-  "similique",
-  "nemo",
-  "aliquid",
-  "voluptas",
-  "tempora",
+    "lorem",
+    "ipsum",
+    "dolor",
+    "sit",
+    "amet",
+    "consectetur",
+    "adipisicing",
+    "elit",
+    "Dolorum",
+    "cum",
+    "perspiciatis",
+    "ab",
+    "dignissimos",
+    "vitae",
+    "libero",
+    "ratione",
+    "Reiciendis",
+    "voluptates",
+    "quod",
+    "totam",
+    "delectus",
+    "fuga",
+    "voluptatem",
+    "cupiditate",
+    "rem",
+    "similique",
+    "nemo",
+    "aliquid",
+    "voluptas",
+    "tempora",
 ];
 const domain_list = ["com", "co.kr", "net", "org"];
 
@@ -84,6 +84,7 @@ function uuid() {
     let v = c == "x" ? r : randomItem(["A", "B", "C"]);
     return v.toString(16);
   });
+
 }
 
 // min max값이 정상적이지않을떄에 대한 예외처리가 필요합니다.
@@ -548,10 +549,10 @@ document.getElementById("downloadcsv-button").addEventListener("click", function
 
 // json 다운로드 버튼 클릭시 이벤트
 document.getElementById("downloadjson-button").addEventListener("click", function () {
-  // json-output textarea의 값을 가져온다.
-  let json = document.getElementById("json-output").value;
-  // json 파일을 다운로드한다.
-  download("data.json", json);
+    // json-output textarea의 값을 가져온다.
+    let json = document.getElementById("json-output").value;
+    // json 파일을 다운로드한다.
+    download("data.json", json);
 });
 
 // html 다운로드 버튼 클릭시 이벤트
@@ -658,4 +659,5 @@ function download(filename, text) {
   element.setAttribute("download", filename);
   // a 태그를 클릭한다.
   element.click();
+
 }

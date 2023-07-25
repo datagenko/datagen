@@ -158,3 +158,4 @@ const selectedValueLang = document.querySelector(
   ".select-language .selected-value"
 );
 selectEvent(selectBoxLang, optionLang, selectedValueLang);
+
