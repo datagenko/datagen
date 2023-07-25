@@ -7,15 +7,15 @@
       content="JSON Generator는 더미 데이터를 생성해주는 서비스입니다. 빠르고 쉽게 고유 키값으로 데이터를 생성할 수 있습니다."
     />
     <title>JSON Generator</title>
-    <link rel="stylesheet" href="/asset/css/reset.css" />
-    <link rel="stylesheet" href="/asset/css/style.css" />
-    <link rel="stylesheet" href="/asset/css/layout.css" />
-    <link rel="stylesheet" href="/asset/css/header.css" />
-    <link rel="stylesheet" href="/asset/css/select.css" />
-    <link rel="stylesheet" href="/asset/css/menubar.css" />
-    <link rel="stylesheet" href="/asset/css/buttons.css" />
-    <link rel="stylesheet" href="/asset/css/footer.css" />
-    <link rel="stylesheet" href="/asset/css/setting.css" />
+    <link rel="stylesheet" href="./asset/css/reset.css" />
+    <link rel="stylesheet" href="./asset/css/style.css" />
+    <link rel="stylesheet" href="./asset/css/layout.css" />
+    <link rel="stylesheet" href="./asset/css/header.css" />
+    <link rel="stylesheet" href="./asset/css/select.css" />
+    <link rel="stylesheet" href="./asset/css/menubar.css" />
+    <link rel="stylesheet" href="./asset/css/buttons.css" />
+    <link rel="stylesheet" href="./asset/css/footer.css" />
+    <link rel="stylesheet" href="./asset/css/setting.css" />
   </head>
 
   <body>
@@ -27,6 +27,212 @@
           /></a>
         </h1>
         <div class="language">
+          <button class="btn-guide" id="openModalBtn"></button>
+          <div class="modal-container" id="bottomSheetModal">
+            <button id="closeModalBtn">X</button>
+            <div class="modal-content">
+              <h3></h3>
+              <br />
+
+              <div class="toggle">
+                <button id="toggle-button">uuid &#11015;</button>
+                <div class="toggle-content">
+                  <p>Random uuid in specified range.</p>
+                  <div>
+                    <span>Usage</span>
+                    <code>{{MIN(), MAX()}}</code>
+                  </div>
+                  <div class="wrap-table">
+                    <span>Arguments</span>
+                    <table class="table">
+                      <tr>
+                        <th>Params</th>
+                        <th>Type</th>
+                        <th>Details</th>
+                      </tr>
+                      <tr>
+                        <td>min</td>
+                        <td><Date>Date</Date></td>
+                        <td>Mimimum date in the range</td>
+                      </tr>
+                      <tr>
+                        <td>min</td>
+                        <td><String>String</String></td>
+                        <td>Mimimum string in the range</td>
+                      </tr>
+                      <tr>
+                        <td>min</td>
+                        <td><Number>Number</Number></td>
+                        <td>Mimimum number in the range</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">index &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">username &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">password &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">int &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">float &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">boolean &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">random &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">lorem &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">picture &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">color &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">name &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">email &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">phone &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">country &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">city &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">address &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">postal_code &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">job &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">company &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">creditCardNumber &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">gender &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">urls &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">money &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">date &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">time &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">iter &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 1의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+              <div class="toggle">
+                <button id="toggle-button">function &#11015;</button>
+                <div class="toggle-content">
+                  <p>토글 2의 내용이 여기에 나타납니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <a
             href="https://github.com/datagenko/datagen"
             class="github"
@@ -96,9 +302,9 @@
             <button class="btn reset" id="reset-button">Reset</button>
           </div>
           <!-- 메뉴바  -->
-          <button id="openModalBtn">메 뉴 바</button>
+          <!-- <button id="openModalBtn">메 뉴 바</button> -->
 
-          <div class="modal-container" id="bottomSheetModal">
+          <!-- <div class="modal-container" id="bottomSheetModal">
             <button id="closeModalBtn">X</button>
             <div class="modal-content">
               <h2>메뉴바</h2>
@@ -190,7 +396,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </section>
         <section id="datagen-output">
           <div class="json-output-wrap">
