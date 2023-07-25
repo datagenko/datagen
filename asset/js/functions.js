@@ -191,7 +191,7 @@ function username() {
  * @return 일반문자, 특수문자가 랜덤으로 조합된 비밀번호를 반환합니다.
  */ 
 function password(min_length, max_length) {
-  if (typeof min_length !== 'number' || typeof max_length !== 'number') {
+  if (isNaN(min_length) || isNaN(max_length)) {
 	throw new Error("min_length and max_length must be number");
   } else if (min_length < 1 || max_length < 1) {
     throw new Error("min_length and max_length must be greater than 0");
