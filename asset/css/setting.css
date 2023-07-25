@@ -11,6 +11,7 @@
 
 .setting-list {
   position: relative;
+  display: none;
   padding: 30px;
   flex-basis: 90%;
   width: 100%;
@@ -41,10 +42,6 @@
 
 .turn_on {
   display: block;
-}
-
-.turn_off {
-  display: none;
 }
 
 .btn-setting_close {
