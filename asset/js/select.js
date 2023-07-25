@@ -100,7 +100,7 @@ const templateMapping = {
   country: `"country": "<country()>",`,
   city: `"city": "<city()>",`,
   address: `"address": "<address()>",`,
-  "postal-code": `"postal-code": "<postal-code()>",`,
+  "postal-code": `"postal_code": "<postal_code()>",`,
   job: `"job": "<job()>",`,
   company: `"company": "<company()>",`,
   creditCardNumber: `"creditCardNumber": "<creditCardNumber()>",`,
@@ -124,7 +124,6 @@ defaultTemplate.value = `[
       "phone": "<phone()>",
       "country": "<country()>",
       "address": "<address()>",
-      "postal_code": "<postal_code()>",
       "job": "<job()>",
   }
 ]`;

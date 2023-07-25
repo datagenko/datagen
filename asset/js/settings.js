@@ -4,7 +4,30 @@ const closeBtn = settingModal.querySelector(".btn-setting_close");
 
 const copyBtn = document.querySelector(".btn-copy");
 const wordWrapSwitch = settingModal.querySelector(".word-wrap_switch input");
+const plusSizeBtn = document.querySelector('#increase-btn');
+const minusSizeBtn = document.querySelector('#decrease-btn');
+const resetSizeBtn = document.querySelector('#reset-btn');
 const jsonOutputText = document.querySelector("#json-output");
+
+const initialFontSize = parseInt(window.getComputedStyle(document.getElementById("json-input")).fontSize);
+
+function changeFontSize(operation, elements) {
+  for (const elementId of elements) {
+    let currentElement = document.getElementById(elementId);
+    let currentSize = parseInt(window.getComputedStyle(currentElement).fontSize);
+    let newSize;
+
+    if (operation === 'plus') {
+      newSize = currentSize + 5;
+    } else if (operation === 'minus') {
+      newSize = currentSize - 5;
+    } else if (operation === 'reset') {
+      newSize = initialFontSize;
+    }
+
+    currentElement.style.fontSize = newSize + 'px';
+  }
+}
 
 settingBtn.addEventListener("click", () => {
   settingModal.classList.toggle("turn_on");
@@ -12,6 +35,18 @@ settingBtn.addEventListener("click", () => {
 
 closeBtn.addEventListener("click", () => {
   settingModal.classList.remove("turn_on");
+});
+                          
+plusSizeBtn.addEventListener('click', (e) => {
+  changeFontSize('plus', ['json-input', 'json-output']);
+});
+
+minusSizeBtn.addEventListener('click', (e) => {
+  changeFontSize('minus', ['json-input', 'json-output']);
+});
+
+resetSizeBtn.addEventListener('click', (e) => {
+  changeFontSize('reset', ['json-input', 'json-output']);
 });
 
 wordWrapSwitch.addEventListener("click", (e) => {
