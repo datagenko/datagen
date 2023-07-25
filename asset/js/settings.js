@@ -1,43 +1,15 @@
-const settingBtn = document.querySelector('.btn-setting');
-const settingModal = document.querySelector('.setting-list');
-const textArea = document.querySelector('#json-output');
-const closeBtn = settingModal.querySelector('.btn-setting_close');
+const settingBtn = document.querySelector(".btn-setting");
+const settingModal = document.querySelector(".setting-list");
+const closeBtn = settingModal.querySelector(".btn-setting_close");
 
-const copyBtn = document.querySelector('.btn-copy');
-const jsonOutputText = document.querySelector('#json-output');
-
+const copyBtn = document.querySelector(".btn-copy");
+const wordWrapSwitch = settingModal.querySelector(".word-wrap_switch input");
 const plusSizeBtn = document.querySelector('#increase-btn');
 const minusSizeBtn = document.querySelector('#decrease-btn');
 const resetSizeBtn = document.querySelector('#reset-btn');
+const jsonOutputText = document.querySelector("#json-output");
+
 const initialFontSize = parseInt(window.getComputedStyle(document.getElementById("json-input")).fontSize);
-
-settingBtn.addEventListener('click', (e) => {
-  if (
-    settingModal.classList.contains('turn_off') &&
-    textArea.classList.contains('turn_on')
-  ) {
-    settingModal.classList.remove('turn_off');
-    settingModal.classList.add('turn_on');
-    textArea.classList.remove('turn_on');
-    textArea.classList.add('turn_off');
-  } else if (
-    settingModal.classList.contains('turn_on') &&
-    textArea.classList.contains('turn_off')
-  ) {
-    settingModal.classList.remove('turn_on');
-    settingModal.classList.add('turn_off');
-    textArea.classList.remove('turn_off');
-    textArea.classList.add('turn_on');
-  }
-});
-
-closeBtn.addEventListener('click', (e) => {
-  settingModal.classList.add('turn_off');
-  settingModal.classList.remove('turn_on');
-  textArea.classList.add('turn_on');
-  textArea.classList.remove('turn_off');
-});
-
 
 function changeFontSize(operation, elements) {
   for (const elementId of elements) {
@@ -57,6 +29,14 @@ function changeFontSize(operation, elements) {
   }
 }
 
+settingBtn.addEventListener("click", () => {
+  settingModal.classList.toggle("turn_on");
+});
+
+closeBtn.addEventListener("click", () => {
+  settingModal.classList.remove("turn_on");
+});
+                          
 plusSizeBtn.addEventListener('click', (e) => {
   changeFontSize('plus', ['json-input', 'json-output']);
 });
@@ -69,15 +49,23 @@ resetSizeBtn.addEventListener('click', (e) => {
   changeFontSize('reset', ['json-input', 'json-output']);
 });
 
-copyBtn.addEventListener('click', (e) => {
+wordWrapSwitch.addEventListener("click", (e) => {
+  if (e.target.checked) {
+    jsonOutputText.style.setProperty("white-space", "pre-wrap");
+  } else {
+    jsonOutputText.style.setProperty("white-space", "pre");
+  }
+});
+
+copyBtn.addEventListener("click", () => {
   const textToCopy = jsonOutputText.value;
 
   navigator.clipboard
     .writeText(textToCopy)
     .then(() => {
-      alert('클립보드에 복사하였습니다.');
+      alert("클립보드에 복사하였습니다.");
     })
     .catch((err) => {
-      console.error('복사가 되지 않았습니다.', err);
+      console.error("복사가 되지 않았습니다.", err);
     });
 });
