@@ -189,9 +189,7 @@ function phone() {
   }
 }
 
-/** 랜덤한 이메일을 출력합니다.
- * @return 반환합니다.
- */
+/* 랜덤한 이메일을 생성합니다. */
 function email() {
   switch (language) {
     case "ko":
