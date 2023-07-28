@@ -37,17 +37,35 @@ function uuid() {
 
 // min max값이 정상적이지않을떄에 대한 예외처리가 필요합니다.
 function randomInteger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  if (isNaN(min)||isNaN(max)){
+    throw new Error('min and max must be a number')
+  }
+  const min_num = Math.min(min, max);
+  const max_num = Math.max(min, max)
+  return Math.floor(Math.random() * (max_num - min_num + 1)) + min_num;
 }
 
+
+/** 유저가 입력한 범위 내에서 실수를 생성합니다.
+ * @param {float} min 최솟값
+ * @param {float} max 최댓값
+ * @param {integer} round 반올림 자릿수
+ * @return 생성된 실수를 round 자릿수에서 반올림하여 반환합니다.
+ */
 function randomFloat(min, max, round = 3) {
-  if (max > min) {
-    let num = Math.random() * (max - min) + min;
+    if (Number.parseFloat(min) != min) {
+      throw new Error('float min의 값이 실수가 아닙니다')
+    }
+    if (Number.parseFloat(max) != max) {
+      throw new Error('float max의 값이 실수가 아닙니다')
+    }
+    if (Number.isInteger(round) != true) {
+      throw new Error('float round의 값이 정수가 아닙니다')
+    }
+    const min_num = Math.min(min, max)
+    const max_num = Math.max(min, max)
+    let num = Math.random() * (max_num - min_num) + min_num;
     return num.toFixed(round);
-  } else {
-    let num = Math.random() * (min - max) + max;
-    return num.toFixed(round);
-  }
 }
 
 function randomItem(items) {
@@ -78,6 +96,16 @@ function lorem(args) {
       unit = args[0];
     }
   }
+  if (isNaN(number)){
+    throw new Error('number must be a number')
+  }
+  if (number < 1){
+    throw new Error('number must be greater than 0')
+  }
+  if (!['word', 'paragraph'].includes(unit)){
+    throw new Error("unit must be either 'word' or 'parameter'.")
+  }
+
   if (unit === 'word') {
     for (let i = 1; i < number + 1; i++) {
       result += ` ${randomItem(lorem_list)}`
@@ -106,7 +134,7 @@ function lorem(args) {
  */
 function money(min, max, symbol) {
   if (isNaN(min) || isNaN(max)) {
-    throw "입력값이 숫자가 아닙니다.";
+    throw new Error("min and max must be a number");
   }
   if (!symbol) {
     symbol = language === "ko" ? "￦" : "$";
@@ -192,7 +220,7 @@ function username() {
  */ 
 function password(min_length, max_length) {
   if (isNaN(min_length) || isNaN(max_length)) {
-	throw new Error("min_length and max_length must be number");
+	throw new Error("min_length and max_length must be a number");
   } else if (min_length < 1 || max_length < 1) {
     throw new Error("min_length and max_length must be greater than 0");
   } else if (min_length >= max_length) {

@@ -13,7 +13,7 @@ function replaceFunc(func, args, index, action) {
     case "int":
       return randomInteger(parseInt(args[0]), parseInt(args[1]));
     case "float":
-      return randomFloat(parseFloat(args[0]), parseFloat(args[1]), args[2]);
+      return randomFloat(parseFloat(args[0]), parseFloat(args[1]), parseInt(args[2]));
     case "boolean":
       return randomBoolean();
     case "random":
@@ -82,10 +82,11 @@ function generateData(template, index) {
       // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
       // optional로 인자가 들어오지 않았을때에 대한 처리도 필요합니다.
       try {
-          return replaceFunc(func, args, index, action) || `Error:${str}함수명을 확인해주세요`
+          const value = replaceFunc(func, args, index, action)
+          return value === null ? `Error:${str}함수명을 확인해주세요` : value;
       }
       catch(e) {
-          return `Error:${str}${e}` || `Error:${str} 입력값이 정확하지 않습니다.` 
+          return e ? `${str}${e}` : `${str} Error: 입력값이 정확하지 않습니다.`; 
       }
       
     });
@@ -103,15 +104,15 @@ document.getElementById("generate-button").addEventListener("click", function ()
               "index": "<index(12)>",
               "username": "<username()>",
               "password5_20": "<password(5, 20)>",
-              "int5_20": "<int(5,20)>",
-              "float5.2_20.5": "<float(5.2, 20.5)>",
+              "int5_20": "<int(20,a)>",
+              "float5.2_20.5": "<float(1.2, 20.5, 3)>",
               "boolean": "<boolean()>",
               "random": "<random(one, 'two', three)>",
               "lorem": "<lorem()>",
               "lorem2": "<lorem(1)>",
               "lorem3": "<lorem(10, 'word')>",
               "color": "<color()>",
-              "picture": "<picture(0, 0)>",
+              "picture": "<picture(32, 32)>",
               "name": "<name()>",
               "email": "<email()>",
               "phone": "<phone()>",
@@ -124,14 +125,14 @@ document.getElementById("generate-button").addEventListener("click", function ()
               "creditCardNumber": "<creditCardNumber()>",
               "gender": "<gender()>",
               "urls": "<urls()>",
-              "money": "<money(a, 1000)>",
-              "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
+              "money": "<money(-1000, 1000)>",
+              "created_at": "<date('a', '2020-12-31', 'YY/MM/DD')>, <time()>"
           }
       ]`;
 
   // function 에서 줄바꿈처리 되어있는 부분을 직렬화시키고,
   // <> 표기된 함수를 JavaScript 함수로 바꿉니다.
-  const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
+  let modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
     return (
       "<function() " +
       // 줄바꿈 문자 공백문자로 변경.
@@ -144,8 +145,10 @@ document.getElementById("generate-button").addEventListener("click", function ()
           return `${function_dic[functionName] || functionName}(${args})`;
         }) +
       ">"
-    );
+      )
   });
+  // 마지막 항목의 , 를 제거합니다.
+  modifiedText = modifiedText.replace((/,\s*}/g), '}');
   // console.log(modifiedText);
   input = JSON.parse(modifiedText);
 
