@@ -1,4 +1,4 @@
-import guideData from './guideData.js'
+import guideData from './guideData.js';
 
 const openModalBtn = document.getElementById('openModalBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -7,13 +7,7 @@ const modalContent = document.querySelector('.modal-content');
 
 // HTML 요소를 동적으로 생성하는 함수
 function createEl(options) {
-  const {
-    tagName,
-    classNames,
-    parentEl,
-    text,
-    idName
-  } = options;
+  const { tagName, classNames, parentEl, text, idName } = options;
 
   const element = document.createElement(tagName);
 
@@ -44,7 +38,7 @@ function addGuideToModalContent() {
       tagName: 'button',
       parentEl: toggle,
       text: `${data.keyname} ⬇`,
-      idName: 'toggle-button'
+      idName: 'toggle-button',
     });
 
     const toggleContent = createEl({
@@ -53,15 +47,112 @@ function addGuideToModalContent() {
       parentEl: toggle,
     });
 
+    // Description
     createEl({
       tagName: 'p',
       parentEl: toggleContent,
       text: data.description,
     });
 
+    // Usage
+    const usgContainer = createEl({
+      tagName: 'div',
+      parentEl: toggleContent,
+    });
+    createEl({
+      tagName: 'span',
+      parentEl: usgContainer,
+      text: 'Usage',
+    });
+    createEl({
+      tagName: 'code',
+      parentEl: usgContainer,
+      text: data.usage,
+    });
+
+    // Arguments
+    if (data.arguments) {
+      const wrapTable = createEl({
+        tagName: 'div',
+        classNames: ['wrap-table'],
+        parentEl: toggleContent,
+      });
+      createEl({
+        tagName: 'span',
+        parentEl: wrapTable,
+        text: 'Arguments',
+      });
+      const table = createEl({
+        tagName: 'table',
+        classNames: ['table'],
+        parentEl: wrapTable,
+      });
+
+      // Arguments-head
+      const headerTr = createEl({
+        tagName: 'tr',
+        parentEl: table,
+      });
+      ['Params', 'Type', 'Details'].forEach((item) => {
+        createEl({
+          tagName: 'th',
+          parentEl: headerTr,
+          text: item,
+        });
+      });
+
+      // Arguments-body
+      for (const argData of data.arguments) {
+        const bodyTr = createEl({
+          tagName: 'tr',
+          parentEl: table,
+        });
+        // Params
+        createEl({
+          tagName: 'td',
+          parentEl: bodyTr,
+          text: argData.param,
+        });
+        // Type
+        const argType = createEl({
+          tagName: 'td',
+          parentEl: bodyTr,
+        });
+        createEl({
+          tagName: argData.type,
+          parentEl: argType,
+          text: argData.type,
+        });
+        // Datails
+        createEl({
+          tagName: 'td',
+          parentEl: bodyTr,
+          text: argData.detail,
+        });
+      }
+    }
+
+    // Returns
+    const rtnContainer = createEl({
+      tagName: 'div',
+      parentEl: toggleContent,
+    });
+    createEl({
+      tagName: 'span',
+      parentEl: rtnContainer,
+      text: 'Returns',
+    });
+    createEl({
+      tagName: data.returns,
+      parentEl: rtnContainer,
+      text: data.returns,
+    });
+
+    checkScroll();
+
     // 토글 버튼 클릭 이벤트 리스너 추가
-    toggleButton.addEventListener("click", () => {
-      toggleContent.classList.toggle("active");
+    toggleButton.addEventListener('click', () => {
+      toggleContent.classList.toggle('active');
       // 초기 모달 내용 확인
       checkScroll();
     });
@@ -75,9 +166,9 @@ function checkScroll() {
   const scrollHeight = modalContent.scrollHeight;
 
   if (scrollHeight > contentHeight) {
-    modalContent.style.overflowY = 'auto';  // 세로 스크롤 활성화
+    modalContent.style.overflowY = 'auto'; // 세로 스크롤 활성화
   } else {
-    modalContent.style.overflowY = 'visible';  // 세로 스크롤 비활성화
+    modalContent.style.overflowY = 'visible'; // 세로 스크롤 비활성화
   }
 }
 
@@ -93,12 +184,18 @@ closeModalBtn.addEventListener('click', () => {
   resetToggleRecord();
 });
 
-
 // 토글 레코드를 리셋하는 함수
 function resetToggleRecord() {
   // 모든 토글 콘텐츠를 비활성화(숨김) 상태로 설정합니다.
-  const toggleContents = document.querySelectorAll(".toggle-content");
+  const toggleContents = document.querySelectorAll('.toggle-content');
   toggleContents.forEach((content) => {
-    content.classList.remove("active");
+    content.classList.remove('active');
   });
 }
+
+// 모달 내용 변경 시 호출
+// 미사용으로 인한 주석처리
+// function updateModalContent(newContent) {
+//   modalContent.innerHTML = newContent;
+//   checkScroll();
+// }
