@@ -91,13 +91,30 @@ function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/** 유저가 입력한 범위 내에서 실수를 생성합니다.
+ * @param {float} min 최솟값
+ * @param {float} max 최댓값
+ * @param {integer} round 반올림 자릿수
+ * @return 생성된 실수를 round 자릿수에서 반올림하여 반환합니다.
+ */
 function randomFloat(min, max, round = 3) {
-  if (max > min) {
-    let num = Math.random() * (max - min) + min;
+  try {
+    if (Number.parseFloat(min) != min) {
+      throw new Error('float min의 값이 실수가 아닙니다')
+    }
+    if (Number.parseFloat(max) != max) {
+      throw new Error('float max의 값이 실수가 아닙니다')
+    }
+    if (Number.isInteger(round) != true) {
+      throw new Error('float round의 값이 정수가 아닙니다')
+    }
+    const min_num = Math.min(min, max)
+    const max_num = Math.max(min, max)
+    let num = Math.random() * (max_num - min_num) + min_num;
     return num.toFixed(round);
-  } else {
-    let num = Math.random() * (min - max) + max;
-    return num.toFixed(round);
+  }
+  catch (err) {
+    return err
   }
 }
 
@@ -146,8 +163,6 @@ function city() {
   }
 }
 
-console.log(country(), city());
-
 function name() {
   switch (language) {
     case "ko":
@@ -174,6 +189,9 @@ function phone() {
   }
 }
 
+/** 랜덤한 이메일을 출력합니다.
+ * @return 반환합니다.
+ */
 function email() {
   switch (language) {
     case "ko":
@@ -491,14 +509,12 @@ document.getElementById("generate-button").addEventListener("click", function ()
         .replace(/\n/g, "")
         // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
         .replace(/<([^>]+)>/g, (_, context) => {
-          console.log(context);
           const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
           return `${function_dic[functionName] || functionName}(${args})`;
         }) +
       ">"
     );
   });
-  // console.log(modifiedText);
   input = JSON.parse(modifiedText);
 
   let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
