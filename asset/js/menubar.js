@@ -70,6 +70,66 @@ function addGuideToModalContent() {
       text: data.usage,
     });
 
+    // Arguments
+    if (data.arguments && data.arguments.length) {
+      const wrapTable = createEl({
+        tagName: 'div',
+        classNames: ['wrap-table'],
+        parentEl: toggleContent,
+      });
+      createEl({
+        tagName: 'span',
+        parentEl: wrapTable,
+        text: 'Arguments',
+      });
+      const table = createEl({
+        tagName: 'table',
+        classNames: ['table'],
+        parentEl: wrapTable,
+      });
+
+      // Arguments-head
+      const haederTr = createEl({
+        tagName: 'tr',
+        parentEl: table,
+      });
+      ['Params', 'Type', 'Details'].forEach((item) => {
+        createEl({
+          tagName: 'th',
+          parentEl: haederTr,
+          text: item,
+        });
+      });
+
+      // Arguments-body
+      for (const argData of data.arguments) {
+        const bodyTr = createEl({
+          tagName: 'tr',
+          parentEl: table,
+        });
+        // Params
+        createEl({
+          tagName: 'td',
+          parentEl: bodyTr,
+          text: argData.param,
+        });
+        // Type
+        const argType = createEl({
+          tagName: 'td',
+          parentEl: bodyTr,
+        });
+        createEl({
+          tagName: argData.type,
+          parentEl: argType,
+          text: argData.type,
+        });
+        // Datails
+        createEl({ tagName: 'td', parentEl: bodyTr, text: argData.detail });
+      }
+    }
+
+    checkScroll();
+
     // 토글 버튼 클릭 이벤트 리스너 추가
     toggleButton.addEventListener('click', () => {
       toggleContent.classList.toggle('active');
