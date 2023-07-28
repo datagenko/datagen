@@ -1,4 +1,4 @@
-import guideData from './guideData.js'
+import guideData from './guideData.js';
 
 const openModalBtn = document.getElementById('openModalBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -7,13 +7,7 @@ const modalContent = document.querySelector('.modal-content');
 
 // HTML 요소를 동적으로 생성하는 함수
 function createEl(options) {
-  const {
-    tagName,
-    classNames,
-    parentEl,
-    text,
-    idName
-  } = options;
+  const { tagName, classNames, parentEl, text, idName } = options;
 
   const element = document.createElement(tagName);
 
@@ -44,7 +38,7 @@ function addGuideToModalContent() {
       tagName: 'button',
       parentEl: toggle,
       text: `${data.keyname} ⬇`,
-      idName: 'toggle-button'
+      idName: 'toggle-button',
     });
 
     const toggleContent = createEl({
@@ -53,15 +47,32 @@ function addGuideToModalContent() {
       parentEl: toggle,
     });
 
+    // Description
     createEl({
       tagName: 'p',
       parentEl: toggleContent,
       text: data.description,
     });
 
+    // Usage
+    const usage = createEl({
+      tagName: 'div',
+      parentEl: toggleContent,
+    });
+    createEl({
+      tagName: 'span',
+      parentEl: usage,
+      text: 'Usage',
+    });
+    createEl({
+      tagName: 'code',
+      parentEl: usage,
+      text: data.usage,
+    });
+
     // 토글 버튼 클릭 이벤트 리스너 추가
-    toggleButton.addEventListener("click", () => {
-      toggleContent.classList.toggle("active");
+    toggleButton.addEventListener('click', () => {
+      toggleContent.classList.toggle('active');
       // 초기 모달 내용 확인
       checkScroll();
     });
@@ -75,9 +86,9 @@ function checkScroll() {
   const scrollHeight = modalContent.scrollHeight;
 
   if (scrollHeight > contentHeight) {
-    modalContent.style.overflowY = 'auto';  // 세로 스크롤 활성화
+    modalContent.style.overflowY = 'auto'; // 세로 스크롤 활성화
   } else {
-    modalContent.style.overflowY = 'visible';  // 세로 스크롤 비활성화
+    modalContent.style.overflowY = 'visible'; // 세로 스크롤 비활성화
   }
 }
 
@@ -93,12 +104,11 @@ closeModalBtn.addEventListener('click', () => {
   resetToggleRecord();
 });
 
-
 // 토글 레코드를 리셋하는 함수
 function resetToggleRecord() {
   // 모든 토글 콘텐츠를 비활성화(숨김) 상태로 설정합니다.
-  const toggleContents = document.querySelectorAll(".toggle-content");
+  const toggleContents = document.querySelectorAll('.toggle-content');
   toggleContents.forEach((content) => {
-    content.classList.remove("active");
+    content.classList.remove('active');
   });
 }
