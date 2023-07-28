@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="JSON Generator는 더미 데이터를 생성해주는 서비스입니다. 빠르고 쉽게 고유 키값으로 데이터를 생성할 수 있습니다."
+    />
     <title>JSON Generator</title>
     <link rel="stylesheet" href="/asset/css/reset.css" />
     <link rel="stylesheet" href="/asset/css/style.css" />
@@ -10,71 +15,87 @@
     <link rel="stylesheet" href="/asset/css/menubar.css" />
     <link rel="stylesheet" href="/asset/css/buttons.css" />
     <link rel="stylesheet" href="/asset/css/footer.css" />
+    <link rel="stylesheet" href="/asset/css/setting.css" />
   </head>
 
   <body>
     <div id="datagen-container">
       <header>
         <h1 class="logo">
-          <img src="asset/img/logo.svg" alt="데이터젠 로고" />
+          <a href="https://datagenerator.co.kr/"
+            ><img src="asset/img/logo.svg" alt="데이터젠 로고"
+          /></a>
         </h1>
         <div class="language">
           <a
-            class="github"
             href="https://github.com/datagenko/datagen"
+            class="github"
             target="_blank"
+            aria-label="DataGen GitHubRepo"
           ></a>
-          <button class="language-button" type="button">KO</button>
-        </div>
-        <div class="language-list">
-          <button class="language-list_ko">KO</button>
-          <button class="language-list_eng">ENG</button>
+          <div class="select-wrap select-language">
+            <button class="selected language-select" type="button">
+              <span class="selected-value">KO</span>
+              <span class="arrow"></span>
+            </button>
+
+            <ul class="list-select language-list">
+              <li>
+                <button class="language-list_ko">KO</button>
+              </li>
+              <li>
+                <button class="language-list_eng">ENG</button>
+              </li>
+            </ul>
+          </div>
         </div>
       </header>
       <main class="datagen-contents">
         <section id="datagen-input">
-          <div class="select-wrap" id="dropdown">
-            <div class="selected">
-              <div id="selected-value">key값을 선택하세요</div>
-              <div class="arrow"></div>
-            </div>
-            <select id="select-box" multiple="multiple">
-              <option value="1" class="option">uuid</option>
-              <option value="2">index</option>
-              <option value="3">username</option>
-              <option value="4">password</option>
-              <option value="5">int</option>
-              <option value="6">float</option>
-              <option value="7">boolean</option>
-              <option value="8">random</option>
-              <option value="9">lorem</option>
-              <option value="10">picture</option>
-              <option value="11">color</option>
-              <option value="12">name</option>
-              <option value="13">email</option>
-              <option value="14">phone</option>
-              <option value="15">country</option>
-              <option value="16">city</option>
-              <option value="17">address</option>
-              <option value="18">postal_code</option>
-              <option value="19">job</option>
-              <option value="20">company</option>
-              <option value="21">creditCardNumber</option>
-              <option value="22">gender</option>
-              <option value="23">urls</option>
-              <option value="24">money</option>
-              <option value="25">date</option>
-              <option value="26">time</option>
-              <option value="27">iter</option>
-              <option value="28">function</option>
-            </select>
+          <!-- 셀렉트박스 -->
+          <div class="select-wrap select-input">
+            <button class="selected" type="button">
+              <span class="selected-value">key값을 선택하세요</span>
+              <span class="arrow"></span>
+            </button>
+            <ul class="list-select">
+              <li><button type="button">uuid: user id 생성</button></li>
+              <li><button type="button">index</button></li>
+              <li><button type="button">username</button></li>
+              <li><button type="button">password</button></li>
+              <li><button type="button">int</button></li>
+              <li><button type="button">float</button></li>
+              <li><button type="button">boolean</button></li>
+              <li><button type="button">random</button></li>
+              <li><button type="button">lorem</button></li>
+              <li><button type="button">picture</button></li>
+              <li><button type="button">color</button></li>
+              <li><button type="button">name</button></li>
+              <li><button type="button">email</button></li>
+              <li><button type="button">phone</button></li>
+              <li><button type="button">country</button></li>
+              <li><button type="button">city</button></li>
+              <li><button type="button">address</button></li>
+              <li><button type="button">postal_code</button></li>
+              <li><button type="button">job</button></li>
+              <li><button type="button">company</button></li>
+              <li><button type="button">creditCardNumber</button></li>
+              <li><button type="button">gender</button></li>
+              <li><button type="button">urls</button></li>
+              <li><button type="button">money</button></li>
+              <li><button type="button">date</button></li>
+              <li><button type="button">time</button></li>
+              <li><button type="button">iter</button></li>
+              <li><button type="button">function</button></li>
+            </ul>
           </div>
+          <label for="json-input"></label>
           <textarea id="json-input"></textarea>
           <div class="btn-inp-wrap">
             <button class="btn gen" id="generate-button">Generate</button>
             <button class="btn reset" id="reset-button">Reset</button>
           </div>
-          <!-- 메뉴바 -->
+          <!-- 메뉴바  -->
           <button id="openModalBtn">메 뉴 바</button>
 
           <div class="modal-container" id="bottomSheetModal">
@@ -172,7 +193,39 @@
           </div>
         </section>
         <section id="datagen-output">
-          <textarea id="json-output" readonly></textarea>
+          <div class="json-output-wrap">
+            <div class="btn-copy-setting">
+              <button class="btn-copy"></button>
+              <button class="btn-setting"></button>
+            </div>
+            <div class="setting-list turn_off">
+              <h2>Settings</h2>
+              <button class="btn-setting_close">X</button>
+              <div class="settings">
+                <p>indent</p>
+                <div class="select-wrap select-indent">
+                  <button class="selected" type="button">
+                    <span class="selected-value">2 space tab</span>
+                    <span class="arrow"></span>
+                  </button>
+                  <ul class="list-select">
+                    <li><button type="button">Compact</button></li>
+                    <li><button type="button">2 space tab</button></li>
+                    <li><button type="button">4 space tab</button></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="settings">
+                <p>word wrap</p>
+                <label class="word-wrap_switch">
+                  <input type="checkbox" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <label for="json-output"></label>
+            <textarea id="json-output" class="turn_on" readonly></textarea>
+          </div>
           <article class="download-wrap">
             <p>Download to</p>
             <div class="btn-wrap">
@@ -207,9 +260,13 @@
         </section>
       </main>
     </div>
-    <script src="asset/js/output.js"></script>
+    <!-- <script src="asset/js/output.js"></script> -->
+    <script src="asset/js/data.js"></script>
+    <script src="asset/js/functions.js"></script>
+    <script src="asset/js/generate.js"></script>
     <script src="asset/js/select.js"></script>
     <script src="asset/js/language.js"></script>
     <script src="asset/js/menubar.js"></script>
+    <script src="asset/js/settings.js"></script>
   </body>
 </html>
