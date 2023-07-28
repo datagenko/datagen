@@ -55,23 +55,23 @@ function addGuideToModalContent() {
     });
 
     // Usage
-    const usage = createEl({
+    const usgContainer = createEl({
       tagName: 'div',
       parentEl: toggleContent,
     });
     createEl({
       tagName: 'span',
-      parentEl: usage,
+      parentEl: usgContainer,
       text: 'Usage',
     });
     createEl({
       tagName: 'code',
-      parentEl: usage,
+      parentEl: usgContainer,
       text: data.usage,
     });
 
     // Arguments
-    if (data.arguments && data.arguments.length) {
+    if (data.arguments) {
       const wrapTable = createEl({
         tagName: 'div',
         classNames: ['wrap-table'],
@@ -89,14 +89,14 @@ function addGuideToModalContent() {
       });
 
       // Arguments-head
-      const haederTr = createEl({
+      const headerTr = createEl({
         tagName: 'tr',
         parentEl: table,
       });
       ['Params', 'Type', 'Details'].forEach((item) => {
         createEl({
           tagName: 'th',
-          parentEl: haederTr,
+          parentEl: headerTr,
           text: item,
         });
       });
@@ -124,9 +124,29 @@ function addGuideToModalContent() {
           text: argData.type,
         });
         // Datails
-        createEl({ tagName: 'td', parentEl: bodyTr, text: argData.detail });
+        createEl({
+          tagName: 'td',
+          parentEl: bodyTr,
+          text: argData.detail,
+        });
       }
     }
+
+    // Returns
+    const rtnContainer = createEl({
+      tagName: 'div',
+      parentEl: toggleContent,
+    });
+    createEl({
+      tagName: 'span',
+      parentEl: rtnContainer,
+      text: 'Returns',
+    });
+    createEl({
+      tagName: data.returns,
+      parentEl: rtnContainer,
+      text: data.returns,
+    });
 
     checkScroll();
 
@@ -172,3 +192,10 @@ function resetToggleRecord() {
     content.classList.remove('active');
   });
 }
+
+// 모달 내용 변경 시 호출
+// 미사용으로 인한 주석처리
+// function updateModalContent(newContent) {
+//   modalContent.innerHTML = newContent;
+//   checkScroll();
+// }
