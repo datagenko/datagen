@@ -53,7 +53,11 @@ function addGuideToModalContent() {
       parentEl: toggle,
     });
 
-
+    createEl({
+      tagName: 'p',
+      parentEl: toggleContent,
+      text: data.description,
+    });
 
     // 토글 버튼 클릭 이벤트 리스너 추가
     toggleButton.addEventListener("click", () => {
