@@ -86,7 +86,7 @@ body {
 }
 
 .btn-guide {
-  background: url("../img/icon-guide.svg") no-repeat center center/cover;
+  background: url('../img/icon-guide.svg') no-repeat center center/cover;
   width: 45px;
   height: 45px;
   margin-right: 15px;
@@ -163,6 +163,30 @@ Boolean {
   background-color: rgb(161, 60, 63);
   border-radius: 5px;
   padding: 2px 15px 2px 15px;
+}
+
+Object {
+  font-size: smaller;
+  font-weight: bolder;
+  background-color: rgb(73, 117, 126);
+  border-radius: 5px;
+  padding: 2px 6px 2px 6px;
+}
+
+Integer {
+  font-size: smaller;
+  font-weight: bolder;
+  background-color: rgb(135, 147, 211);
+  border-radius: 5px;
+  padding: 2px 6px 2px 6px;
+}
+
+Float {
+  font-size: smaller;
+  font-weight: bolder;
+  background-color: rgb(225, 135, 71);
+  border-radius: 5px;
+  padding: 2px 6px 2px 6px;
 }
 
 th {
