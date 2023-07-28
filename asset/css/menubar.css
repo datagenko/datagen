@@ -6,7 +6,7 @@ body {
   margin: 0;
 }
 
-#bottomSheetModal{
+#bottomSheetModal {
   height: 0;
 }
 .modal-container {
@@ -22,7 +22,7 @@ body {
 .modal-content {
   line-height: normal;
   width: 700px;
-  height:500px;
+  height: 500px;
   padding: 30px;
   border-radius: 20px;
   background-color: var(--content-bg);
@@ -30,7 +30,7 @@ body {
   border: 2px solid var(--dark-cyan);
 }
 
-#closeModalBtn{
+#closeModalBtn {
   position: absolute;
   top: 15px;
   right: 25px;
@@ -41,12 +41,13 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-#closeModalBtn:active{
-  transform: translateY(2px); /* 버튼을 아래로 약간 이동하여 눌린 느낌을 줍니다 */
+#closeModalBtn:active {
+  transform: translateY(
+    2px
+  ); /* 버튼을 아래로 약간 이동하여 눌린 느낌을 줍니다 */
   box-shadow: none; /* 눌린 상태에서 그림자를 제거합니다 */
-
 }
-#toggle-button{
+#toggle-button {
   margin-bottom: 10px;
   top: 10px;
   right: 10px;
@@ -57,7 +58,7 @@ body {
   border-radius: 5px;
 }
 
-#toggle-button:hover{
+#toggle-button:hover {
   background-color: var(--dark-cyan);
 }
 .modal-container.active {
@@ -71,7 +72,7 @@ body {
 .toggle-content {
   display: none;
 }
-.toggle-content{
+.toggle-content {
   border: 2px solid var(--dark-cyan);
   background-color: var(--dark-bg);
   opacity: 70%;
@@ -79,7 +80,6 @@ body {
   padding: 10px;
   margin-bottom: 10px;
   white-space: pre-line; /* 줄바꿈을 유지하면서 공백은 하나만 유지 */
-  
 }
 .toggle-content.active {
   display: block;
@@ -91,20 +91,21 @@ body {
   height: 45px;
   margin-right: 15px;
 }
-.wrap-table{
-  
+.wrap-table {
 }
 .table {
   width: 550px;
-  border-collapse : collapse;
+  border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border-bottom: 1px solid rgb(75, 75, 75);
   text-align: left;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   word-wrap: break-word;
   vertical-align: top;
   padding: 0.7rem 0.5rem 0.7rem 0.5rem;
@@ -115,7 +116,8 @@ th, td {
 code {
   font-size: smaller;
   direction: ltr;
-  font-family: Menlo,Consolas,Monaco,Liberation Mono,Lucida Console,monospace;
+  font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+    monospace;
   color: red;
   background-color: rgb(8, 8, 8);
   border-radius: 2px;
@@ -127,7 +129,8 @@ Date {
   font-size: smaller;
   background-color: rgb(179, 103, 115);
   border-radius: 5px;
-  padding: 2px 15px 2px 15px;}
+  padding: 2px 15px 2px 15px;
+}
 
 String {
   font-size: smaller;
@@ -146,7 +149,7 @@ Number {
   padding: 2px 6px 2px 6px;
 }
 
-Function{
+Function {
   font-size: smaller;
   font-weight: bolder;
   background-color: rgb(161, 144, 57);
@@ -154,7 +157,7 @@ Function{
   padding: 2px 4px 2px 4px;
 }
 
-Boolean{
+Boolean {
   font-size: smaller;
   font-weight: bolder;
   background-color: rgb(161, 60, 63);
@@ -162,6 +165,6 @@ Boolean{
   padding: 2px 15px 2px 15px;
 }
 
-th{
+th {
   font-weight: bolder;
 }
