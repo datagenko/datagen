@@ -562,7 +562,42 @@ document
       null,
       2
     );
+
+    // generate-button을 누를 때만 json-output을 초기화
+    if (modifiedText !== null) {
+      document.getElementById("json-output").value = "";
+    }
+
+    // JSON 데이터 생성 후 modifiedText 업데이트
+    modifiedText = JSON.stringify(output, null, 2);
+    document.getElementById("json-output").value = modifiedText;
   });
+
+// Reset 버튼 클릭시 이벤트
+document.getElementById("reset-button").addEventListener("click", function () {
+  const jsonInputText = document.querySelector("#json-input");
+  jsonInputText.value = `[
+    "<iter(5)>",
+    {
+        "_id": "<uuid()>",
+        "index": "<index(12)>",
+        "name": "<name()>",
+        "email": "<email()>",
+        "phone": "<phone()>",
+        "country": "<country()>",
+        "address": "<address()>",
+        "job": "<job()>",
+    }
+  ]`;
+  // modifiedText 변수 초기화
+  modifiedText = null;
+  document.getElementById("json-output").value = "";
+
+  // 버튼 초기 상태로 되돌리기
+  const selectButton = document.querySelector(".select-input button");
+  selectButton.querySelector(".selected-value").textContent =
+    "key값을 선택하세요";
+});
 
 // csv 다운로드 버튼 클릭시 이벤트
 document
