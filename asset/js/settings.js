@@ -36,7 +36,7 @@ settingBtn.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
   settingModal.classList.remove("turn_on");
 });
-                          
+
 plusSizeBtn.addEventListener('click', (e) => {
   changeFontSize('plus', ['json-input', 'json-output']);
 });
@@ -69,3 +69,26 @@ copyBtn.addEventListener("click", () => {
       console.error("복사가 되지 않았습니다.", err);
     });
 });
+
+
+function changeIndentSize(elements) {
+  let indentValue = document.querySelector(".select-indent .selected-value").textContent;
+
+  for (const elementId of elements) {
+    let currentElement = document.getElementById(elementId);
+    let parsedValue;
+
+    try {
+      parsedValue = JSON.parse(currentElement.value);
+    } catch (error) {
+      console.error('데이터를 생성하세요.');
+      return;
+    }
+
+    currentElement.value = JSON.stringify(
+      parsedValue,
+      null,
+      parseInt(indentValue)
+    );
+  }
+}
