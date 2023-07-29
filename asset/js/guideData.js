@@ -48,7 +48,7 @@ const guideData = [
     arguments: [
       { param: 'min', type: 'Float', detail: '최솟값' },
       { param: 'max', type: 'Float', detail: '최댓값' },
-      { param: 'round', type: 'Float', detail: '반올림 자릿수' },
+      { param: 'round', type: 'Integer', detail: '반올림 자릿수' },
     ],
     returns: 'Float',
   },
