@@ -70,7 +70,6 @@ copyBtn.addEventListener("click", () => {
     });
 });
 
-
 function changeIndentSize(elements) {
   let indentValue = document.querySelector(".select-indent .selected-value").textContent;
 
@@ -78,17 +77,20 @@ function changeIndentSize(elements) {
     let currentElement = document.getElementById(elementId);
     let parsedValue;
 
-    try {
-      parsedValue = JSON.parse(currentElement.value);
-    } catch (error) {
-      console.error('데이터를 생성하세요.');
-      return;
-    }
+    if (currentElement.value !== "") {
+      try {
+        parsedValue = JSON.parse(currentElement.value);
+      } catch (error) {
+        // json-output이 아직 생성되지 않은 경우 에러메시지 숨기기 위해 예외처리
+      }
 
-    currentElement.value = JSON.stringify(
-      parsedValue,
-      null,
-      parseInt(indentValue)
-    );
+      if (parsedValue) {
+        currentElement.value = JSON.stringify(
+          parsedValue,
+          null,
+          parseInt(indentValue)
+        );
+      }
+    }
   }
 }
