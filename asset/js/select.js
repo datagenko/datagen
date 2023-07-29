@@ -21,7 +21,7 @@ const selectEvent = (selectBox, option, selectedValue) => {
       );
       selectJsonInput(selectedText, selectionStart);
     } else if (selectBox.classList.contains("select-indent")) {
-      selectIndent(optionElement);
+      changeIndentSize(['json-output']);
     } else {
       //laguage 관련
     }
@@ -70,17 +70,6 @@ function selectJsonInput(selectedText, selectionStart) {
   }
 }
 
-function selectIndent(optionElement) {
-  const selectedButton = optionElement.querySelector("button");
-  const indentValue = selectedButton.value;
-  // console.log(selectedText)
-  const output = document.querySelector("#json-output");
-  if (output && output.value) {
-    console.log(indentValue);
-    let parsedOutput = JSON.parse(output.value);
-    output.value = JSON.stringify(parsedOutput, null, parseInt(indentValue));
-  }
-}
 
 const templateMapping = {
   "uuid: user id 생성": `"uuid": "<uuid()>",`,
