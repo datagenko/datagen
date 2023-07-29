@@ -77,12 +77,18 @@ body {
   background-color: var(--dark-bg);
   opacity: 70%;
   border-radius: 10px;
-  padding: 10px;
+  padding: 30px 10px 50px;
   margin-bottom: 10px;
-  white-space: pre-line; /* 줄바꿈을 유지하면서 공백은 하나만 유지 */
 }
 .toggle-content.active {
   display: block;
+}
+.toggle-content div {
+  margin-top: 35px;
+}
+.toggle-content span {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .btn-guide {
