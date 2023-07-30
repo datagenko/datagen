@@ -38,14 +38,16 @@ const lorem_list = [
   "tempora",
   "test",
 ];
-const domain_list = ["com", "co.kr", "net", "org"];
+const domain_list = ["com", "co.kr", "net", "org", "io", "biz"];
 
 const ko_country_list = ["한국", "미국", "일본"];
 const en_country_list = ["Korea", "USA", "Japan"];
 const ko_city_list = ["서울", "워싱턴", "도쿄"];
 const en_city_list = ["Seoul", "Washington", "Tokyo"];
-const ko_street_list = ["골목", "서울", "교동"];
-const en_street_list = ["loyal", "korean", "load"];
+const street_list = {
+  'ko' : ["동일로", "홍익로", "남부순환로", "양재천로", "망우로", "인왕산로", "논현로", "방학로", "강남대로", "양평로", "청계천로", "석촌호수로", "강서로", "잠실로", "사당로", "광나루로", "공덕로", "신촌로", "선릉로", "학동로", "영등포로", "양재로", "마포대로", "한강대로", "여의대방로", "삼성로", "노량진로", "종로", "성북로", "천호대로", "성산로", "서소문로", "양산로", "잠원로", "관악로", "대림로", "뚝섬로", "강변북로", "성수이로", "행운동", "한남대로", "용산로", "여의하류로", "사직로", "보문로", "성동로", "독산로", "용두동", "봉은사로", "역삼로"],
+  'en' : ["Main Street", "Maple Avenue", "Oakwood Drive", "Pine Street", "Elmwood Lane", "Cedar Road", "Willow Court", "Birch Street", "River View Drive", "Lakeview Terrace", "Forest Avenue", "Meadow Lane", "Sunset Boulevard", "Spring Street", "Autumn Way", "Winterberry Lane", "Holly Drive", "Laurel Avenue", "Juniper Place", "Rosewood Circle", "Magnolia Lane", "Cypress Avenue", "Garden Lane", "Orchard Street", "Mountain View Road", "Valley Drive", "Brookside Court", "Ridge Avenue", "Hillcrest Drive", "Lakeside Terrace", "Sunflower Lane", "Daisy Street", "Tulip Lane", "Lily Court", "Violet Road", "Jasmine Lane", "Iris Street", "Azalea Avenue", "Heather Court", "Petunia Lane", "Oakwood Court", "Cedar Lane", "Willow Street", "Birch Avenue", "Pine Court", "River Road", "Lakeview Avenue", "Forest Lane", "Meadow Street", "Sunset Drive"],
+}
 
 const ko_job_list = ["선생님", "학생", "의사", "기술자"];
 const en_job_list = ["teacher", "student", "doctor", "engineer"];
