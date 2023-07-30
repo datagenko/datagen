@@ -134,7 +134,7 @@ const guideData = [
   },
   {
     keyname: 'postal_code',
-    description: '랜덤한 우편번호를를 반환합니다.',
+    description: '랜덤한 우편번호를 반환합니다.',
     usage: '<postal_code()>',
     returns: 'String',
   },

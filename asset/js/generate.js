@@ -13,7 +13,7 @@ function replaceFunc(func, args, index, action, data) {
     case "int":
       return randomInteger(parseInt(args[0]), parseInt(args[1]));
     case "float":
-      return randomFloat(parseFloat(args[0]), parseFloat(args[1]), parseInt(args[2]));
+      return randomFloat(parseFloat(args[0]), parseFloat(args[1]), parseFloat(args[2]));
     case "boolean":
       return randomBoolean();
     case "random":
@@ -67,6 +67,7 @@ function replaceFunc(func, args, index, action, data) {
 
 function generateData(template, index) {
   let data = {};
+  language = languageSelect.innerText;
 
   for (const i in template) {
     data[i] = template[i].replace(/<([^<>]+)>/g, (str, key) => {
@@ -93,107 +94,3 @@ function generateData(template, index) {
   }
   return data;
 }
-
-const input_form = document.querySelector("#json-input");
-document.getElementById("generate-button").addEventListener("click", function () {
-  // let input = input_form.value;
-  let input = `[
-      "<iter(1)>",
-          {
-              "_id": "<uuid()>",
-              "index": "<index(12)>",
-              "username": "<username()>",
-              "password5_20": "<password(5, 20)>",
-              "int5_20": "<int(20,a)>",
-              "float5.2_20.5": "<float(a, 20.5, 3)>",
-              "boolean": "<boolean()>",
-              "random": "<random(one, 'two', three)>",
-              "lorem": "<lorem(3)>",
-              "lorem2": "<lorem('word')>",
-              "lorem3": "<lorem('3', 'paragraph')>",
-              "color": "<color()>",
-              "picture": "<picture(32, 32)>",
-              "name": "<name()>",
-              "email": "<email()>",
-              "phone": "<phone()>",
-              "country": "<country()>",
-              "city": "<city()>",
-              "address": "<address()>",
-              "postal_code": "<postal_code()>",
-              "job": "<job()>",
-              "company": "<company()>",
-              "creditCardNumber": "<creditCardNumber()>",
-              "gender": "<gender()>",
-              "urls": "<urls()>",
-              "money": "<money(-1000, 1000)>",
-              "created_at": "<date('a', '2020-12-31', 'YY/MM/DD')>, <time()>",
-              "function": "<function() {
-                console.log('uuid', <uuid()>);
-                console.log('index', this.index);
-                console.log('username', <username()>);
-                console.log('password', <password(5, 20)>);
-                console.log('int', <int(5,20)>);
-                console.log('float', <float(5.2, 20.5)>);
-                console.log('bool', <boolean()>);
-                console.log('random', <random('one', 'two', 'three')>);
-                console.log('lorem', <lorem()>);
-                console.log('color', <color()>);
-                console.log('name', <name()>);
-                console.log('email', <email()>);
-                console.log('phone', <phone()>);
-                console.log('country', <country()>);
-                console.log('city', <city()>);
-                console.log('address', <address()>);
-                console.log('postal_code', <postal_code()>);
-                console.log('job', <job()>);
-                console.log('company', <company()>);
-                console.log('creditCardNumber', <creditCardNumber()>);
-                console.log('gender', <gender()>);
-                console.log('urls', <urls()>);
-                console.log('money', <money(1000, 20000)>);
-                return <date('2020-01-01', '2020-12-31', 'YY/MM/DD')> + <time()> + this.name + this.city + this.gender
-              }>",
-          }
-      ]`;
-
-  // function 에서 줄바꿈처리 되어있는 부분을 직렬화시키고,
-  // <> 표기된 함수를 JavaScript 함수로 바꿉니다.
-  let modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
-    return (
-      "<function() " +
-      // 줄바꿈 문자 공백문자로 변경.
-      fn
-        .replace(/\n/g, "")
-        // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
-        .replace(/<([^>]+)>/g, (_, context) => {
-          // console.log(context);
-          const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
-          return `${function_dic[functionName] || functionName}(${args})`;
-        }) +
-      ">"
-      )
-  });
-  console.log(modifiedText)
-  // 마지막 항목의 , 를 제거합니다.
-  modifiedText = modifiedText.replace((/,\s*}/g), '\n}');
-  console.log(modifiedText)
-  // console.log(modifiedText);
-  input = JSON.parse(modifiedText);
-
-  let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
-
-  let template = input[1];
-
-  // index 함수의 초기값이 지정되었는지 판단하는 상수 : true/false
-  const hasInitIndex = !!template["index"].match(/[0-9]/g);
-  let initIndex = hasInitIndex ? parseInt(template["index"].match(/[0-9]/g).join("")) : 1;
-
-  let output = [];
-
-  for (let i = 0; i < repeatCount; i++) {
-    output.push(generateData(template, initIndex));
-    initIndex++;
-  }
-
-  document.getElementById("json-output").value = JSON.stringify(output, null, 2);
-});

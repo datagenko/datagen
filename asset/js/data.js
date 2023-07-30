@@ -1,4 +1,6 @@
-let language = "ko";
+const languageSelect = document.querySelector('.language-select .selected-value')
+let language = 'KO'
+
 const ko_first_name = ["이", "김", "한", "차", "남"];
 const ko_last_name = ["가람", "가온", "그린", "겨루", "나래", "늘봄", "다슬", "라라", "루리", "마루", "바다", "새길", "새나"];
 const en_first_name = ["John", "Mark"];

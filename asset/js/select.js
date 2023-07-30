@@ -107,7 +107,7 @@ defaultTemplate.value = `[
   "<iter(5)>",
   {
       "_id": "<uuid()>",
-      "index": "<index(12)>",
+      "index": "<index()>",
       "name": "<name()>",
       "email": "<email()>",
       "phone": "<phone()>",

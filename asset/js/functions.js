@@ -38,7 +38,7 @@ function uuid() {
 
 function randomInteger(min, max) {
   if (isNaN(min)||isNaN(max)){
-    throw new Error('min and max must be a number')
+    throw new Error(language === 'KO' ? 'min이나 max의 값이 숫자가 아닙니다.':'min and max must be a number')
   }
   const min_num = Math.min(min, max);
   const max_num = Math.max(min, max)
@@ -54,13 +54,13 @@ function randomInteger(min, max) {
  */
 function randomFloat(min, max, round = 3) {
     if (Number.parseFloat(min) != min) {
-      throw new Error('float min의 값이 실수가 아닙니다')
+      throw new Error(language === 'KO' ? 'float min의 값이 실수가 아닙니다':'float min must be a number')
     }
     if (Number.parseFloat(max) != max) {
-      throw new Error('float max의 값이 실수가 아닙니다')
+      throw new Error(language === 'KO' ? 'float max의 값이 실수가 아닙니다':'float max must be a number')
     }
     if (Number.isInteger(round) != true) {
-      throw new Error('float round의 값이 정수가 아닙니다')
+      throw new Error(language === 'KO' ? 'float round의 값이 정수가 아닙니다':'float round must be a interger')
     }
     const min_num = Math.min(min, max)
     const max_num = Math.max(min, max)
@@ -107,13 +107,13 @@ function lorem(args) {
     }
   }
   if (isNaN(number)){
-    throw new Error('number must be a number')
+    throw new Error(language === 'KO'? 'number 값이 숫자가 아닙니다.':'number must be a number')
   }
   if (number < 1){
-    throw new Error('number must be greater than 0')
+    throw new Error(language === 'KO'? 'number 값이 0보다 작습니다.':'number must be greater than 0')
   }
   if (!['word', 'paragraph'].includes(unit)){
-    throw new Error("unit must be either 'word' or 'parameter'.")
+    throw new Error(language === 'KO'? "unit은 'word'나 'paragraph' 중 하나여야 합니다.":"unit must be either 'word' or 'paragraph'.")
   }
 
   if (unit === 'word') {
@@ -144,10 +144,10 @@ function lorem(args) {
  */
 function money(min, max, symbol) {
   if (isNaN(min) || isNaN(max)) {
-    throw new Error("min and max must be a number");
+    throw new Error(language==='KO'? 'min이나 max의 값이 숫자가 아닙니다.':"min and max must be a number");
   }
   if (!symbol) {
-    symbol = language === "ko" ? "￦" : "$";
+    symbol = language === "KO" ? "￦" : "$";
   }
   const minMoney = Math.min(min, max)
   const maxMoney = Math.max(min, max)
@@ -159,27 +159,27 @@ function money(min, max, symbol) {
 
 function country() {
   switch (language) {
-    case "ko":
+    case "KO":
       return randomItem(ko_country_list);
-    case "en":
+    case "ENG":
       return randomItem(en_country_list);
   }
 }
 
 function city() {
   switch (language) {
-    case "ko":
+    case "KO":
       return randomItem(ko_city_list);
-    case "en":
+    case "ENG":
       return randomItem(en_city_list);
   }
 }
 
 function name() {
   switch (language) {
-    case "ko":
+    case "KO":
       return randomItem(ko_first_name) + randomItem(ko_last_name);
-    case "en":
+    case "ENG":
       return `${randomItem(en_first_name)} ${randomItem(en_last_name)}`;
   }
 }
@@ -187,12 +187,12 @@ function name() {
 function phone() {
   let firstNumber, middleNumber, lastNumber;
   switch (language) {
-    case "ko":
+    case "KO":
       middleNumber = randomInteger(2000, 9999);
       lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
 
       return `010-${middleNumber}-${lastNumber}`;
-    case "en":
+    case "ENG":
       firstNumber = randomInteger(200, 999);
       middleNumber = randomInteger(0, 999).toString().padStart(3, "0");
       lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
@@ -203,10 +203,10 @@ function phone() {
 
 function email() {
   switch (language) {
-    case "ko":
+    case "KO":
       return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
 
-    case "en":
+    case "ENG":
       return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
   }
 }
@@ -230,11 +230,11 @@ function username() {
  */ 
 function password(min_length, max_length) {
   if (isNaN(min_length) || isNaN(max_length)) {
-	throw new Error("min_length and max_length must be a number");
+	throw new Error(language==='KO'? "min_length나 max_length의 값이 숫자가 아닙니다.":"min_length and max_length must be a number");
   } else if (min_length < 1 || max_length < 1) {
-    throw new Error("min_length and max_length must be greater than 0");
+    throw new Error(language==='KO'? "min_length나 max_length의 값이 0보다 작습니다.":"min_length and max_length must be greater than 0");
   } else if (min_length >= max_length) {
-	throw new Error("max_length must be greater than min_length");
+	throw new Error(language==='KO'? "max_length의 값이 min_length보다 작습니다.":"max_length must be greater than min_length");
   }
 
   const nomal_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -286,10 +286,10 @@ function password(min_length, max_length) {
  */
 function picture(width, height) {
   if (!Number.isInteger(width) || width < 1) {
-    throw new Error("Width must be a positive integer greater than or equal to 1.");
+    throw new Error(language==='KO'? "Width 값이 1보다 작거나 정수가 아닙니다.":"Width must be a positive integer greater than or equal to 1.");
   }
   if (!Number.isInteger(height) || height < 1) {
-    throw new Error("Height must be a positive integer greater than or equal to 1.");
+    throw new Error(language==='KO'? "Height 값이 1보다 작거나 정수가 아닙니다.":"Height must be a positive integer greater than or equal to 1.");
   }
   return `https://via.placeholder.com/${width}x${height}`;
 }
@@ -297,9 +297,9 @@ function picture(width, height) {
 // 직업 랜덤 생성
 function job() {
   switch (language) {
-    case "ko":
+    case "KO":
       return randomItem(ko_job_list);
-    case "en":
+    case "ENG":
       return randomItem(en_job_list);
   }
 }
@@ -307,18 +307,18 @@ function job() {
 // 회사 랜덤 생성
 function company() {
   switch (language) {
-    case "ko":
+    case "KO":
       return randomItem(ko_company_list);
-    case "en":
+    case "ENG":
       return randomItem(en_company_list);
   }
 }
 
 function gender() {
   switch (language) {
-    case "ko":
+    case "KO":
       return randomItem(["남성", "여성"]);
-    case "en":
+    case "ENG":
       return randomItem(["Male", "Female"]);
   }
 }
@@ -333,7 +333,7 @@ function creditCardNumber() {
  * @returns ○○○로 xx-x | ○○○ street xx-x (○:String, x:Number)
  */
 function address(){
-  if (language === 'ko') {
+  if (language === 'KO') {
     return `${randomItem(ko_street_list)}로 ${randomInteger(1, 99)}-${randomInteger(1,9)}`
   }
   return `${randomItem(en_street_list)} street ${randomInteger(1, 99)}-${randomInteger(1,9)}`
@@ -376,7 +376,7 @@ function date(date_start, date_end, date_format = "YYYY-MM-DD") {
   const endDate = new Date(date_end);
 
   if (isNaN(startDate) || isNaN(endDate)){
-    throw new Error("start date and end date must be 'YYYY-MM-DD' format")
+    throw new Error(language==='KO'? "start date나 end date의 양식이 'YYYY-MM-DD'가 아닙니다.":"start date and end date must be 'YYYY-MM-DD' format")
   }
 
   // 입력받은 date_start, date_end 사이 시간 계산
