@@ -35,7 +35,7 @@ function uuid() {
   });
 }
 
-// min max값이 정상적이지않을떄에 대한 예외처리가 필요합니다.
+
 function randomInteger(min, max) {
   if (isNaN(min)||isNaN(max)){
     throw new Error('min and max must be a number')
@@ -68,9 +68,17 @@ function randomFloat(min, max, round = 3) {
     return num.toFixed(round);
 }
 
-function randomItem(items) {
-  return items[Math.floor(Math.random() * items.length)];
+
+function randomItem(items, ...list) {
+  if (list.length > 0 ){
+    const itemList = [items, ...list]
+    return itemList[Math.floor(Math.random() * items.length)];
+  }
+  else {
+    return items[Math.floor(Math.random() * items.length)];
+  }
 }
+
 
 function randomBoolean() {
   return randomItem([true, false]);
@@ -90,7 +98,9 @@ function lorem(args) {
       unit = args[1];
     } else if (!isNaN(parseInt(args[0]))) {
       number = parseInt(args[0]);
+      console.log(2, number,unit);
     } else if (typeof args[1] === 'string') {
+      number = parseInt(args[0]);
       unit = args[1];
     } else if (typeof args[0] === 'string' && args[0].length > 0) {
       unit = args[0];
@@ -194,10 +204,10 @@ function phone() {
 function email() {
   switch (language) {
     case "ko":
-      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
+      return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
 
     case "en":
-      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
+      return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
   }
 }
 
@@ -364,6 +374,10 @@ function date(date_start, date_end, date_format = "YYYY-MM-DD") {
   // 입력받은 값을 Date object로 파싱
   const startDate = new Date(date_start);
   const endDate = new Date(date_end);
+
+  if (isNaN(startDate) || isNaN(endDate)){
+    throw new Error("start date and end date must be 'YYYY-MM-DD' format")
+  }
 
   // 입력받은 date_start, date_end 사이 시간 계산
   const timeRange = endDate.getTime() - startDate.getTime();

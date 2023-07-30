@@ -1,4 +1,4 @@
-function replaceFunc(func, args, index, action) {
+function replaceFunc(func, args, index, action, data) {
   switch (func) {
     // 고유값
     case "uuid":
@@ -82,11 +82,11 @@ function generateData(template, index) {
       // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
       // optional로 인자가 들어오지 않았을때에 대한 처리도 필요합니다.
       try {
-          const value = replaceFunc(func, args, index, action)
-          return value === null ? `Error:${str}함수명을 확인해주세요` : value;
+          const value = replaceFunc(func, args, index, action, data)
+          return value === null ? `Error: Invalid function name - ${str}.` : value;
       }
       catch(e) {
-          return e ? `${str}${e}` : `${str} Error: 입력값이 정확하지 않습니다.`; 
+          return e ? func === 'function'? `${e} - <function()>` : `${e} - ${str}.` : `Error: Invalid Input - ${str}.`; 
       }
       
     });
@@ -98,19 +98,19 @@ const input_form = document.querySelector("#json-input");
 document.getElementById("generate-button").addEventListener("click", function () {
   // let input = input_form.value;
   let input = `[
-      "<iter(2)>",
+      "<iter(1)>",
           {
               "_id": "<uuid()>",
               "index": "<index(12)>",
               "username": "<username()>",
               "password5_20": "<password(5, 20)>",
               "int5_20": "<int(20,a)>",
-              "float5.2_20.5": "<float(1.2, 20.5, 3)>",
+              "float5.2_20.5": "<float(a, 20.5, 3)>",
               "boolean": "<boolean()>",
               "random": "<random(one, 'two', three)>",
-              "lorem": "<lorem()>",
-              "lorem2": "<lorem(1)>",
-              "lorem3": "<lorem(10, 'word')>",
+              "lorem": "<lorem(3)>",
+              "lorem2": "<lorem('word')>",
+              "lorem3": "<lorem('3', 'paragraph')>",
               "color": "<color()>",
               "picture": "<picture(32, 32)>",
               "name": "<name()>",
@@ -126,7 +126,33 @@ document.getElementById("generate-button").addEventListener("click", function ()
               "gender": "<gender()>",
               "urls": "<urls()>",
               "money": "<money(-1000, 1000)>",
-              "created_at": "<date('a', '2020-12-31', 'YY/MM/DD')>, <time()>"
+              "created_at": "<date('a', '2020-12-31', 'YY/MM/DD')>, <time()>",
+              "function": "<function() {
+                console.log('uuid', <uuid()>);
+                console.log('index', this.index);
+                console.log('username', <username()>);
+                console.log('password', <password(5, 20)>);
+                console.log('int', <int(5,20)>);
+                console.log('float', <float(5.2, 20.5)>);
+                console.log('bool', <boolean()>);
+                console.log('random', <random('one', 'two', 'three')>);
+                console.log('lorem', <lorem()>);
+                console.log('color', <color()>);
+                console.log('name', <name()>);
+                console.log('email', <email()>);
+                console.log('phone', <phone()>);
+                console.log('country', <country()>);
+                console.log('city', <city()>);
+                console.log('address', <address()>);
+                console.log('postal_code', <postal_code()>);
+                console.log('job', <job()>);
+                console.log('company', <company()>);
+                console.log('creditCardNumber', <creditCardNumber()>);
+                console.log('gender', <gender()>);
+                console.log('urls', <urls()>);
+                console.log('money', <money(1000, 20000)>);
+                return <date('2020-01-01', '2020-12-31', 'YY/MM/DD')> + <time()> + this.name + this.city + this.gender
+              }>",
           }
       ]`;
 
@@ -147,8 +173,10 @@ document.getElementById("generate-button").addEventListener("click", function ()
       ">"
       )
   });
+  console.log(modifiedText)
   // 마지막 항목의 , 를 제거합니다.
-  modifiedText = modifiedText.replace((/,\s*}/g), '}');
+  modifiedText = modifiedText.replace((/,\s*}/g), '\n}');
+  console.log(modifiedText)
   // console.log(modifiedText);
   input = JSON.parse(modifiedText);
 
