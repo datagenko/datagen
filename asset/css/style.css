@@ -13,7 +13,7 @@
   --light-gray: #b3afaf;
 
   ::-webkit-scrollbar {
-    width: 1.75rem;
+    width: 1.4rem;
   }
 
   ::-webkit-scrollbar-track {
@@ -24,14 +24,14 @@
     background-color: var(--scroll);
     border-radius: 50px;
     background-clip: padding-box;
-    border: 8px solid transparent;
+    border: 5px solid transparent;
   }
 }
 
 ::-webkit-scrollbar-button:vertical:start:increment,
 ::-webkit-scrollbar-button:vertical:end:decrement {
   display: block;
-  height: 10px;
+  height: 20px;
 }
 
 button {
