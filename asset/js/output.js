@@ -1,6 +1,20 @@
 let language = "ko";
 const ko_first_name = ["이", "김", "한", "차", "남"];
-const ko_last_name = ["가람", "가온", "그린", "겨루", "나래", "늘봄", "다슬", "라라", "루리", "마루", "바다", "새길", "새나"];
+const ko_last_name = [
+  "가람",
+  "가온",
+  "그린",
+  "겨루",
+  "나래",
+  "늘봄",
+  "다슬",
+  "라라",
+  "루리",
+  "마루",
+  "바다",
+  "새길",
+  "새나",
+];
 const en_first_name = ["John", "Mark"];
 const en_last_name = ["Smith", "Ruffalo"];
 const lorem_list = [
@@ -88,7 +102,7 @@ function uuid() {
 
 // min max값이 정상적이지않을떄에 대한 예외처리가 필요합니다.
 function randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /** 유저가 입력한 범위 내에서 실수를 생성합니다.
@@ -119,13 +133,12 @@ function randomFloat(min, max, round = 3) {
 }
 
 function randomItem(items) {
-    return items[Math.floor(Math.random() * items.length)];
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 function randomBoolean() {
   return randomItem([true, false]);
 }
-
 
 /** 유저가 입력한 범위 내에서 금액을 출력합니다.
  * @param {Number} min 최소금액
@@ -140,8 +153,8 @@ function money(min, max, symbol) {
   if (!symbol) {
     symbol = language === "ko" ? "￦" : "$";
   }
-  const minMoney = Math.min(min, max)
-  const maxMoney = Math.max(min, max)
+  const minMoney = Math.min(min, max);
+  const maxMoney = Math.max(min, max);
   const result = randomInteger(minMoney, maxMoney)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -196,10 +209,14 @@ function phone() {
 function email() {
   switch (language) {
     case "ko":
-      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
+      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(
+        domain_list
+      )}`;
 
     case "en":
-      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
+      return `${randomItem(lorem_list)}@${randomItem(lorem_list)}.${randomItem(
+        domain_list
+      )}`;
   }
 }
 
@@ -222,11 +239,13 @@ function password(min_length, max_length) {
     return "error";
   }
 
-  const nomal_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const nomal_characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const special_characters = "!@#$%^&*()_-+=[]{}|\\:;\"'<>,.?/";
   const characters = [nomal_characters, special_characters];
   // password 길이값 랜덤 설정
-  const password_length = Math.floor(Math.random() * (max_length - min_length + 1)) + min_length;
+  const password_length =
+    Math.floor(Math.random() * (max_length - min_length + 1)) + min_length;
 
   // 생성된 password에 특수문자가 포함되는지 확인하는 함수
   function contains(password) {
@@ -253,10 +272,16 @@ function password(min_length, max_length) {
     let index = Math.floor(Math.random() * 2);
     switch (index) {
       case 0:
-        password += characters[index][Math.floor(Math.random() * nomal_characters.length)];
+        password +=
+          characters[index][
+          Math.floor(Math.random() * nomal_characters.length)
+          ];
         break;
       case 1:
-        password += characters[index][Math.floor(Math.random() * special_characters.length)];
+        password +=
+          characters[index][
+          Math.floor(Math.random() * special_characters.length)
+          ];
         break;
     }
   }
@@ -271,10 +296,14 @@ function password(min_length, max_length) {
  */
 function picture(width, height) {
   if (!Number.isInteger(width) || width < 1) {
-    throw new Error("Width must be a positive integer greater than or equal to 1.");
+    throw new Error(
+      "Width must be a positive integer greater than or equal to 1."
+    );
   }
   if (!Number.isInteger(height) || height < 1) {
-    throw new Error("Height must be a positive integer greater than or equal to 1.");
+    throw new Error(
+      "Height must be a positive integer greater than or equal to 1."
+    );
   }
   return `https://via.placeholder.com/${width}x${height}`;
 }
@@ -324,18 +353,17 @@ function color() {
 }
 
 function getRandomDomain() {
-  const domainExtensions = [".com", ".org", ".net", ".co.kr", ".io", ".xyz"]; 
+  const domainExtensions = [".com", ".org", ".net", ".co.kr", ".io", ".xyz"];
   return domainExtensions[Math.floor(Math.random() * domainExtensions.length)];
 }
 
 function urls() {
   const protocol = "https://";
-  const randomString = randomItem(lorem_list)
+  const randomString = randomItem(lorem_list);
   const domainExtension = getRandomDomain();
   const randomURL = protocol + randomString + domainExtension;
   return randomURL;
 }
-
 
 function date(date_start, date_end, date_format = "YYYY-MM-DD") {
   // 입력받은 값을 Date object로 파싱
@@ -358,14 +386,17 @@ function date(date_start, date_end, date_format = "YYYY-MM-DD") {
     const day = date.getDate().toString().padStart(2, "0");
 
     // 입력받은 날짜 형식에 실제 날짜 대입
-    let formattedDate = format.replace("YYYY", year).replace("YY", year.slice(-2)).replace("MM", month).replace("DD", day);
+    let formattedDate = format
+      .replace("YYYY", year)
+      .replace("YY", year.slice(-2))
+      .replace("MM", month)
+      .replace("DD", day);
 
     return formattedDate;
   }
 
   return formatDate(randomDate, date_format);
 }
-
 
 function time() {
   // 24시간 형식으로 출력
@@ -380,74 +411,6 @@ function time() {
   return `${formattedHour}:${formattedMinute}:${formattedSecond}`;
 }
 
-function replaceFunc(func, args, index, action) {
-  switch (func) {
-    // 고유값
-    case "uuid":
-      return uuid();
-    case "index":
-      return index;
-    case "username":
-      return username();
-    case 'password':
-      return password(parseInt(args[0]), parseInt(args[1]))
-    //특정 데이터타입
-    case "int":
-      return randomInteger(parseInt(args[0]), parseInt(args[1]));
-    case "float":
-      return randomFloat(parseFloat(args[0]), parseFloat(args[1]), args[2]);
-    case "boolean":
-      return randomBoolean();
-    case "random":
-      return randomItem(args);
-    //case 'lorem':
-    //    // loream은 들어오는 인자가 전부 optional 이기 때문에 처리방법이 복잡할 것 같습니다.
-    //    return lorem(number, unit)
-    case "picture":
-      return picture(parseInt(args[0]), parseInt(args[1]));
-    case 'color':
-      return color()
-    // 개인정보관련
-    case "name":
-      return name();
-    case "email":
-      return email();
-    case "phone":
-      return phone();
-    case "country":
-      return country();
-    case "city":
-      return city();
-    // case 'address':
-    //    return address()
-    // case 'postal_code':
-    //    return postal_code()
-    case 'job':
-      return job()
-    case 'company':
-      return company()
-    case "creditCardNumber":
-      return creditCardNumber();
-    case "gender":
-      return gender();
-    case 'urls':
-      return urls()
-    case "money":
-      return money(parseInt(args[0]), parseInt(args[1]), args[2]);
-    case 'date':
-      return date(args[0], args[1], args[2])
-    case 'time':
-      return time()
-    case 'function':
-      // action을 바탕으로 Function을 만들고 data를 bind 해서 실행합니다.
-      const do_action = new Function(action);
-      return do_action.call(data)
-    default:
-      return null;
-  }
-}
-    
-
 function generateData(template, index) {
   let data = {};
 
@@ -459,16 +422,81 @@ function generateData(template, index) {
       if (func === "function") {
         action = key.match(/{(.*)}/)[1].trim();
       }
-      [...args] = key.split("(")[1].replace(")", "").replaceAll(" ", "").replaceAll("'", "").replaceAll('"', "").split(",");
+      [...args] = key
+        .split("(")[1]
+        .replace(")", "")
+        .replaceAll(" ", "")
+        .replaceAll("'", "")
+        .replaceAll('"', "")
+        .split(",");
 
       // 들어오는 인자는 args배열에 저장됩니다.
       // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
       // optional로 인자가 들어오지 않았을때에 대한 처리도 필요합니다.
-      try {
-          return replaceFunc(func, args, index, action) || `Error:${str}함수명을 확인해주세요`
-      }
-      catch(e) {
-          return `Error:${str}${e}` || `Error:${str} 입력값이 정확하지 않습니다.` 
+
+      switch (func) {
+        // 고유값
+        case "uuid":
+          return uuid();
+        case "index":
+          return index;
+        case "username":
+          return username();
+        case "password":
+          return password(parseInt(args[0]), parseInt(args[1]));
+        //특정 데이터타입
+        case "int":
+          return randomInteger(parseInt(args[0]), parseInt(args[1]));
+        case "float":
+          return randomFloat(parseFloat(args[0]), parseFloat(args[1]), args[2]);
+        case "boolean":
+          return randomBoolean();
+        case "random":
+          return randomItem(args);
+        //case 'lorem':
+        //    // loream은 들어오는 인자가 전부 optional 이기 때문에 처리방법이 복잡할 것 같습니다.
+        //    return lorem(number, unit)
+        case "picture":
+          return picture(parseInt(args[0]), parseInt(args[1]));
+        case "color":
+          return color();
+        // 개인정보관련
+        case "name":
+          return name();
+        case "email":
+          return email();
+        case "phone":
+          return phone();
+        case "country":
+          return country();
+        case "city":
+          return city();
+        // case 'address':
+        //    return address()
+        // case 'postal_code':
+        //    return postal_code()
+        case "job":
+          return job();
+        case "company":
+          return company();
+        case "creditCardNumber":
+          return creditCardNumber();
+        case "gender":
+          return gender();
+        case "urls":
+          return urls();
+        case "money":
+          return money(parseInt(args[0]), parseInt(args[1]), args[2]);
+        case "date":
+          return date(args[0], args[1], args[2]);
+        case "time":
+          return time();
+        case "function":
+          // action을 바탕으로 Function을 만들고 data를 bind 해서 실행합니다.
+          const do_action = new Function(action);
+          return do_action.call(data);
+        default:
+          return str;
       }
       
     });
@@ -476,210 +504,273 @@ function generateData(template, index) {
   return data;
 }
 
-const input_form = document.querySelector("#json-input");
-document.getElementById("generate-button").addEventListener("click", function () {
-  // let input = input_form.value;
-  let input = `[
-      "<iter(2)>",
-          {
-              "_id": "<uuid()>",
-              "index": "<index(12)>",
-              "username": "<username()>",
-              "password5_20": "<password(5, 20)>",
-              "int5_20": "<int(5,20)>",
-              "float5.2_20.5": "<float(5.2, 20.5)>",
-              "boolean": "<boolean()>",
-              "random": "<random(one, 'two', three)>",
-              "lorem": "<lorem()>",
-              "color": "<color()>",
-              "picture": "<picture(0, 0)>",
-              "name": "<name()>",
-              "email": "<email()>",
-              "phone": "<phone()>",
-              "country": "<country()>",
-              "city": "<city()>",
-              "address": "<address()>",
-              "postal_code": "<postal_code()>",
-              "job": "<job()>",
-              "company": "<company()>",
-              "creditCardNumber": "<creditCardNumber()>",
-              "gender": "<gender()>",
-              "urls": "<urls()>",
-              "money": "<money(a, 1000)>",
-              "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
-          }
-      ]`;
+// const input_form = document.querySelector("#json-input");
+document
+  .getElementById("generate-button")
+  .addEventListener("click", function () {
+    // let input = input_form.value;
+    // let input = `[
+    //     "<iter(2)>",
+    //         {
+    //             "_id": "<uuid()>",
+    //             "index": "<index(12)>",
+    //             "username": "<username()>",
+    //             "password5_20": "<password(5, 20)>",
+    //             "int5_20": "<int(5,20)>",
+    //             "float5.2_20.5": "<float(5.2, 20.5)>",
+    //             "boolean": "<boolean()>",
+    //             "random": "<random(one, 'two', three)>",
+    //             "lorem": "<lorem()>",
+    //             "color": "<color()>",
+    //             "name": "<name()>",
+    //             "email": "<email()>",
+    //             "phone": "<phone()>",
+    //             "country": "<country()>",
+    //             "city": "<city()>",
+    //             "address": "<address()>",
+    //             "postal_code": "<postal_code()>",
+    //             "job": "<job()>",
+    //             "company": "<company()>",
+    //             "creditCardNumber": "<creditCardNumber()>",
+    //             "gender": "<gender()>",
+    //             "urls": "<urls()>",
+    //             "money": "<money(233323, 1000)>",
+    //             "created_at": "<date('2020-01-01', '2020-12-31', 'YY/MM/DD')>, <time()>"
+    //         }
+    //     ]`;
 
-  // function 에서 줄바꿈처리 되어있는 부분을 직렬화시키고,
-  // <> 표기된 함수를 JavaScript 함수로 바꿉니다.
-  const modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
-    return (
-      "<function() " +
-      // 줄바꿈 문자 공백문자로 변경.
-      fn
-        .replace(/\n/g, "")
-        // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
-        .replace(/<([^>]+)>/g, (_, context) => {
-          console.log(context);
-          const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
-          return `${function_dic[functionName] || functionName}(${args})`;
-        }) +
-      ">"
+    let indentValue = document.querySelector(".select-indent .selected-value").textContent;
+    // function 에서 줄바꿈처리 되어있는 부분을 직렬화시키고,
+    // <> 표기된 함수를 JavaScript 함수로 바꿉니다.
+    let input = defaultTemplate.value;
+    let modifiedText = input.replace(/<function\(\)([\s\S]+)>/g, (_, fn) => {
+      return (
+        "<function() " +
+        // 줄바꿈 문자 공백문자로 변경.
+        fn
+          .replace(/\n/g, "")
+          // 내부에 <>로 표기된 함수를 일반 함수형태로 변경.
+          .replace(/<([^>]+)>/g, (_, context) => {
+            console.log(context);
+            const [__, functionName, args] = context.match(/(\w+)\((.*)\)/);
+            return `${function_dic[functionName] || functionName}(${args})`;
+          }) +
+        ">"
+      );
+    });
+    modifiedText = modifiedText.replace(/,\s*}/g, "}");
+    console.log(modifiedText);
+    input = JSON.parse(modifiedText);
+
+    let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
+
+    let template = input[1];
+
+    // index 함수의 초기값이 지정되었는지 판단하는 상수 : true/false
+    const hasInitIndex = !!template["index"].match(/[0-9]/g);
+    let initIndex = hasInitIndex
+      ? parseInt(template["index"].match(/[0-9]/g).join(""))
+      : 1;
+
+    let output = [];
+
+    for (let i = 0; i < repeatCount; i++) {
+      output.push(generateData(template, initIndex));
+      initIndex++;
+    }
+
+    document.getElementById("json-output").value = JSON.stringify(
+      output,
+      null,
+      parseInt(indentValue)
     );
+
+    // generate-button을 누를 때만 json-output을 초기화
+    if (modifiedText !== null) {
+      document.getElementById("json-output").value = "";
+    }
+
+    // JSON 데이터 생성 후 modifiedText 업데이트
+    modifiedText = JSON.stringify(
+      output,
+      null,
+      parseInt(indentValue)
+    );
+    document.getElementById("json-output").value = modifiedText;
   });
-  input = JSON.parse(modifiedText);
 
-  let repeatCount = parseInt(input[0].match(/<iter\((\d+)\)>/)[1]);
+// Reset 버튼 클릭시 이벤트
+document.getElementById("reset-button").addEventListener("click", function () {
+  const jsonInputText = document.querySelector("#json-input");
+  jsonInputText.value = `[
+    "<iter(5)>",
+    {
+        "_id": "<uuid()>",
+        "index": "<index(12)>",
+        "name": "<name()>",
+        "email": "<email()>",
+        "phone": "<phone()>",
+        "country": "<country()>",
+        "address": "<address()>",
+        "job": "<job()>",
+    }
+  ]`;
+  // modifiedText 변수 초기화
+  modifiedText = null;
+  document.getElementById("json-output").value = "";
 
-  let template = input[1];
-
-  // index 함수의 초기값이 지정되었는지 판단하는 상수 : true/false
-  const hasInitIndex = !!template["index"].match(/[0-9]/g);
-  let initIndex = hasInitIndex ? parseInt(template["index"].match(/[0-9]/g).join("")) : 1;
-
-  let output = [];
-
-  for (let i = 0; i < repeatCount; i++) {
-    output.push(generateData(template, initIndex));
-    initIndex++;
-  }
-
-  document.getElementById("json-output").value = JSON.stringify(output, null, 2);
+  // 버튼 초기 상태로 되돌리기
+  const selectButton = document.querySelector(".select-input button");
+  selectButton.querySelector(".selected-value").textContent =
+    "key값을 선택하세요";
 });
 
 // csv 다운로드 버튼 클릭시 이벤트
-document.getElementById("downloadcsv-button").addEventListener("click", function () {
-  // json-output textarea의 값을 가져온다.
-  let json = document.getElementById("json-output").value;
-  // json을 객체로 변환한다.
-  let data = JSON.parse(json);
-  // csv 파일의 첫번째 줄에 들어갈 키를 추출한다.
-  let keys = Object.keys(data[0]);
-  // csv 파일의 첫번째 줄을 만든다.
-  let csv = keys.join(",") + "\n";
-  // csv 파일의 두번째 줄부터 데이터를 넣는다.
-  data.forEach(function (row) {
-    // csv 파일의 한 줄을 만든다.
-    let line = keys
-      .map(function (key) {
-        return row[key];
-      })
-      .join(",");
-    // csv 파일에 한 줄을 추가한다.
-    csv += line + "\n";
+document
+  .getElementById("downloadcsv-button")
+  .addEventListener("click", function () {
+    // json-output textarea의 값을 가져온다.
+    let json = document.getElementById("json-output").value;
+    // json을 객체로 변환한다.
+    let data = JSON.parse(json);
+    // csv 파일의 첫번째 줄에 들어갈 키를 추출한다.
+    let keys = Object.keys(data[0]);
+    // csv 파일의 첫번째 줄을 만든다.
+    let csv = keys.join(",") + "\n";
+    // csv 파일의 두번째 줄부터 데이터를 넣는다.
+    data.forEach(function (row) {
+      // csv 파일의 한 줄을 만든다.
+      let line = keys
+        .map(function (key) {
+          return row[key];
+        })
+        .join(",");
+      // csv 파일에 한 줄을 추가한다.
+      csv += line + "\n";
+    });
+    // csv 파일을 다운로드한다.
+    download("data.csv", csv);
   });
-  // csv 파일을 다운로드한다.
-  download("data.csv", csv);
-});
 
 // json 다운로드 버튼 클릭시 이벤트
-document.getElementById("downloadjson-button").addEventListener("click", function () {
-  // json-output textarea의 값을 가져온다.
-  let json = document.getElementById("json-output").value;
-  // json 파일을 다운로드한다.
-  download("data.json", json);
-});
+document
+  .getElementById("downloadjson-button")
+  .addEventListener("click", function () {
+    // json-output textarea의 값을 가져온다.
+    let json = document.getElementById("json-output").value;
+    // json 파일을 다운로드한다.
+    download("data.json", json);
+  });
 
 // html 다운로드 버튼 클릭시 이벤트
-document.getElementById("downloadhtml-button").addEventListener("click", function () {
-  // json-output textarea의 값을 가져온다.
-  let json = document.getElementById("json-output").value;
-  // json을 객체로 변환한다.
-  let data = JSON.parse(json);
-  // html 파일을 만든다.
-  let html = "<table>\n";
-  // html 파일의 첫번째 줄에 들어갈 키를 추출한다.
-  let keys = Object.keys(data[0]);
-  // html 파일의 첫번째 줄을 만든다.
-  html += "\t<tr>\n";
-  // html 파일의 첫번째 줄에 키를 넣는다.
-  keys.forEach(function (key) {
-    html += "\t\t<th>" + key + "</th>\n";
-  });
-  // html 파일의 첫번째 줄을 닫는다.
-  html += "\t</tr>\n";
-  // html 파일의 두번째 줄부터 데이터를 넣는다.
-  data.forEach(function (row) {
-    // html 파일의 한 줄을 만든다.
+document
+  .getElementById("downloadhtml-button")
+  .addEventListener("click", function () {
+    // json-output textarea의 값을 가져온다.
+    let json = document.getElementById("json-output").value;
+    // json을 객체로 변환한다.
+    let data = JSON.parse(json);
+    // html 파일을 만든다.
+    let html = "<table>\n";
+    // html 파일의 첫번째 줄에 들어갈 키를 추출한다.
+    let keys = Object.keys(data[0]);
+    // html 파일의 첫번째 줄을 만든다.
     html += "\t<tr>\n";
-    // html 파일의 한 줄에 데이터를 넣는다.
+    // html 파일의 첫번째 줄에 키를 넣는다.
     keys.forEach(function (key) {
-      html += "\t\t<td>" + row[key] + "</td>\n";
+      html += "\t\t<th>" + key + "</th>\n";
     });
-    // html 파일의 한 줄을 닫는다.
+    // html 파일의 첫번째 줄을 닫는다.
     html += "\t</tr>\n";
+    // html 파일의 두번째 줄부터 데이터를 넣는다.
+    data.forEach(function (row) {
+      // html 파일의 한 줄을 만든다.
+      html += "\t<tr>\n";
+      // html 파일의 한 줄에 데이터를 넣는다.
+      keys.forEach(function (key) {
+        html += "\t\t<td>" + row[key] + "</td>\n";
+      });
+      // html 파일의 한 줄을 닫는다.
+      html += "\t</tr>\n";
+    });
+    // html 파일을 닫는다.
+    html += "</table>";
+    // html 파일을 다운로드한다.
+    download("data.html", html);
   });
-  // html 파일을 닫는다.
-  html += "</table>";
-  // html 파일을 다운로드한다.
-  download("data.html", html);
-});
 
 // xml 다운로드 버튼 클릭시 이벤트
-document.getElementById("downloadxml-button").addEventListener("click", function () {
-  // json-output textarea의 값을 가져온다.
-  let json = document.getElementById("json-output").value;
-  // json을 객체로 변환한다.
-  let data = JSON.parse(json);
-  // xml 파일을 만든다.
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  // xml 파일의 첫번째 줄에 들어갈 키를 추출한다.
-  let keys = Object.keys(data[0]);
-  // xml 파일의 첫번째 줄을 만든다.
-  xml += "<rows>\n";
-  // xml 파일의 두번째 줄부터 데이터를 넣는다.
-  data.forEach(function (row) {
-    // xml 파일의 한 줄을 만든다.
-    xml += "\t<row>\n";
-    // xml 파일의 한 줄에 데이터를 넣는다.
-    keys.forEach(function (key) {
-      xml += "\t\t<" + key + ">" + row[key] + "</" + key + ">\n";
+document
+  .getElementById("downloadxml-button")
+  .addEventListener("click", function () {
+    // json-output textarea의 값을 가져온다.
+    let json = document.getElementById("json-output").value;
+    // json을 객체로 변환한다.
+    let data = JSON.parse(json);
+    // xml 파일을 만든다.
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    // xml 파일의 첫번째 줄에 들어갈 키를 추출한다.
+    let keys = Object.keys(data[0]);
+    // xml 파일의 첫번째 줄을 만든다.
+    xml += "<rows>\n";
+    // xml 파일의 두번째 줄부터 데이터를 넣는다.
+    data.forEach(function (row) {
+      // xml 파일의 한 줄을 만든다.
+      xml += "\t<row>\n";
+      // xml 파일의 한 줄에 데이터를 넣는다.
+      keys.forEach(function (key) {
+        xml += "\t\t<" + key + ">" + row[key] + "</" + key + ">\n";
+      });
+      // xml 파일의 한 줄을 닫는다.
+      xml += "\t</row>\n";
     });
-    // xml 파일의 한 줄을 닫는다.
-    xml += "\t</row>\n";
+    // xml 파일을 닫는다.
+    xml += "</rows>";
+    // xml 파일을 다운로드한다.
+    download("data.xml", xml);
   });
-  // xml 파일을 닫는다.
-  xml += "</rows>";
-  // xml 파일을 다운로드한다.
-  download("data.xml", xml);
-});
 
 // sql query 다운로드 버튼 클릭시 이벤트
-document.getElementById("downloadsql-button").addEventListener("click", function () {
-  // json-output textarea의 값을 가져온다.
-  let json = document.getElementById("json-output").value;
-  // json을 객체로 변환한다.
-  let data = JSON.parse(json);
-  // sql query 파일을 만든다.
-  let sql = "INSERT INTO table_name (";
-  // sql query 파일의 첫번째 줄에 들어갈 키를 추출한다.
-  let keys = Object.keys(data[0]);
-  // sql query 파일의 첫번째 줄을 만든다.
-  sql += keys.join(", ") + ") VALUES\n";
-  // sql query 파일의 두번째 줄부터 데이터를 넣는다.
-  data.forEach(function (row, index) {
-    // sql query 파일의 한 줄을 만든다.
-    sql += "\t(";
-    // sql query 파일의 한 줄에 데이터를 넣는다.
-    keys.forEach(function (key) {
-      sql += "'" + row[key] + "', ";
+document
+  .getElementById("downloadsql-button")
+  .addEventListener("click", function () {
+    // json-output textarea의 값을 가져온다.
+    let json = document.getElementById("json-output").value;
+    // json을 객체로 변환한다.
+    let data = JSON.parse(json);
+    // sql query 파일을 만든다.
+    let sql = "INSERT INTO table_name (";
+    // sql query 파일의 첫번째 줄에 들어갈 키를 추출한다.
+    let keys = Object.keys(data[0]);
+    // sql query 파일의 첫번째 줄을 만든다.
+    sql += keys.join(", ") + ") VALUES\n";
+    // sql query 파일의 두번째 줄부터 데이터를 넣는다.
+    data.forEach(function (row, index) {
+      // sql query 파일의 한 줄을 만든다.
+      sql += "\t(";
+      // sql query 파일의 한 줄에 데이터를 넣는다.
+      keys.forEach(function (key) {
+        sql += "'" + row[key] + "', ";
+      });
+      // sql query 파일의 한 줄을 닫는다.
+      sql = sql.slice(0, -2) + ")";
+      // sql query 파일의 한 줄을 닫는다.
+      sql += index === data.length - 1 ? ";" : ",";
+      // sql query 파일의 한 줄을 닫는다.
+      sql += "\n";
     });
-    // sql query 파일의 한 줄을 닫는다.
-    sql = sql.slice(0, -2) + ")";
-    // sql query 파일의 한 줄을 닫는다.
-    sql += index === data.length - 1 ? ";" : ",";
-    // sql query 파일의 한 줄을 닫는다.
-    sql += "\n";
+    // sql query 파일을 다운로드한다.
+    download("data.sql", sql);
   });
-  // sql query 파일을 다운로드한다.
-  download("data.sql", sql);
-});
 
 function download(filename, text) {
   // a 태그를 만든다.
   let element = document.createElement("a");
   // href 속성을 추가한다.
-  element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+  );
   // download 속성을 추가한다.
   element.setAttribute("download", filename);
   // a 태그를 클릭한다.
