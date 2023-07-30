@@ -334,9 +334,9 @@ function creditCardNumber() {
  */
 function address(){
   if (language === 'KO') {
-    return `${randomItem(ko_street_list)}로 ${randomInteger(1, 99)}-${randomInteger(1,9)}`
+    return `${randomItem(street_list.ko)} ${randomInteger(1, 99)}-${randomInteger(1,9)}`
   }
-  return `${randomItem(en_street_list)} street ${randomInteger(1, 99)}-${randomInteger(1,9)}`
+  return `${randomInteger(1, 9999)} ${randomItem(street_list.en)}`
 }
 
 /** 우편번호를 생성합니다.
