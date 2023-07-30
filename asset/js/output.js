@@ -105,13 +105,30 @@ function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/** 유저가 입력한 범위 내에서 실수를 생성합니다.
+ * @param {float} min 최솟값
+ * @param {float} max 최댓값
+ * @param {integer} round 반올림 자릿수
+ * @return 생성된 실수를 round 자릿수에서 반올림하여 반환합니다.
+ */
 function randomFloat(min, max, round = 3) {
-  if (max > min) {
-    let num = Math.random() * (max - min) + min;
+  try {
+    if (Number.parseFloat(min) != min) {
+      throw new Error('float min의 값이 실수가 아닙니다')
+    }
+    if (Number.parseFloat(max) != max) {
+      throw new Error('float max의 값이 실수가 아닙니다')
+    }
+    if (Number.isInteger(round) != true) {
+      throw new Error('float round의 값이 정수가 아닙니다')
+    }
+    const min_num = Math.min(min, max)
+    const max_num = Math.max(min, max)
+    let num = Math.random() * (max_num - min_num) + min_num;
     return num.toFixed(round);
-  } else {
-    let num = Math.random() * (min - max) + max;
-    return num.toFixed(round);
+  }
+  catch (err) {
+    return err
   }
 }
 
@@ -130,6 +147,9 @@ function randomBoolean() {
  * @returns 맨앞에 symbol을 붙이고, 뒤에 랜덤하게 생성된 금액에 3자리 단위로 ,를 붙여서 반환합니다.
  */
 function money(min, max, symbol) {
+  if (isNaN(min) || isNaN(max)) {
+    throw "입력값이 숫자가 아닙니다.";
+  }
   if (!symbol) {
     symbol = language === "ko" ? "￦" : "$";
   }
@@ -159,8 +179,6 @@ function city() {
   }
 }
 
-console.log(country(), city());
-
 function name() {
   switch (language) {
     case "ko":
@@ -187,6 +205,7 @@ function phone() {
   }
 }
 
+/* 랜덤한 이메일을 생성합니다. */
 function email() {
   switch (language) {
     case "ko":
@@ -414,6 +433,7 @@ function generateData(template, index) {
       // 들어오는 인자는 args배열에 저장됩니다.
       // args[0], args[1] 식으로 접근하시면 되고, 기본적으로 전부 String 타입이기 때문에, 데이터타입에 주의해서 다뤄주세요.
       // optional로 인자가 들어오지 않았을때에 대한 처리도 필요합니다.
+
       switch (func) {
         // 고유값
         case "uuid":
@@ -478,6 +498,7 @@ function generateData(template, index) {
         default:
           return str;
       }
+      
     });
   }
   return data;
