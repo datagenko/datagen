@@ -255,13 +255,13 @@ function password(min_length, max_length) {
       case 0:
         password +=
           characters[index][
-            Math.floor(Math.random() * nomal_characters.length)
+          Math.floor(Math.random() * nomal_characters.length)
           ];
         break;
       case 1:
         password +=
           characters[index][
-            Math.floor(Math.random() * special_characters.length)
+          Math.floor(Math.random() * special_characters.length)
           ];
         break;
     }
@@ -518,6 +518,7 @@ document
     //         }
     //     ]`;
 
+    let indentValue = document.querySelector(".select-indent .selected-value").textContent;
     // function 에서 줄바꿈처리 되어있는 부분을 직렬화시키고,
     // <> 표기된 함수를 JavaScript 함수로 바꿉니다.
     let input = defaultTemplate.value;
@@ -560,7 +561,7 @@ document
     document.getElementById("json-output").value = JSON.stringify(
       output,
       null,
-      2
+      parseInt(indentValue)
     );
 
     // generate-button을 누를 때만 json-output을 초기화
@@ -569,7 +570,11 @@ document
     }
 
     // JSON 데이터 생성 후 modifiedText 업데이트
-    modifiedText = JSON.stringify(output, null, 2);
+    modifiedText = JSON.stringify(
+      output,
+      null,
+      parseInt(indentValue)
+    );
     document.getElementById("json-output").value = modifiedText;
   });
 
