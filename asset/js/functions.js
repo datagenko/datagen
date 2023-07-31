@@ -298,9 +298,9 @@ function picture(width, height) {
 function job() {
   switch (language) {
     case "KO":
-      return randomItem(ko_job_list);
+      return randomItem(job_list.ko);
     case "ENG":
-      return randomItem(en_job_list);
+      return randomItem(job_list.en);
   }
 }
 
@@ -308,9 +308,9 @@ function job() {
 function company() {
   switch (language) {
     case "KO":
-      return randomItem(ko_company_list);
+      return randomItem(company_list.ko);
     case "ENG":
-      return randomItem(en_company_list);
+      return randomItem(company_list.en);
   }
 }
 
