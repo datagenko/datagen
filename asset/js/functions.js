@@ -160,18 +160,18 @@ function money(min, max, symbol) {
 function country() {
   switch (language) {
     case "KO":
-      return randomItem(ko_country_list);
+      return randomItem(country_list.ko);
     case "ENG":
-      return randomItem(en_country_list);
+      return randomItem(country_list.en);
   }
 }
 
 function city() {
   switch (language) {
     case "KO":
-      return randomItem(ko_city_list);
+      return randomItem(city_list.ko);
     case "ENG":
-      return randomItem(en_city_list);
+      return randomItem(city_list.en);
   }
 }
 
