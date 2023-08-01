@@ -184,9 +184,9 @@ function city() {
 function name() {
   switch (language) {
     case "KO":
-      return randomItem(ko_first_name) + randomItem(ko_last_name);
+      return randomItem(first_name.ko) + randomItem(last_name.ko);
     case "ENG":
-      return `${randomItem(en_first_name)} ${randomItem(en_last_name)}`;
+      return `${randomItem(first_name.en)} ${randomItem(last_name.en)}`;
   }
 }
 
