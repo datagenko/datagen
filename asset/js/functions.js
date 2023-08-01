@@ -157,6 +157,9 @@ function money(min, max, symbol) {
   return `${symbol} ${result}`;
 }
 
+/** 설정 언어에 따라 나라 이름을 생성합니다.
+ * @returns {string} 나라 이름을 무작위로 반환합니다.
+ */
 function country() {
   switch (language) {
     case "KO":
@@ -166,6 +169,9 @@ function country() {
   }
 }
 
+/** 설정 언어에 따라 도시 이름을 생성합니다.
+ * @returns {string} 도시 이름을 무작위로 반환합니다.
+ */
 function city() {
   switch (language) {
     case "KO":
