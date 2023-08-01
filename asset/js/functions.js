@@ -181,6 +181,10 @@ function city() {
   }
 }
 
+/**
+ * 언어 형식에 맞는 랜덤한 이름을 반환합니다.
+ * @returns {string}
+ */
 function name() {
   switch (language) {
     case "KO":
@@ -190,6 +194,10 @@ function name() {
   }
 }
 
+/**
+ * 언어 형식에 맞는 랜덤한 전화번호를 반환합니다.
+ * @returns {string} KO) 010-0000-0000, ENG) (200) 0000-000
+ */
 function phone() {
   let firstNumber, middleNumber, lastNumber;
   switch (language) {
