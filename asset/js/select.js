@@ -23,7 +23,10 @@ const selectEvent = (selectBox, option, selectedValue) => {
     } else if (selectBox.classList.contains("select-indent")) {
       changeIndentSize(['json-output']);
     } else {
-      //laguage 관련
+      //language 관련
+      // 가이드 언어 변경
+      const language = selectedValue.innerText === 'KO' ? 'Korean' : 'English';
+      addGuideToModalContent(language);
     }
   }
   document.addEventListener("click", (event) => {
@@ -75,11 +78,11 @@ const templateMapping = {
   "uuid: user id 생성": `"uuid": "<uuid()>",`,
   index: `"index": "<index(integer)>",`,
   username: `"username": "<username()>",`,
-  password: `"password": "<password(min_length, max_length)>",`,
+  password: `"password": "<password(1, 100)>",`,
   int: `"int": "<int(min, max)>",`,
   float: `"float": "<float(min, max, round)>",`,
   boolean: `"boolean": "<boolean()>",`,
-  random: `"random": "<random("item1", "item2", "item3", …)>",`,
+  random: `"random": "<random(item1, item2, item3)>",`,
   lorem: `"lorem": "<lorem(number, unit)>",`,
   picture: `"picture": "<picture(width, height)>",`,
   color: `"color": "<color()>",`,
@@ -107,7 +110,7 @@ defaultTemplate.value = `[
   "<iter(5)>",
   {
       "_id": "<uuid()>",
-      "index": "<index(12)>",
+      "index": "<index()>",
       "name": "<name()>",
       "email": "<email()>",
       "phone": "<phone()>",
