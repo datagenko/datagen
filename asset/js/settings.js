@@ -37,6 +37,19 @@ closeBtn.addEventListener("click", () => {
   settingModal.classList.remove("turn_on");
 });
 
+// 셋팅 이외의 영역 클릭 시 셋팅 닫기
+document.addEventListener('click', (event) => {
+  const target = event.target;
+  if (
+    target.classList.contains('btn-setting') ||
+    target.closest('.setting-list')
+  ) {
+    return;
+  } else {
+    settingModal.classList.remove("turn_on");
+  }
+});
+
 plusSizeBtn.addEventListener('click', (e) => {
   changeFontSize('plus', ['json-input', 'json-output']);
 });
