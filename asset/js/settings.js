@@ -62,11 +62,15 @@ wordWrapSwitch.addEventListener("click", (e) => {
 
 copyBtn.addEventListener("click", () => {
   const textToCopy = jsonOutputText.value;
-
+  const language = document.querySelector('.language-select .selected-value').innerText
   navigator.clipboard
     .writeText(textToCopy)
     .then(() => {
+      if (language === 'KO') {
       alert("클립보드에 복사하였습니다.");
+      } else if (language === 'ENG'){
+        alert("Copied to clipboard.");
+      }
     })
     .catch((err) => {
       console.error("복사가 되지 않았습니다.", err);
@@ -106,6 +110,6 @@ function changeLanguage(language) {
   } else if (language === 'English') {
     selectedValueElement.innerText = `Please select a \`key\` value`;
     footerTitle.innerHTML = `This project allows for generating data needed for building services or data analysis.`;
-    footerContent.innerHTML =  `datagenerator.co.kr is a open-source project crafted with contributions from numerous developers. It is a public good that anyone can use without permission. We welcome contributions and encourage collaboration from anyone interested in improving this project. <br /><br />DataGen. ⓒ2023. All Right Reserved.`;
+    footerContent.innerHTML =  `datagenerator.co.kr is an open-source project crafted with contributions from numerous developers. It is a public good that anyone can use without permission. We welcome contributions and encourage collaboration from anyone interested in improving this project. <br /><br />DataGen. ⓒ2023. All Right Reserved.`;
   }
 }
