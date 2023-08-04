@@ -62,11 +62,15 @@ wordWrapSwitch.addEventListener("click", (e) => {
 
 copyBtn.addEventListener("click", () => {
   const textToCopy = jsonOutputText.value;
-
+  const language = document.querySelector('.language-select .selected-value').innerText
   navigator.clipboard
     .writeText(textToCopy)
     .then(() => {
+      if (language === 'KO') {
       alert("클립보드에 복사하였습니다.");
+      } else if (language === 'ENG'){
+        alert("Copied to clipboard.");
+      }
     })
     .catch((err) => {
       console.error("복사가 되지 않았습니다.", err);
@@ -100,12 +104,12 @@ function changeIndentSize(elements) {
 //해당 함수에서 작업
 function changeLanguage(language) {
   if (language === 'Korean') {
-    selectedValueElement.innerText = `key값을 선택하세요`;
+    selectedValueElement.innerText = `\`key\`값을 선택하세요`;
     footerTitle.innerHTML = `서비스를 만들거나 데이터 분석을 할 때 필요한 데이터를 생성할 수 있는 프로젝트입니다`;
     footerContent.innerHTML = `이 자료는 많은 개발자들의 도움을 받아 제작되었습니다. 누구나 허락없이 사용할 수 있는 공공재입니다.<br /><br />DataGen. ⓒ2023. All Right Reserved.`;
   } else if (language === 'English') {
-    selectedValueElement.innerText = `Please select a key value`;
-    footerTitle.innerHTML = `이 부분에 영문 작업 예정(footer-title)`;
-    footerContent.innerHTML =  `이 부분에 영문 작업 예정(footer-content)`;
+    selectedValueElement.innerText = `Please select a \`key\` value`;
+    footerTitle.innerHTML = `This project allows for generating data needed for building services or data analysis.`;
+    footerContent.innerHTML =  `datagenerator.co.kr is an open-source project crafted with contributions from numerous developers. It is a public good that anyone can use without permission. We welcome contributions and encourage collaboration from anyone interested in improving this project. <br /><br />DataGen. ⓒ2023. All Right Reserved.`;
   }
 }
