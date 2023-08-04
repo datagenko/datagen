@@ -36,6 +36,7 @@ const lorem_list = [
   "aliquid",
   "voluptas",
   "tempora",
+  "test",
 ];
 const domain_list = ["com", "co.kr", "net", "org"];
 
