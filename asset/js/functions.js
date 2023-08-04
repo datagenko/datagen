@@ -163,9 +163,9 @@ function money(min, max, symbol) {
 function country() {
   switch (language) {
     case "KO":
-      return randomItem(country_list.ko);
+      return randomItem(country_list.KO);
     case "ENG":
-      return randomItem(country_list.en);
+      return randomItem(country_list.ENG);
   }
 }
 
@@ -175,9 +175,9 @@ function country() {
 function city() {
   switch (language) {
     case "KO":
-      return randomItem(city_list.ko);
+      return randomItem(city_list.KO);
     case "ENG":
-      return randomItem(city_list.en);
+      return randomItem(city_list.ENG);
   }
 }
 
@@ -188,9 +188,9 @@ function city() {
 function name() {
   switch (language) {
     case "KO":
-      return randomItem(first_name.ko) + randomItem(last_name.ko);
+      return randomItem(first_name.KO) + randomItem(last_name.KO);
     case "ENG":
-      return `${randomItem(first_name.en)} ${randomItem(last_name.en)}`;
+      return `${randomItem(first_name.ENG)} ${randomItem(last_name.ENG)}`;
   }
 }
 
@@ -312,9 +312,9 @@ function picture(width, height) {
 function job() {
   switch (language) {
     case "KO":
-      return randomItem(job_list.ko);
+      return randomItem(job_list.KO);
     case "ENG":
-      return randomItem(job_list.en);
+      return randomItem(job_list.ENG);
   }
 }
 
@@ -322,9 +322,9 @@ function job() {
 function company() {
   switch (language) {
     case "KO":
-      return randomItem(company_list.ko);
+      return randomItem(company_list.KO);
     case "ENG":
-      return randomItem(company_list.en);
+      return randomItem(company_list.ENG);
   }
 }
 
@@ -348,9 +348,9 @@ function creditCardNumber() {
  */
 function address(){
   if (language === 'KO') {
-    return `${randomItem(street_list.ko)} ${randomInteger(1, 99)}-${randomInteger(1,9)}`
+    return `${randomItem(street_list[language])} ${randomInteger(1, 99)}-${randomInteger(1,9)}`
   }
-  return `${randomInteger(1, 9999)} ${randomItem(street_list.en)}`
+  return `${randomInteger(1, 9999)} ${randomItem(street_list[language])}`
 }
 
 /** 우편번호를 생성합니다.
