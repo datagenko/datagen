@@ -118,7 +118,7 @@ function lorem(args) {
 
   if (unit === 'word') {
     for (let i = 1; i < number + 1; i++) {
-      result += ` ${randomItem(lorem_list)}`
+      result += ` ${randomItem(lorem_list[language])}`
       if (i > 1 && i%8 === 0) {
         result += '.'
       }
@@ -127,7 +127,7 @@ function lorem(args) {
   else if (unit === 'paragraph') {
     for (let i = 0; i < number; i++) {
       for (let j = 0; j < 8; j++) {
-        result += ` ${randomItem(lorem_list)}`
+        result += ` ${randomItem(lorem_list[language])}`
       }
       result += '.'
     }
