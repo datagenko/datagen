@@ -1,0 +1,240 @@
+[
+  {
+    "keyname": "uuid",
+    "description": "Generates a unique identifier in UUID format.",
+    "usage": "<uuid()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "index",
+    "description": "Generates an index value based on the provided integer and increments by 1.",
+    "usage": "<index(integer)>",
+    "arguments": [
+      { "param": "integer", "type": "Integer", "detail": "integer, default = 1" }
+    ],
+    "returns": "Integer"
+  },
+  {
+    "keyname": "username",
+    "description": "Returns a random username.",
+    "usage": "<username()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "password",
+    "description": "Generates a random password of a specified length.",
+    "usage": "<password(min_length, max_length)>",
+    "arguments": [
+      { "param": "min_length", "type": "Integer", "detail": "Minimum number of characters" },
+      { "param": "max_length", "type": "Integer", "detail": "Maximum number of characters" }
+    ],
+    "returns": "String"
+  },
+  {
+    "keyname": "int",
+    "description": "Generates a random integer within a specified range.",
+    "usage": "<int(min, max)>",
+    "arguments": [
+      { "param": "min", "type": "Integer", "detail": "Minimum value" },
+      { "param": "max", "type": "Integer", "detail": "Maximum value" }
+    ],
+    "returns": "Integer"
+  },
+  {
+    "keyname": "float",
+    "description": "Generates a random floating-point number within a specified range.",
+    "usage": "<float(min, max, round)>",
+    "arguments": [
+      { "param": "min", "type": "Float", "detail": "Minimum value" },
+      { "param": "max", "type": "Float", "detail": "Maximum value" },
+      { "param": "round", "type": "Integer", "detail": "The number to be rounded" }
+    ],
+    "returns": "Float"
+  },
+  {
+    "keyname": "boolean",
+    "description": "Returns either \"True\" or 'False'.",
+    "usage": "<boolean()>",
+    "returns": "Boolean"
+  },
+  {
+    "keyname": "random",
+    "description": "Returns one of the values present in the input \"item\" list.",
+    "usage": "<random(\"item1\",\"item2\",\"item3\", ...)>",
+    "arguments": [{ "param": "item", "type": "String", "detail": "" }],
+    "returns": "String"
+  },
+  {
+    "keyname": "lorem",
+    "description": "Returns a random sentence or paragraph.",
+    "usage": "<lorem(number, unit)>",
+    "arguments": [
+      { "param": "number", "type": "Integer", "detail": "1 or more, default = 5" },
+      {
+        "param": "unit",
+        "type": "String",
+        "detail": " \"word\", or \"paragraph\", default = \"word\""
+      }
+    ],
+    "returns": "String"
+  },
+  {
+    "keyname": "picture",
+    "description": "Returns a link to an image with the specified pixel dimensions.",
+    "usage": "<picture(width, height)>",
+    "arguments": [
+      { "param": "width", "type": "Integer", "detail": "Width of the image in pixels, 1 or more" },
+      { "param": "height", "type": "Integer", "detail": "Height of the image in pixels, 1 or more" }
+    ],
+    "returns": "String"
+  },
+  {
+    "keyname": "color",
+    "description": "Generates a random RGB code in the form of a 6-digit hexadecimal color value.",
+    "usage": "<color()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "name",
+    "description": "Generates a random English name.",
+    "usage": "<name()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "email",
+    "description": "Generates a random email address.",
+    "usage": "<email()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "phone",
+    "description": "Generates a random phone number.",
+    "usage": "<phone()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "country",
+    "description": "Returns a random country name.",
+    "usage": "<country()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "city",
+    "description": "Returns a random city name",
+    "usage": "<city()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "address",
+    "description": "Returns a random English address.",
+    "usage": "<address()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "postal_code",
+    "description": "Generates a random postal code.",
+    "usage": "<postal_code()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "job",
+    "description": "Returns a random job title.",
+    "usage": "<job()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "company",
+    "description": "Returns a random company name.",
+    "usage": "<company()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "creditCardNumber",
+    "description": "Generates a random credit card number.",
+    "usage": "<creditCardNumber()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "gender",
+    "description": "Returns a randomly selected gender.",
+    "usage": "<gender()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "urls",
+    "description": "Generates a random URL string.",
+    "usage": "<urls()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "money",
+    "description": "Returns a randomly generated amount with a currency symbol in amount format.",
+    "usage": "<money([min], [maximum], [symbol])>",
+    "arguments": [
+      {
+        "param": "min",
+        "type": "Integer",
+        "detail": "Minimum value"
+      },
+      {
+        "param": "max",
+        "type": "Integer",
+        "detail": "Maximum value"
+      },
+      {
+        "param": "symbol(optional)",
+        "type": "String",
+        "detail": "Currency symbol, default = $, option = ₩ "
+      }
+    ],
+    "returns": "String"
+  },
+  {
+    "keyname": "date",
+    "description": "Returns a randomly generated date within the specified date range.",
+    "usage": "<date([date_start], [date_end], [date_format])>",
+    "arguments": [
+      {
+        "param": "date_start",
+        "type": "String",
+        "detail": "\"MM-DD-YYYY\" start date"
+      },
+      {
+        "param": "date_end",
+        "type": "String",
+        "detail": "\"MM-DD-YYY\" end date"
+      },
+      {
+        "param": "date_format(optional)",
+        "type": "String",
+        "detail": "Format using MM, DD, YYYY, default = US: MM-DD-YYYY, option = KR: YYYY-MM-DD"
+      }
+    ],
+    "returns": "String"
+  },
+  {
+    "keyname": "time",
+    "description": "Returns a random time.",
+    "usage": "<time()>",
+    "returns": "String"
+  },
+  {
+    "keyname": "iter",
+    "description": "Repeats the provided JSON object and the placeholders (\"<>\" symbols) within the object sequentially.",
+    "usage": "<iter([number])>",
+    "arguments": [
+      {
+        "param": "number",
+        "type": "Integer",
+        "detail": "1 or more, default = 5"
+      }
+    ],
+    "returns": "Object"
+  },
+  {
+    "keyname": "function",
+    "description": "Define a new variable or manipulate data using JavaScript syntax provided within the function string. You can access and modify values from the parent context using the \"this\" keyword. The function returns the manipulated data as a string.",
+    "usage": "<function({functionString})>",
+    "returns": "String"
+  }
+]

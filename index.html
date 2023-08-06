@@ -1,327 +1,198 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="JSON Generator는 더미 데이터를 생성해주는 서비스입니다. 빠르고 쉽게 고유 키값으로 데이터를 생성할 수 있습니다."
+    />
+    <title>JSON Generator</title>
+    <link rel="icon" href="./asset/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./asset/css/reset.css" />
+    <link rel="stylesheet" href="./asset/css/style.css" />
+    <link rel="stylesheet" href="./asset/css/layout.css" />
+    <link rel="stylesheet" href="./asset/css/header.css" />
+    <link rel="stylesheet" href="./asset/css/select.css" />
+    <link rel="stylesheet" href="./asset/css/menubar.css" />
+    <link rel="stylesheet" href="./asset/css/buttons.css" />
+    <link rel="stylesheet" href="./asset/css/footer.css" />
+    <link rel="stylesheet" href="./asset/css/setting.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="description" content="JSON Generator는 더미 데이터를 생성해주는 서비스입니다. 빠르고 쉽게 고유 키값으로 데이터를 생성할 수 있습니다." />
-	<title>JSON Generator</title>
-	<link rel="icon" href="./asset/img/favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" href="./asset/css/reset.css" />
-	<link rel="stylesheet" href="./asset/css/style.css" />
-	<link rel="stylesheet" href="./asset/css/layout.css" />
-	<link rel="stylesheet" href="./asset/css/header.css" />
-	<link rel="stylesheet" href="./asset/css/select.css" />
-	<link rel="stylesheet" href="./asset/css/menubar.css" />
-	<link rel="stylesheet" href="./asset/css/buttons.css" />
-	<link rel="stylesheet" href="./asset/css/footer.css" />
-	<link rel="stylesheet" href="./asset/css/setting.css" />
-</head>
-
-<body>
-	<div id="datagen-container">
-		<header>
-			<h1 class="logo">
-				<a href="https://datagenerator.co.kr/"><img src="asset/img/logo.svg" alt="데이터젠 로고" /></a>
-			</h1>
-			<div class="language">
-				<button class="btn-guide" id="openModalBtn"></button>
-				<div class="modal-container" id="bottomSheetModal">
-					<button id="closeModalBtn">X</button>
-					<div class="modal-content">
-						<h3></h3>
-						<br />
-
-						<!-- <div class="toggle">
-							<button id="toggle-button">uuid &#11015;</button>
-							<div class="toggle-content">
-								<p>Random uuid in specified range.</p>
-								<div>
-									<span>Usage</span>
-									<code>{{MIN(), MAX()}}</code>
-								</div>
-								<div class="wrap-table">
-									<span>Arguments</span>
-									<table class="table">
-										<tr>
-											<th>Params</th>
-											<th>Type</th>
-											<th>Details</th>
-										</tr>
-										<tr>
-											<td>min</td>
-											<td>
-												<Date>Date</Date>
-											</td>
-											<td>Mimimum date in the range</td>
-										</tr>
-										<tr>
-											<td>min</td>
-											<td>
-												<String>String</String>
-											</td>
-											<td>Mimimum string in the range</td>
-										</tr>
-										<tr>
-											<td>min</td>
-											<td>
-												<Number>Number</Number>
-											</td>
-											<td>Mimimum number in the range</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-						</div> -->
-
-					</div>
-				</div>
-				<a href="https://github.com/datagenko/datagen" class="github" target="_blank"
-					aria-label="DataGen GitHubRepo"></a>
-				<div class="select-wrap select-language">
-					<button class="selected language-select" type="button">
-						<span class="selected-value">KO</span>
-						<span class="arrow"></span>
-					</button>
-
-					<ul class="list-select language-list">
-						<li>
-							<button class="language-list_ko">KO</button>
-						</li>
-						<li>
-							<button class="language-list_eng">ENG</button>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</header>
-		<main class="datagen-contents">
-			<section id="datagen-input">
-				<!-- 셀렉트박스 -->
-				<div class="select-wrap select-input">
-					<button class="selected" type="button">
-						<span class="selected-value">key값을 선택하세요</span>
-						<span class="arrow"></span>
-					</button>
-					<ul class="list-select">
-						<li><button type="button">uuid: user id 생성</button></li>
-						<li><button type="button">index</button></li>
-						<li><button type="button">username</button></li>
-						<li><button type="button">password</button></li>
-						<li><button type="button">int</button></li>
-						<li><button type="button">float</button></li>
-						<li><button type="button">boolean</button></li>
-						<li><button type="button">random</button></li>
-						<li><button type="button">lorem</button></li>
-						<li><button type="button">picture</button></li>
-						<li><button type="button">color</button></li>
-						<li><button type="button">name</button></li>
-						<li><button type="button">email</button></li>
-						<li><button type="button">phone</button></li>
-						<li><button type="button">country</button></li>
-						<li><button type="button">city</button></li>
-						<li><button type="button">address</button></li>
-						<li><button type="button">postal-code</button></li>
-						<li><button type="button">job</button></li>
-						<li><button type="button">company</button></li>
-						<li><button type="button">creditCardNumber</button></li>
-						<li><button type="button">gender</button></li>
-						<li><button type="button">urls</button></li>
-						<li><button type="button">money</button></li>
-						<li><button type="button">date</button></li>
-						<li><button type="button">time</button></li>
-						<li><button type="button">iter</button></li>
-						<li><button type="button">function</button></li>
-					</ul>
-				</div>
-				<label for="json-input"></label>
-				<textarea id="json-input"></textarea>
-				<div class="btn-inp-wrap">
-					<button class="btn gen" id="generate-button">Generate</button>
-					<button class="btn reset" id="reset-button">Reset</button>
-				</div>
-				<!-- 메뉴바  -->
-				<!-- <button id="openModalBtn">메 뉴 바</button> -->
-
-				<!-- <div class="modal-container" id="bottomSheetModal">
+  <body>
+    <div id="datagen-container">
+      <header>
+        <h1 class="logo">
+          <a href="https://datagenerator.co.kr/"
+            ><img src="asset/img/logo.svg" alt="데이터젠 로고"
+          /></a>
+        </h1>
+        <div class="language">
+          <button class="btn-guide" id="openModalBtn"></button>
+          <div class="modal-container" id="bottomSheetModal">
             <button id="closeModalBtn">X</button>
             <div class="modal-content">
-              <h2>메뉴바</h2>
+              <h3></h3>
               <br />
-              <ul>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officiis totam neque nesciunt ullam, esse optio asperiores
-                  delectus nisi non quibusdam tempora animi quis, rerum culpa
-                  sed inventore assumenda dolores architecto.
-                </li>
-              </ul>
             </div>
-          </div> -->
-			</section>
-			<section id="datagen-output">
-				<div class="json-output-wrap">
-					<div class="btn-copy-setting">
-						<button class="btn-copy"></button>
-						<button class="btn-setting"></button>
-					</div>
-					<div class="setting-list">
-						<h2>Settings</h2>
-						<div class="settings">
-							<p>font size</p>
-							<div class="font-size-wrap">
-								<button type="button" class="btn" id="decrease-btn">-</button>
-								<button type="button" class="btn" id="reset-btn">
-									reset
-								</button>
-								<button type="button" class="btn" id="increase-btn">+</button>
-							</div>
-						</div>
-						<button class="btn-setting_close">X</button>
-						<div class="settings">
-							<p>indent</p>
-							<div class="select-wrap select-indent">
-								<button class="selected" type="button">
-									<span class="selected-value">2 space tab</span>
-									<span class="arrow"></span>
-								</button>
-								<ul class="list-select">
-									<li><button type="button" value="0">Compact</button></li>
-									<li>
-										<button type="button" value="2">2 space tab</button>
-									</li>
-									<li>
-										<button type="button" value="4">4 space tab</button>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="settings">
-							<p>word wrap</p>
-							<label class="word-wrap_switch">
-								<input type="checkbox" checked />
-								<span class="slider"></span>
-							</label>
-						</div>
-					</div>
-					<label for="json-output"></label>
-					<textarea id="json-output" class="turn_on" readonly></textarea>
-				</div>
-				<article class="download-wrap">
-					<p>Download to</p>
-					<div class="btn-wrap">
-						<button class="btn download" id="downloadjson-button">
-							JSON
-						</button>
-						<button class="btn download" id="downloadcsv-button">CSV</button>
-						<button class="btn download" id="downloadhtml-button">
-							HTML
-						</button>
-						<button class="btn download" id="downloadxml-button">XML</button>
-						<button class="btn download" id="downloadsql-button">SQL</button>
-					</div>
-				</article>
-				<!--footer-->
-				<footer class="footer-content">
-					<p class="footer-title">
-						서비스를 만들거나 데이터 분석을 할 때 필요한 데이터를 생성할 수
-						있는 프로젝트입니다
-					</p>
-					<p class="footer-subtitle">
-						이 자료는 많은 개발자들의 도움을 받아 제작되었습니다. 누구나
-						허락없이 사용할 수 있는 공공재입니다.<br /><br />DataGen. ⓒ2023.
-						All Right Reserved.
-					</p>
-					<img class="footer-logo" src="asset/img/logo-footer.svg" alt="데이터젠 로고" />
-				</footer>
-			</section>
-		</main>
-	</div>
-  <script src="asset/js/data.js"></script>
-  <script src="asset/js/functions.js"></script>
-  <script src="asset/js/generate.js"></script>
-	<script src="asset/js/output.js"></script>
-	<script src="asset/js/select.js"></script>
-	<!-- <script src="asset/js/language.js"></script> -->
-	<script type="module" src="asset/js/menubar.js"></script>
-	<script src="asset/js/settings.js"></script>
-</body>
+          </div>
+          <a
+            href="https://github.com/datagenko/datagen"
+            class="github"
+            target="_blank"
+            aria-label="DataGen GitHubRepo"
+          ></a>
+          <div class="select-wrap select-language">
+            <button class="selected language-select" type="button">
+              <span class="selected-value">KO</span>
+              <span class="arrow"></span>
+            </button>
 
+            <ul class="list-select language-list">
+              <li>
+                <button class="language-list_ko">KO</button>
+              </li>
+              <li>
+                <button class="language-list_eng">ENG</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <main class="datagen-contents">
+        <section id="datagen-input">
+          <!-- 셀렉트박스 -->
+          <div class="select-wrap select-input">
+            <button class="selected" type="button">
+              <span class="selected-value">key값을 선택하세요</span>
+              <span class="arrow"></span>
+            </button>
+            <ul class="list-select">
+              <li><button type="button">uuid</button></li>
+              <li><button type="button">index</button></li>
+              <li><button type="button">username</button></li>
+              <li><button type="button">password</button></li>
+              <li><button type="button">int</button></li>
+              <li><button type="button">float</button></li>
+              <li><button type="button">boolean</button></li>
+              <li><button type="button">random</button></li>
+              <li><button type="button">lorem</button></li>
+              <li><button type="button">picture</button></li>
+              <li><button type="button">color</button></li>
+              <li><button type="button">name</button></li>
+              <li><button type="button">email</button></li>
+              <li><button type="button">phone</button></li>
+              <li><button type="button">country</button></li>
+              <li><button type="button">city</button></li>
+              <li><button type="button">address</button></li>
+              <li><button type="button">postal-code</button></li>
+              <li><button type="button">job</button></li>
+              <li><button type="button">company</button></li>
+              <li><button type="button">creditCardNumber</button></li>
+              <li><button type="button">gender</button></li>
+              <li><button type="button">urls</button></li>
+              <li><button type="button">money</button></li>
+              <li><button type="button">date</button></li>
+              <li><button type="button">time</button></li>
+              <li><button type="button">iter</button></li>
+              <li><button type="button">function</button></li>
+            </ul>
+          </div>
+          <label for="json-input"></label>
+          <textarea id="json-input"></textarea>
+          <div class="btn-inp-wrap">
+            <button class="btn gen" id="generate-button">Generate</button>
+            <button class="btn reset" id="reset-button">Reset</button>
+          </div>
+        </section>
+        <section id="datagen-output">
+          <div class="json-output-wrap">
+            <div class="btn-copy-setting">
+              <button class="btn-copy"></button>
+              <button class="btn-setting"></button>
+            </div>
+            <div class="setting-list">
+              <h2>Settings</h2>
+              <div class="settings">
+                <p>font size</p>
+                <div class="font-size-wrap">
+                  <button type="button" class="btn" id="decrease-btn">-</button>
+                  <button type="button" class="btn" id="reset-btn">
+                    reset
+                  </button>
+                  <button type="button" class="btn" id="increase-btn">+</button>
+                </div>
+              </div>
+              <button class="btn-setting_close">X</button>
+              <div class="settings">
+                <p>indent</p>
+                <div class="select-wrap select-indent">
+                  <button class="selected" type="button">
+                    <span class="selected-value">2 space tab</span>
+                    <span class="arrow"></span>
+                  </button>
+                  <ul class="list-select">
+                    <li><button type="button" value="0">Compact</button></li>
+                    <li>
+                      <button type="button" value="2">2 space tab</button>
+                    </li>
+                    <li>
+                      <button type="button" value="4">4 space tab</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="settings">
+                <p>word wrap</p>
+                <label class="word-wrap_switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <label for="json-output"></label>
+            <textarea id="json-output" class="turn_on" readonly></textarea>
+          </div>
+          <article class="download-wrap">
+            <p>Download to</p>
+            <div class="btn-wrap">
+              <button class="btn download" id="downloadjson-button">
+                JSON
+              </button>
+              <button class="btn download" id="downloadcsv-button">CSV</button>
+              <button class="btn download" id="downloadhtml-button">
+                HTML
+              </button>
+              <button class="btn download" id="downloadxml-button">XML</button>
+              <button class="btn download" id="downloadsql-button">SQL</button>
+            </div>
+          </article>
+          <!--footer-->
+          <footer class="footer-content">
+            <p class="footer-title">
+              서비스를 만들거나 데이터 분석을 할 때 필요한 데이터를 생성할 수
+              있는 프로젝트입니다
+            </p>
+            <p class="footer-subtitle">
+              이 자료는 많은 개발자들의 도움을 받아 제작되었습니다. 누구나
+              허락없이 사용할 수 있는 공공재입니다.<br /><br />DataGen. ⓒ2023.
+              All Right Reserved.
+            </p>
+            <img
+              class="footer-logo"
+              src="asset/img/logo-footer.svg"
+              alt="데이터젠 로고"
+            />
+          </footer>
+        </section>
+      </main>
+    </div>
+    <script src="asset/js/data.js"></script>
+    <script src="asset/js/functions.js"></script>
+    <script src="asset/js/generate.js"></script>
+    <script src="asset/js/output.js"></script>
+    <script src="asset/js/select.js"></script>
+    <script src="asset/js/menubar.js"></script>
+    <script src="asset/js/settings.js"></script>
+  </body>
 </html>

@@ -19,6 +19,7 @@ const lorem_list = {
 }
 const domain_list = ["com", "co.kr", "net", "org", "io", "biz"];
 
+
 const country_list = {
   'KO' : ['대한민국', '미국'],
   'ENG' : ['Republic of Korea', 'United States']
