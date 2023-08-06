@@ -1,5 +1,3 @@
-import guideData from './guideData.js';
-
 const openModalBtn = document.getElementById('openModalBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const bottomSheetModal = document.getElementById('bottomSheetModal');
@@ -25,8 +23,25 @@ function createEl(options) {
   return element;
 }
 
+async function loadJSON(language) {
+  const path =
+    language === 'Korean'
+      ? 'asset/js/guideData_KR.json'
+      : 'asset/js/guideData_ENG.json';
+  try {
+    const response = await fetch(path);
+    const jsonData = response.json();
+    return jsonData;
+  } catch (error) {
+    console.error('Error loading JSON file:', error);
+  }
+}
+
 // guideData를 추가하기 위한 함수
-function addGuideToModalContent() {
+async function addGuideToModalContent(language) {
+  const guideData = await loadJSON(language);
+  modalContent.innerHTML = '';
+
   for (const data of guideData) {
     const toggle = createEl({
       tagName: 'div',
@@ -173,7 +188,7 @@ function checkScroll() {
 }
 
 // 페이지 로드 시 guideData를 modal-content에 추가
-document.addEventListener('DOMContentLoaded', addGuideToModalContent);
+document.addEventListener('DOMContentLoaded', addGuideToModalContent('Korean'));
 
 openModalBtn.addEventListener('click', () => {
     bottomSheetModal.style.height = '100%';
