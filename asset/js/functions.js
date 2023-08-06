@@ -205,7 +205,7 @@ function phone() {
 }
 
 function email() {
-  return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
+  return `${username()}@${randomItem(lorem_list['ENG'])}.${randomItem(domain_list)}`;
 }
 
 /* 무작위로 유저 이름을 생성합니다 */
