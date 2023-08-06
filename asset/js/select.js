@@ -23,7 +23,11 @@ const selectEvent = (selectBox, option, selectedValue) => {
     } else if (selectBox.classList.contains("select-indent")) {
       changeIndentSize(['json-output']);
     } else {
-      //laguage 관련
+      //language 관련
+      // 가이드 언어 변경
+      const language = selectedValue.innerText === 'KO' ? 'Korean' : 'English';
+      addGuideToModalContent(language);
+      changeLanguage(language);
     }
   }
   document.addEventListener("click", (event) => {
