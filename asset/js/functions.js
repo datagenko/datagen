@@ -98,7 +98,6 @@ function lorem(args) {
       unit = args[1];
     } else if (!isNaN(parseInt(args[0]))) {
       number = parseInt(args[0]);
-      console.log(2, number,unit);
     } else if (typeof args[1] === 'string') {
       number = parseInt(args[0]);
       unit = args[1];
@@ -118,7 +117,7 @@ function lorem(args) {
 
   if (unit === 'word') {
     for (let i = 1; i < number + 1; i++) {
-      result += ` ${randomItem(lorem_list)}`
+      result += ` ${randomItem(lorem_list[language])}`
       if (i > 1 && i%8 === 0) {
         result += '.'
       }
@@ -127,7 +126,7 @@ function lorem(args) {
   else if (unit === 'paragraph') {
     for (let i = 0; i < number; i++) {
       for (let j = 0; j < 8; j++) {
-        result += ` ${randomItem(lorem_list)}`
+        result += ` ${randomItem(lorem_list[language])}`
       }
       result += '.'
     }
@@ -157,58 +156,56 @@ function money(min, max, symbol) {
   return `${symbol} ${result}`;
 }
 
+/** 설정 언어에 따라 나라 이름을 생성합니다.
+ * @returns {string} 나라 이름을 무작위로 반환합니다.
+ */
 function country() {
-  switch (language) {
-    case "KO":
-      return randomItem(ko_country_list);
-    case "ENG":
-      return randomItem(en_country_list);
-  }
+  return randomItem(country_list[language]);
+
 }
 
+/** 설정 언어에 따라 도시 이름을 생성합니다.
+ * @returns {string} 도시 이름을 무작위로 반환합니다.
+ */
 function city() {
-  switch (language) {
-    case "KO":
-      return randomItem(ko_city_list);
-    case "ENG":
-      return randomItem(en_city_list);
-  }
+  return randomItem(city_list[language]);
 }
 
+/**
+ * 언어 형식에 맞는 랜덤한 이름을 반환합니다.
+ * @returns {string}
+ */
 function name() {
   switch (language) {
     case "KO":
-      return randomItem(ko_first_name) + randomItem(ko_last_name);
+      return randomItem(first_name.KO) + randomItem(last_name.KO);
     case "ENG":
-      return `${randomItem(en_first_name)} ${randomItem(en_last_name)}`;
+      return `${randomItem(first_name.ENG)} ${randomItem(last_name.ENG)}`;
   }
 }
 
+
+/**
+ * 언어 형식에 맞는 랜덤한 전화번호를 반환합니다.
+ * @returns {string} KO) 010-0000-0000, ENG) (200) 0000-000
+ */
 function phone() {
   let firstNumber, middleNumber, lastNumber;
   switch (language) {
     case "KO":
       middleNumber = randomInteger(2000, 9999);
       lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
-
       return `010-${middleNumber}-${lastNumber}`;
     case "ENG":
       firstNumber = randomInteger(200, 999);
       middleNumber = randomInteger(0, 999).toString().padStart(3, "0");
       lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
-
       return `(${firstNumber}) ${middleNumber}-${lastNumber}`;
   }
 }
 
 function email() {
-  switch (language) {
-    case "KO":
-      return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
-
-    case "ENG":
-      return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
-  }
+  return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
 }
 
 /* 무작위로 유저 이름을 생성합니다 */
@@ -296,22 +293,12 @@ function picture(width, height) {
 
 // 직업 랜덤 생성
 function job() {
-  switch (language) {
-    case "KO":
-      return randomItem(ko_job_list);
-    case "ENG":
-      return randomItem(en_job_list);
-  }
+  return randomItem(job_list[language]);
 }
 
 // 회사 랜덤 생성
 function company() {
-  switch (language) {
-    case "KO":
-      return randomItem(ko_company_list);
-    case "ENG":
-      return randomItem(en_company_list);
-  }
+  return randomItem(company_list[language]);
 }
 
 function gender() {
@@ -334,9 +321,9 @@ function creditCardNumber() {
  */
 function address(){
   if (language === 'KO') {
-    return `${randomItem(ko_street_list)}로 ${randomInteger(1, 99)}-${randomInteger(1,9)}`
+    return `${randomItem(street_list[language])} ${randomInteger(1, 99)}-${randomInteger(1,9)}`
   }
-  return `${randomItem(en_street_list)} street ${randomInteger(1, 99)}-${randomInteger(1,9)}`
+  return `${randomInteger(1, 9999)} ${randomItem(street_list[language])}`
 }
 
 /** 우편번호를 생성합니다.
@@ -363,7 +350,7 @@ function getRandomDomain() {
 
 function urls() {
   const protocol = "https://";
-  const randomString = randomItem(lorem_list)
+  const randomString = randomItem(lorem_list['ENG'])
   const domainExtension = getRandomDomain();
   const randomURL = protocol + randomString + domainExtension;
   return randomURL;
