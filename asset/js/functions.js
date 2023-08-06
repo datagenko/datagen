@@ -98,7 +98,7 @@ function lorem(args) {
       unit = args[1];
     } else if (!isNaN(parseInt(args[0]))) {
       number = parseInt(args[0]);
-      console.log(2, number,unit);
+      console.log(2, number, unit);
     } else if (typeof args[1] === 'string') {
       number = parseInt(args[0]);
       unit = args[1];
