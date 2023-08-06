@@ -98,7 +98,6 @@ function lorem(args) {
       unit = args[1];
     } else if (!isNaN(parseInt(args[0]))) {
       number = parseInt(args[0]);
-      console.log(2, number,unit);
     } else if (typeof args[1] === 'string') {
       number = parseInt(args[0]);
       unit = args[1];
@@ -161,24 +160,15 @@ function money(min, max, symbol) {
  * @returns {string} 나라 이름을 무작위로 반환합니다.
  */
 function country() {
-  switch (language) {
-    case "KO":
-      return randomItem(country_list.KO);
-    case "ENG":
-      return randomItem(country_list.ENG);
-  }
+  return randomItem(country_list[language]);
+
 }
 
 /** 설정 언어에 따라 도시 이름을 생성합니다.
  * @returns {string} 도시 이름을 무작위로 반환합니다.
  */
 function city() {
-  switch (language) {
-    case "KO":
-      return randomItem(city_list.KO);
-    case "ENG":
-      return randomItem(city_list.ENG);
-  }
+  return randomItem(city_list[language]);
 }
 
 /**
@@ -194,6 +184,7 @@ function name() {
   }
 }
 
+
 /**
  * 언어 형식에 맞는 랜덤한 전화번호를 반환합니다.
  * @returns {string} KO) 010-0000-0000, ENG) (200) 0000-000
@@ -204,25 +195,17 @@ function phone() {
     case "KO":
       middleNumber = randomInteger(2000, 9999);
       lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
-
       return `010-${middleNumber}-${lastNumber}`;
     case "ENG":
       firstNumber = randomInteger(200, 999);
       middleNumber = randomInteger(0, 999).toString().padStart(3, "0");
       lastNumber = randomInteger(1, 9999).toString().padStart(4, "0");
-
       return `(${firstNumber}) ${middleNumber}-${lastNumber}`;
   }
 }
 
 function email() {
-  switch (language) {
-    case "KO":
-      return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
-
-    case "ENG":
-      return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
-  }
+  return `${username()}@${randomItem(lorem_list)}.${randomItem(domain_list)}`;
 }
 
 /* 무작위로 유저 이름을 생성합니다 */
@@ -310,22 +293,12 @@ function picture(width, height) {
 
 // 직업 랜덤 생성
 function job() {
-  switch (language) {
-    case "KO":
-      return randomItem(job_list.KO);
-    case "ENG":
-      return randomItem(job_list.ENG);
-  }
+  return randomItem(job_list[language]);
 }
 
 // 회사 랜덤 생성
 function company() {
-  switch (language) {
-    case "KO":
-      return randomItem(company_list.KO);
-    case "ENG":
-      return randomItem(company_list.ENG);
-  }
+  return randomItem(company_list[language]);
 }
 
 function gender() {
@@ -377,7 +350,7 @@ function getRandomDomain() {
 
 function urls() {
   const protocol = "https://";
-  const randomString = randomItem(lorem_list)
+  const randomString = randomItem(lorem_list['ENG'])
   const domainExtension = getRandomDomain();
   const randomURL = protocol + randomString + domainExtension;
   return randomURL;
