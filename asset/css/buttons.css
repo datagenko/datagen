@@ -33,7 +33,7 @@
   padding: 13px 14px 13px 40px;
   background-color: var(--content-bg);
   flex-wrap: no-wrap;
-  border-radius: 50px;
+  border-radius: 0.8em;
   color: var(--font-gray);
   width: 100%;
   /* max-width: 889px; */
@@ -41,6 +41,7 @@
 }
 
 .download-wrap p {
+  margin-top: -15px;
   font-weight: bold;
   font-size: 1rem;
   width: 200px;
@@ -52,11 +53,11 @@
   display: inline-block;
   content: "";
   position: relative;
-  top: 5px;
+  top: 10px;
   left: 10px;
-  width: 25px;
-  height: 25px;
-  background: url("/asset/img/icon-download.svg") no-repeat;
+  width: 40px;
+  height: 40px;
+  background: url("/asset/img/icon-download.png") no-repeat;
   background-position: 100% 70%;
 }
 
