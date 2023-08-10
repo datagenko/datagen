@@ -20,15 +20,23 @@ function changeFontSize(operation, elements) {
     let currentSize = parseInt(window.getComputedStyle(currentElement).fontSize);
     let newSize;
 
+    //   if (operation === 'plus') {
+    //     newSize = currentSize + 5;
+    //   } else if (operation === 'minus') {
+    //     newSize = currentSize - 5;
+    //   } else if (operation === 'reset') {
+    //     newSize = initialFontSize;
+    //   }
+
+    //   currentElement.style.fontSize = newSize + 'px';
     if (operation === 'plus') {
-      newSize = currentSize + 5;
+      newSize = currentSize + 3;
     } else if (operation === 'minus') {
-      newSize = currentSize - 5;
+      newSize = currentSize - 3;
     } else if (operation === 'reset') {
       newSize = initialFontSize;
     }
-
-    currentElement.style.fontSize = newSize + 'px';
+    output_codemirror.getWrapperElement().style["font-size"] = newSize + 'px';
   }
 }
 
@@ -80,8 +88,8 @@ copyBtn.addEventListener("click", () => {
     .writeText(textToCopy)
     .then(() => {
       if (language === 'KO') {
-      alert("클립보드에 복사하였습니다.");
-      } else if (language === 'ENG'){
+        alert("클립보드에 복사하였습니다.");
+      } else if (language === 'ENG') {
         alert("Copied to clipboard.");
       }
     })
@@ -123,6 +131,6 @@ function changeLanguage(language) {
   } else if (language === 'English') {
     selectedValueElement.innerText = `Please select a \`key\` value`;
     footerTitle.innerHTML = `This project allows for generating data needed for building services or data analysis.`;
-    footerContent.innerHTML =  `datagenerator.co.kr is an open-source project crafted with contributions from numerous developers. It is a public good that anyone can use without permission. We welcome contributions and encourage collaboration from anyone interested in improving this project. <br /><br />DataGen. ⓒ2023. All Right Reserved.`;
+    footerContent.innerHTML = `datagenerator.co.kr is an open-source project crafted with contributions from numerous developers. It is a public good that anyone can use without permission. We welcome contributions and encourage collaboration from anyone interested in improving this project. <br /><br />DataGen. ⓒ2023. All Right Reserved.`;
   }
 }
