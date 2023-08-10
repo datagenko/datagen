@@ -84,7 +84,7 @@ const templateMapping = {
   float: `"float": "<float(min, max, round)>",`,
   boolean: `"boolean": "<boolean()>",`,
   random: `"random": "<random(item1, item2, item3)>",`,
-  lorem: `"lorem": "<lorem(number, unit)>",`,
+  lorem: `"lorem": "<lorem(10, word)>",`,
   picture: `"picture": "<picture(width, height)>",`,
   color: `"color": "<color()>",`,
   name: `"name": "<name()>",`,
