@@ -53,6 +53,8 @@ body {
 }
 
 #json-input {
+  visibility: hidden;
+  /* display: none; */
   flex-grow: 1;
   width: 100%;
   padding: 30px;
@@ -72,17 +74,17 @@ body {
   flex-basis: 80%;
   width: 100%;
   background-color: var(--content-bg);
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
+  border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -ms-border-radius: 0.8em;
+  -o-border-radius: 0.8em;
   overflow: hidden;
 }
 
 .btn-copy-setting {
   padding: 20px 30px 0px;
-  background-color: inherit;
+  background-color: #282a36;
   display: flex;
   justify-content: flex-end;
   flex-basis: 10%;

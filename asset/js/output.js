@@ -91,6 +91,7 @@ document
       parseInt(indentValue)
     );
     document.getElementById("json-output").value = modifiedText;
+    output_codemirror.setValue(modifiedText);
   });
 
 // Reset 버튼 클릭시 이벤트

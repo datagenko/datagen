@@ -72,6 +72,7 @@ function selectJsonInput(selectedText, selectionStart) {
 
     defaultTemplate.value = newValue;
   }
+  editor.setValue(json_input_hidden.value);
 }
 
 
