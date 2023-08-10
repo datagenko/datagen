@@ -1,14 +1,14 @@
 body {
-  padding: 20px 40px;
+  /* padding: 50px 40px 50px 40px; */
   background-color: var(--dark-bg);
 }
 
 #datagen-container {
   width: 100%;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 80px);
   max-width: 1800px;
-  margin: 0 auto;
-  padding: 0 75px 38px;
+  margin: 40px 40px;
+  padding: 30px 75px 38px 75px;
   box-sizing: border-box;
   gap: 138px;
   background-color: var(--bg);
@@ -42,7 +42,7 @@ body {
   width: 300px;
 }
 
-#datagen-input::after {
+/* #datagen-input::after {
   display: block;
   content: "";
   width: 3px;
@@ -51,11 +51,11 @@ body {
   position: absolute;
   top: 0;
   right: -50px;
-}
+} */
 
 #json-input {
-  visibility: hidden;
-  /* display: none; */
+  /* visibility: hidden; */
+  display: none;
   flex-grow: 1;
   width: 100%;
   padding: 30px;
@@ -109,7 +109,7 @@ body {
   margin: auto;
 }
 
-header::after {
+/* header::after {
   display: block;
   content: "";
   width: 100vw;
@@ -118,7 +118,7 @@ header::after {
   position: absolute;
   bottom: 0;
   left: -75px;
-}
+} */
 
 @media (max-width: 930px) {
   .datagen-contents {
@@ -126,13 +126,13 @@ header::after {
     gap: 20px;
   }
 
-  #datagen-input::after {
+  /* #datagen-input::after {
     width: 150%;
     height: 3px;
     top: initial;
     bottom: -20px;
     left: -75px;
-  }
+  } */
 }
 
 @media (max-width: 730px) {
