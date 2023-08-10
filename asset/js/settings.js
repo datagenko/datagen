@@ -79,6 +79,8 @@ wordWrapSwitch.addEventListener("click", (e) => {
   } else {
     jsonOutputText.style.setProperty("white-space", "pre");
   }
+  output_codemirror.setOption('lineWrapping', e.target.checked);
+  // output_codemirror 가로 스크롤 바가 생기는 코드 필요
 });
 
 copyBtn.addEventListener("click", () => {
@@ -120,6 +122,7 @@ function changeIndentSize(elements) {
         );
       }
     }
+    output_codemirror.setValue(currentElement.value);
   }
 }
 //해당 함수에서 작업
