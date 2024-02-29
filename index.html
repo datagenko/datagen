@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./asset/css/buttons.css" />
     <link rel="stylesheet" href="./asset/css/footer.css" />
     <link rel="stylesheet" href="./asset/css/setting.css" />
-    
+
     <!-- codemirror -->
     <link rel="stylesheet" href="./asset/codemirror/codemirror.css" />
     <link rel="stylesheet" href="./asset/codemirror/dracula.css" />
@@ -25,7 +25,6 @@
     <script src="./asset/codemirror/active-line.js"></script>
     <script src="./asset/codemirror/javascript.js"></script>
     <script src="./asset/codemirror/matchtags.js"></script>
-
   </head>
 
   <body>
@@ -37,7 +36,11 @@
           /></a>
         </h1>
         <div class="language">
-          <button class="btn-guide" id="openModalBtn"></button>
+          <button
+            class="btn-guide"
+            id="openModalBtn"
+            aria-label="open-modal-button"
+          ></button>
           <div class="modal-container" id="bottomSheetModal">
             <button id="closeModalBtn">X</button>
             <div class="modal-content">
@@ -107,7 +110,10 @@
               <li><button type="button">function</button></li>
             </ul>
           </div>
-          <textarea id="json-input-highlight" name="json-input-highlight"></textarea>
+          <textarea
+            id="json-input-highlight"
+            name="json-input-highlight"
+          ></textarea>
           <label for="json-input"></label>
           <textarea id="json-input"></textarea>
           <div class="btn-inp-wrap">
@@ -118,8 +124,8 @@
         <section id="datagen-output">
           <div class="json-output-wrap">
             <div class="btn-copy-setting">
-              <button class="btn-copy"></button>
-              <button class="btn-setting"></button>
+              <button class="btn-copy" aria-label="copy-button"></button>
+              <button class="btn-setting" aria-label="setting-button"></button>
             </div>
             <div class="setting-list">
               <h2>Settings</h2>
